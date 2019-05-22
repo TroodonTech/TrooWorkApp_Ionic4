@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { ConnectionSettings} from "./connectionSetting";
 import { HTTP } from '@ionic-native/http/ngx';
-import { HttpClient } from "@angular/common/http";
-
 @Injectable({
   providedIn: 'root'
 })
 export class WorkOrderService {
 
-  constructor(public http: HttpClient,public httppost:HTTP) { }
+  constructor(public http: HttpClient,private httppost: HTTP) { }
 
   GetWorkorderType(empkey,Oid) {
     return this
@@ -82,6 +81,9 @@ export class WorkOrderService {
       .http
       // tslint:disable-next-line:max-line-length
       .get(ConnectionSettings.Url+'/roomByFacility_Floor_Zone_RoomType?fkey=' + fac_key + "&floorkey=" + floor + "&zonekey=" + zone + "&roomtype=" + roomtype +"&OrganizationID="+Oid);
+
+  
+
   }
 
   roomByFacility_Floor_RoomType(fac_key,floor,roomtype,Oid)
@@ -209,7 +211,7 @@ export class WorkOrderService {
   {
     return this
     .http
-    .get(ConnectionSettings.Url+'/floorByFacility?fkey=' + facilitykey+"&OrganizationID="+Oid);
+    .get(ConnectionSettings.Url+'/floorByFacility?fkey=' + facilitykey+"&OrganizationID="+Oid );
  
   }
 
@@ -217,7 +219,7 @@ export class WorkOrderService {
   {
     return this
     .http
-    .get(ConnectionSettings.Url+'/viewworkorderFilterByFacility?facilitykey='+ facilitykey+"&zone="+ zonekey +"&floor="+ floorkey + "&today="+today_DT+"&employeekey="+toServeremployeekey+"&OrganizationID="+OrganizationID);
+    .get(ConnectionSettings.Url+'/viewworkorderFilterByFacility?facilitykey='+ facilitykey+"&zone="+ zonekey +"&floor="+ floorkey + "&today="+today_DT+"&employeekey="+toServeremployeekey+"&OrganizationID="+OrganizationID );
  
   }
 
@@ -225,7 +227,7 @@ export class WorkOrderService {
   {
     return this
     .http
-    .get(ConnectionSettings.Url+'/statusByWorkorderDate?date=' + today_DT+"&employeekey="+toServeremployeekey+"&OrganizationID="+OrganizationID);
+    .get(ConnectionSettings.Url+'/statusByWorkorderDate?date=' + today_DT+"&employeekey="+toServeremployeekey+"&OrganizationID="+OrganizationID );
  
   }
 

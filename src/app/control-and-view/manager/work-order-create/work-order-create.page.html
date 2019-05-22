@@ -3,13 +3,14 @@
             <ion-buttons slot="start">
                     <ion-menu-button></ion-menu-button>
                   </ion-buttons>
-        <ion-title><ion-icon ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Work Order Create</ion-title>
+                  <ion-title class="title">
+                        <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>WorkOrder Create</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content padding style="background-color: #EBFAFF !important;">
     <ion-grid style="background-color: rgb(255, 255, 255) !important;">
-    <h3 align="center" >Create Work Order</h3>
+    <h3 align="center"  >Create Work Order</h3>
     <ion-item>
         <ion-label> Workorder Type*</ion-label>
         <ion-select value="brown" [(ngModel)]='WorkorderTypeKey'>

@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title><ion-icon ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>View Inspection</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="background-color: #EBFAFF !important;" padding>
+
+
+        <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher> 
+        -->
+      
+
+    
+        <!-- <img  *ngIf="loading" src="../../../../../assets/img/Loading_icon.gif" style="width: 10rem;" /> -->
+      
+         <!-- <div *ngIf="!loading"> -->
+    <ion-nav [root]="rootPage" ></ion-nav>
+    <ion-card  color="#222 !important;" *ngFor="let data of viewinspectionorder" style="background-color: #FFF !important;" 
+        
+            (click)="inspectionDetailsByManager(data)"  [routerLink]="['view-details-inspection/:insKey']">
+        <ion-card-header align="center">
+            <ion-card-title>{{data.TemplateName}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content align='center' padding >
+        <div *ngIf="data.FacilityName">
+            <p>{{data.FacilityName}} - {{data.RoomType}} - {{data.RoomId}}</p>
+            <p>Assigned to : {{data.LastName}},{{data.FirstName}} </p>
+            <br>
+            
+            <!-- <p *ngIf="data.InspectionCompletedBy !== null && disableNext === false"> -->
+                <!-- <p *ngIf="data.InspectionCompletedBy !== null && disableNext === false"> -->
+                    <p *ngIf="data.InspectionCompletedBy !== null ">
+                   
+                <ion-label class="text-yellow-{{data.inspectioncompletedby !== null}}">
+                      
+                      Inspection Completed!
+                      </ion-label>
+             
+              </p>
+              <!-- <p ng-if="data.InspectionCompletedBy === null && disableNext === false"> -->
+      <p *ngIf="data.InspectionCompletedBy === null && (data.EmployeeKey === temp_empKey)">
+            
+                <ion-label class="text-brown-{{data.inspectioncompletedby !== null}} ">
+                        
+                      Inspection is not Completed!
+                </ion-label>
+      </p>
+      <p *ngIf="data.InspectionCompletedBy === null && (data.EmployeeKey !== temp_empKey)">
+            
+        <ion-label class="text-brown-{{data.inspectioncompletedby !== null}} ">
+                
+              Scheduled
+        </ion-label>
+</p>
+
+            </div>
+            </ion-card-content>
+
+        
+</ion-card>
+
+<ion-card *ngIf="viewinspectionorder?.length == 0" style="background-color: #FFF !important;">
+        <ion-card-content>
+        No records found
+      </ion-card-content>
+    </ion-card>
+<!-- </div> -->
+
+</ion-content>

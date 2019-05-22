@@ -1,0 +1,214 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><ion-icon ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>View Inspection</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="background-color: #EBFAFF !important;" padding>
+
+    <ion-card  style="background-color: #FFF !important;">
+        <ion-card-content>
+
+     <div class="list " >
+        <!-- <div class="list " > -->
+        <!-- <div class="item item-text-wrap "> -->
+    
+          <div class="row headerRow" >
+            <div class="col text-center" >
+                <h3 align="center" class= "item-text-wrap">{{viewEmpInspectionDetails[0].TemplateName}}</h3>
+                <br>
+                <br>
+            </div>
+              </div>
+                <div class="row" >
+                <div class="col text-left"><b>Facility:</b><span>{{viewEmpInspectionDetails[0].FacilityName}}</span> </div>
+                <!-- <div class="col text-right">{{item.FacilityName}} </div> -->
+              </div>
+                <br>
+              <div class="row" >
+                <div class="col text-left"><b>Floor:</b><span>{{viewEmpInspectionDetails[0].FloorName}}</span> </div>
+
+                <!-- <span>
+                <div class="col text-right">{{item.FloorName}} </div>
+              </span> -->
+                </div>
+                <br>
+                
+
+                <div class="row" >
+                <div class="col text-left"><b>Room:</b> <span>{{viewEmpInspectionDetails[0].RoomId}}</span> </div>
+                <!-- <div class="col text-right">{{item.RoomId}} </div> -->
+                </div>
+             
+           
+
+         
+
+
+          <ul id="menu" *ngFor="let item of viewEmpInspectionDetails;let i = index" class = "form-group">
+              <li class = "col-sm-offset-1 col-sm-10">
+              </li>
+              <li class = "col-sm-offset-4 col-sm-10"  *ngIf="item.ScoreName === 'Yes/No'" >
+                   <div class="list inspectionPadding">
+                      <a class="item item-text-wrap">
+                        <h2 class="item-text-wrap">{{i + 1}}. {{item.Question}}</h2>
+                       
+                        <ion-item>
+                                <ion-label>Score Type</ion-label>
+                                          <!-- <ion-select  [(ngModel)]="TemplateQuestionID" >
+                                                <option label="--Select--"></option> 
+                                                <ion-select-option *ngFor=" let x of names " [value]="x.names"  >
+                                                    {{x.names}}
+                                                </ion-select-option>
+                                          </ion-select> -->
+                                          <ion-select  [(ngModel)]='Scoringtype.rating_yn[item.TemplateQuestionID]' (ionChange)="saveRatings(item.TemplateQuestionID,item.ScoreName)">
+
+                                              <ion-select-option *ngFor="let w of names" [value]=w.names  >
+                                                  {{w}}</ion-select-option>
+                                          </ion-select>
+                                        </ion-item>
+                            <ion-item>
+                           
+                                  <!-- <span>Notes:--  </span> -->
+                                  <ion-input type="text" maxlength="200" placeholder="Notes:"  [(ngModel)]='Scoringtype.inspectionNotes[item.TemplateQuestionID]'></ion-input>
+
+                           
+                          </ion-item>
+                            <!-- <div>maxlength="200"
+                            <button type="sumbit" ng-click="yesNoScoringTypeInspection(Scoringtype.inspectionNotesforYes_No[$index],x.TemplateQuestionID,Scoringtype.choicesforyes_no[$index],x.InspectionOrderKey,x.TemplateID,$index + 1)" class="button button-positive inspection_SaveButton"> SAVE </button>
+                          </div> -->
+                      </a>
+                  </div>
+              </li>
+
+
+              <li class = "col-sm-offset-4 col-sm-10"  *ngIf="item.ScoreName ==='Pass/Fail'" >
+                <div class="list inspectionPadding">
+                   <a class="item item-text-wrap">
+                     <h2 class="item-text-wrap">{{i + 1}}. {{item.Question}}</h2>
+                    
+                     <ion-item>
+                             <ion-label>Score Type</ion-label>
+                                      
+                                       <ion-select  [(ngModel)]='Scoringtype.rating_yn[item.TemplateQuestionID]'  (ionChange)="saveRatings(item.TemplateQuestionID,item.ScoreName)">
+                                        <ion-select-option>Pass</ion-select-option>
+                                           <ion-select-option *ngFor="let w of names" [value]=w.names >
+                                              
+                                               {{w}}</ion-select-option>
+                                       </ion-select>
+                                     </ion-item>
+                         <ion-item>
+                       
+                               <!-- <span>Notes:--  </span> -->
+                               <ion-input type="text" maxlength="200" placeholder="Notes:"  [(ngModel)]='Scoringtype.inspectionNotes[item.TemplateQuestionID]'> </ion-input>
+ 
+                        
+                       </ion-item>
+                         <!-- <div>
+                         <button type="sumbit" ng-click="yesNoScoringTypeInspection(Scoringtype.inspectionNotesforYes_No[$index],x.TemplateQuestionID,Scoringtype.choicesforyes_no[$index],x.InspectionOrderKey,x.TemplateID,$index + 1)" class="button button-positive inspection_SaveButton"> SAVE </button>
+                       </div> -->
+                   </a>
+               </div>
+           </li>
+
+
+
+           <li class = "col-sm-offset-4 col-sm-10"  *ngIf="item.ScoreName ==='5 Star'" >
+            <div class="list inspectionPadding">
+               <a class="item item-text-wrap">
+                 <h2 class="item-text-wrap">{{i + 1}}. {{item.Question}}</h2>
+                
+                  <!-- <ionic-ratings ratingsobj='ratingsObject' ></ionic-ratings>  -->
+
+                  <!-- <ionic3-star-rating 
+                 activeIcon = "ios-star"
+                 defaultIcon = "ios-star-outline"
+                 activeColor = "#488aff" 
+                 defaultColor = "#f4f4f4"
+                 readonly="false"
+                 [rating]="5">
+             </ionic3-star-rating> -->
+
+             <div>
+              <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]"
+              (click)="rate(num,i)"  [ngStyle]="{'color':getColor(num,i)}">
+             
+             </ion-icon>
+             Rating :- {{rating[i]}} stars
+            </div>  
+               <ion-item>
+                     
+                           <!-- <span>Notes:--  </span> -->
+                           <ion-input type="text" maxlength="200" placeholder="Notes:"  [(ngModel)]='Scoringtype.inspectionNotes[item.TemplateQuestionID]'></ion-input>
+
+                     
+                   </ion-item>
+                     <!-- <div>
+                     <button type="sumbit" ng-click="yesNoScoringTypeInspection(Scoringtype.inspectionNotesforYes_No[$index],x.TemplateQuestionID,Scoringtype.choicesforyes_no[$index],x.InspectionOrderKey,x.TemplateID,$index + 1)" class="button button-positive inspection_SaveButton"> SAVE </button>
+                   </div> -->
+               </a>
+           </div>
+       </li>
+
+
+
+       <li class = "col-sm-offset-4 col-sm-10"  *ngIf="item.ScoreName ==='3 Star'" >
+        <div class="list inspectionPadding">
+           <a class="item item-text-wrap">
+             <h2 class="item-text-wrap">{{i + 1}}. {{item.Question}}</h2>
+            
+              <!-- <ionic-ratings ratingsobj='ratingsObject' ></ionic-ratings>  -->
+
+              <!-- <ionic3-star-rating 
+             activeIcon = "ios-star"
+             defaultIcon = "ios-star-outline"
+             activeColor = "#488aff" 
+             defaultColor = "#f4f4f4"
+             readonly="false"
+             [rating]="5">
+         </ionic3-star-rating> -->
+
+         <div>
+          <ion-icon name="star" *ngFor="let num of [1,2,3]"
+          (click)="rate(num,i);saveRatings(item.TemplateQuestionID,item.ScoreName)"  [ngStyle]="{'color':getColor(num,i)}">
+         
+         </ion-icon>
+         Rating :- {{rating[i]}} stars
+        </div>
+
+      
+                 <ion-item>
+                
+                       <!-- <span>Notes:--  </span> -->
+                       <ion-input type="text" maxlength="200"  placeholder="Notes:"  [(ngModel)]='Scoringtype.inspectionNotes[item.TemplateQuestionID]'></ion-input>
+
+                
+               </ion-item>
+                
+           </a>
+       </div>
+   </li>
+
+
+
+          </ul>
+          <ion-item>
+              <ion-label>Send E-mail</ion-label>
+              <ion-toggle color="secondary"  [(ngModel)]="isMailRequired"></ion-toggle>
+          </ion-item>
+          <br>
+          <br>
+          <br>
+
+          <ion-item>
+            <ion-button color="success" (click)="inspectionCompleted(templateId)">Submit</ion-button>
+    
+          </ion-item>
+    
+        </div>
+        </ion-card-content>
+        </ion-card>
+      
+
+
+</ion-content>

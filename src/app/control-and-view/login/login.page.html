@@ -1,0 +1,41 @@
+<ion-content 
+ style="background-color:  rgb(16, 167, 218) !important;">
+
+  <!-- <h1 align='center' style="color: #2b542c"><strong>TrooWork</strong> </h1> -->
+  <div align='center' style="margin-top: 20%;">
+  <img  src="../../../assets/TROOWORK.png" style="width: 10rem;">
+</div>
+  <h2 align='center' style="color: #5f2a91">Login</h2>
+  <p align='center' style="color: #2b542c">Enter your username and password:</p>
+<ion-grid style="margin-left:5%;background-color: rgb(255, 255, 255) !important;margin-right:6%">
+  <ion-row >
+
+    <ion-item>
+      <ion-label>Username</ion-label>
+
+      <ion-input [(ngModel)]='Username' type="text" value=""></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input [(ngModel)]='Password' type="password" value=""></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Tenant ID</ion-label>
+      <ion-input [(ngModel)]='TenantID' type="text" value=""></ion-input>
+    </ion-item>
+    <!-- {{loginAl}} -->
+
+  </ion-row>
+</ion-grid>
+
+<div align='center' padding>
+  <!-- <button routerLink="/ManagerDashBoard" ion-button color="primary" block>Sign In</button> -->
+  <!-- <ion-button routerLink="/ManagerDashBoard">Login</ion-button> -->
+  <ion-button ion-button color="success" (click)=Login(Username,Password)>Login</ion-button>
+</div>
+
+</ion-content>

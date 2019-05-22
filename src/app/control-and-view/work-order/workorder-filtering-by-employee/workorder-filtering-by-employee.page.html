@@ -1,0 +1,165 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title><ion-icon ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>workorder Filtering By Employee</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  padding style="background-color: #EBFAFF !important;">
+
+  <ion-segment [(ngModel)]="filtering" style="background-color: #FFF !important;">
+    <ion-segment-button value="employee" (ionSelect)="selectedEmployees();">
+      EMPLOYEE
+    </ion-segment-button>
+    <ion-segment-button value="facility" (ionSelect)="selectedFacility()">
+      FACILITY
+    </ion-segment-button>
+    <ion-segment-button value="status" (ionSelect)="selectedStatus()">
+      STATUS
+    </ion-segment-button>
+  </ion-segment>
+  <!-- <ion-button ion-button color="success" href="workorderFilteringByEmployee" (click)="getAllEmployee()">Employee</ion-button>
+  <ion-button ion-button color="success" href="WorkOrderFilteringByFacility" >FACILITY</ion-button>
+  <ion-button ion-button color="success" href="WorkOrderFilteringByStatus">STATUS</ion-button> -->
+  <br>
+  <br>
+  <br>
+
+  <ion-grid style="background-color: rgb(255, 255, 255) !important;">
+  <ion-item>
+    <ion-label>Employee</ion-label>
+    <ion-select  [(ngModel)]="EmployeeKey" (ionChange)="toggleGroup($event.target.value)">
+             
+         <ion-select-option *ngFor="let group of employeeList" [value]="group.EmployeeKey"> 
+           {{group.EmployeeText}}</ion-select-option>
+    </ion-select>
+
+<!-- <div *ngFor="let item of workorderStatusList" -->
+
+</ion-item> 
+</ion-grid>
+
+
+<ion-grid>
+    <ion-item  *ngFor="let item of workorderStatusList" >
+        
+         
+        
+            <br>
+            <br>
+            <br> 
+            <button type="button"  color="#FFF" class="button-brown-{{item.WorkorderStatus===temp_status}} "
+             (click)="getWorkorderByStatusEmployeeKey(EmployeeKey,item.WorkorderStatusKey)"
+             align='center'  padding>
+              
+            
+    
+            
+                {{item.WorkorderStatus}} ({{item.totalItems}}) 
+                <br>
+                    </button>   
+                              <!-- /****************************************************************/
+                     <ion-button class="button-brown-{{item.WorkorderStatus===temp_status}}
+                      "align='center' (click)="getWorkorderBYStatusKey(item.WorkorderStatusKey)" padding>
+     
+                        {{item.WorkorderStatus===temp_status}}
+    
+            
+                        {{item.WorkorderStatus}} ({{item.totalItems}}) 
+                    </ion-button> -->
+    
+    </ion-item>
+    </ion-grid>
+
+<!-- <ion-card *ngFor="let item of workorderStatusList"
+    
+      (click)="getWorkorderByStatusEmployeeKey(EmployeeKey,item.WorkorderStatusKey)"
+       style="background-color: #FFF !important;" align='center'  padding>
+    
+
+    {{item.WorkorderStatus}} ({{item.totalItems}}) 
+    
+</ion-card>
+<ion-list> -->
+<!-- /********************************************************************/ -->
+<!-- <ion-item class="list" *ngFor="group in employeeList" class="item item-text-wrap" >
+  
+        {{group.EmployeeText}}
+    
+    <ion-item *ngFor="item in workorderStatusList"
+    (click)="getWorkorderByStatusEmployeeKey(group.EmployeeKey,item.WorkorderStatusKey)" >
+
+      {{item.WorkorderStatus}} ({{item.totalItems}}) 
+  </ion-item>
+    
+</ion-item> -->
+<!-- </ion-list> -->
+<!-- /********************************************************************************* -->
+<!-- <ion-list > 
+    <ion-item *ngFor="let group in employeeList" >
+     >
+      <ion-label>
+        <h2> {{group.EmployeeText}}</h2>
+         <h3>I'm a big deal</h3>
+        <p>Listen, I've had a pretty messed up day...</p> -->
+      <!-- </ion-label>
+    </ion-item>
+  </ion-list>       -->
+
+  <!-- /******************************************************************************************/ -->
+
+
+  <!-- <ion-list>
+      <div class="list"  >
+        <ion-item *ngFor=" let group of employeeList" class="item text-center item-stable text-center item-icon-right"   (click)="toggleGroup(group);">
+           
+            {{group.EmployeeText}} >
+        </ion-item>
+        <ion-item *ngFor="let item of workorderStatusList">
+          <div *ngIf="isGroupShown(group)"
+        (click)="getWorkorderByStatusEmployeeKey(group.EmployeeKey,item.WorkorderStatusKey)" >
+    
+          {{item.WorkorderStatus}} ({{item.totalItems}}) 
+          </div>
+      </ion-item>
+
+  </div>
+</ion-list>
+   -->
+
+
+<ion-card *ngFor="let data of viewworkorder" style="background-color: #FFF !important;"
+routerLink="/WorkOrderDetail/{{data.WorkorderKey}}">
+<ion-card-header  align='center'  padding>
+   <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
+</ion-card-header>
+<ion-card-content align='center' padding>
+   <div *ngIf="data.FacilityName">
+       <p>{{data.FacilityName}} - {{data.ZoneName}} - {{data.FloorName}}</p>
+       <p>{{data.WorkorderTime}}</p>
+       <p>Assigned to : {{data.LastName}},{{data.FirstName}} </p>
+       <p>Priority : {{data.PriorityValue}}</p>
+       <br>
+       <br>
+       <p>
+                 <ion-label class="label text-brown-{{data.WorkorderStatus === 'Scheduled'}} 
+                        text-yellow-{{data.WorkorderStatus === 'InProgress'}}
+                        text-green-{{data.WorkorderStatus === 'Completed'}}
+                        text-orange-{{data.WorkorderStatus === 'Delayed'}}">
+                       {{data.WorkorderStatus}}
+                 </ion-label>
+               </p>
+      </div> 
+</ion-card-content> 
+<!-- </a> -->
+</ion-card>
+<ion-card *ngIf="viewworkorder?.length == 0" style="background-color: #FFF !important;">
+    <ion-card-content>
+    No records found
+  </ion-card-content>
+</ion-card>
+
+
+</ion-content>

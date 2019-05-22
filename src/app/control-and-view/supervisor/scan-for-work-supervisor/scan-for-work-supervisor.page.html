@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title><ion-icon ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Scan For Work</ion-title>
+  </ion-toolbar>
+</ion-header>
+<!-- <ion-buttons slot="start">
+  <ion-back-button  defaultHref="WorkOrderDashBoard"></ion-back-button>
+</ion-buttons> -->
+
+<ion-content style="background-color: #EBFAFF !important;" padding>
+
+    <ion-nav [root]="rootPage" > </ion-nav>
+  <div align='center' padding>
+  <img type="sumbit"  style="width: 100px; height: 100px;" class="imageStyleScan"  src="../../../../assets/icon/shelfari-scanner-icon.png" (click)="getEmployeeWorkorderByBarcode()" >
+
+
+  <ion-card *ngFor="let data of viewworkorder">
+    <a routerLink="/WorkOrderDetail/{{data.WorkorderKey}}">
+    <ion-card-header>
+        <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <div *ngIf="data.FacilityName">
+            <p>{{data.FacilityName}} - {{data.ZoneName}} - {{data.FloorName}}</p>
+            <p>{{data.WorkorderTime}}</p>
+            <p>Assigned to : {{data.LastName}},{{data.FirstName}} </p>
+            <p>Priority : {{data.PriorityValue}}</p>
+            <p>
+                      <ion-label class="label text-brown-{{data.WorkorderStatus === 'Scheduled'}} 
+                             text-yellow-{{data.WorkorderStatus === 'InProgress'}}
+                             text-green-{{data.WorkorderStatus === 'Completed'}}
+                             text-orange-{{data.WorkorderStatus === 'Delayed'}}">
+                            {{data.WorkorderStatus}}
+                      </ion-label>
+                    </p>
+           </div> 
+    </ion-card-content> 
+  </a>
+</ion-card>
+<ion-card *ngIf="viewworkorder?.length == 0" style="background-color: #FFF !important;">
+    <ion-card-content>
+    No records found
+  </ion-card-content>
+</ion-card>
+</div>
+</ion-content>

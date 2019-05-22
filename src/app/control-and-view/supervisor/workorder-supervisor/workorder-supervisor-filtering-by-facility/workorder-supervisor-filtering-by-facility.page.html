@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><ion-icon ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>WorkOrder Filtering By Facility</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding style="background-color: #EBFAFF !important;">
+
+    <ion-segment [(ngModel)]="filtering" style="background-color: #FFF !important;" >
+        <ion-segment-button value="employee" (ionSelect)="selectedEmployees()">
+          EMPLOYEE
+        </ion-segment-button>
+        <ion-segment-button value="facility" (ionSelect)="selectedFacility()">
+          FACILITY
+        </ion-segment-button>
+        <ion-segment-button value="status" (ionSelect)="selectedStatus()">
+          STATUS
+        </ion-segment-button>
+      </ion-segment>
+  <!-- <ion-button ion-button color="success" href="workorder_supervisor_filtering_by_employee" >Employee</ion-button>
+  <ion-button ion-button color="success" href="workorder_supervisor_filtering_by_facility" (click)="getAllFacility()">FACILITY</ion-button>
+  <ion-button ion-button color="success" href="workorder_supervisor_filtering_by_status">STATUS</ion-button>
+  <br> -->
+  <br>
+  <br>
+
+  <ion-grid style="background-color: rgb(255, 255, 255) !important;">
+  <ion-item>
+    <ion-label>Facility</ion-label>
+    <ion-select  [(ngModel)]="FacilityKey" (ionChange)="toggleGroup($event.target.value);getFloorByFacilityKey($event.target.value);">
+             
+         <ion-select-option *ngFor="let group of facilityList" [value]="group.FacilityKey"> 
+          {{group.FacilityText}}</ion-select-option>
+    </ion-select>
+    </ion-item>
+    </ion-grid>
+
+    <ion-grid style="background-color: rgb(255, 255, 255) !important;">
+      <ion-item>
+        <ion-label>Floor</ion-label>
+        <ion-select  [(ngModel)]="FloorKey" [disabled]="!FacilityKey" (ionChange)="getZoneByFacilityFloorKey(FacilityKey,$event.target.value,group)">
+                 
+             <ion-select-option *ngFor="let item of zoneByFacilityKeyList" [value]="item.FloorKey"> 
+              {{item.FloorName}} 
+            </ion-select-option>
+        </ion-select>
+        </ion-item>
+        </ion-grid>
+    <!-- <ion-card *ngFor="let item of zoneByFacilityKeyList"
+    
+      (click)="getZoneByFacilityFloorKey(FacilityKey,item.FloorKey,group)"
+       style="background-color: #FFF !important;" align='center'  padding>
+    
+
+               {{item.FloorName}} 
+    
+</ion-card> -->
+
+<ion-grid style="background-color: rgb(255, 255, 255) !important;">
+  <ion-item>
+    <ion-label>Zone</ion-label>
+    <ion-select  [(ngModel)]="ZoneKey" [disabled]="!FloorKey" (ionChange)="getAllWorkorderByFacilityFloorZone(FacilityKey,ZoneKey,temp_floorkey)">
+             
+         <ion-select-option *ngFor="let data of floorListByZoneFacility" [value]="data.ZoneKey"> 
+          {{data.ZoneName}}
+        </ion-select-option>
+    </ion-select>
+    </ion-item>
+    </ion-grid>
+
+<!-- <ion-card style="background-color: #FFF !important;" align='center'  padding
+     *ngFor="let data of floorListByZoneFacility" 
+     (click)="getAllWorkorderByFacilityFloorZone(FacilityKey,data.ZoneKey,temp_floorkey)">
+
+     {{data.ZoneName}}
+
+
+
+</ion-card> -->
+
+<ion-card *ngFor="let data of viewworkorder" style="background-color: #FFF !important;"
+routerLink="/WorkOrderDetail/{{data.WorkorderKey}}">
+<ion-card-header  align='center'  padding>
+   <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
+</ion-card-header>
+<ion-card-content align='center' padding>
+   <div *ngIf="data.FacilityName">
+       <p>{{data.FacilityName}} - {{data.ZoneName}} - {{data.FloorName}}</p>
+       <p>{{data.WorkorderTime}}</p>
+       <p>Assigned to : {{data.LastName}},{{data.FirstName}} </p>
+       <p>Priority : {{data.PriorityValue}}</p>
+       <br>
+       <br>
+       <p>
+                 <ion-label class="label text-brown-{{data.WorkorderStatus === 'Scheduled'}} 
+                        text-yellow-{{data.WorkorderStatus === 'InProgress'}}
+                        text-green-{{data.WorkorderStatus === 'Completed'}}
+                        text-orange-{{data.WorkorderStatus === 'Delayed'}}">
+                       {{data.WorkorderStatus}}
+                 </ion-label>
+               </p>
+      </div> 
+</ion-card-content> 
+<!-- </a> -->
+</ion-card>
+<ion-card *ngIf="viewworkorder?.length == 0" style="background-color: #FFF !important;">
+    <ion-card-content>
+    No records found
+  </ion-card-content>
+</ion-card>
+
+
+</ion-content>

@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+      <!-- <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons> -->
+    <ion-title><ion-icon ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Inspection View</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+ <ion-content style="background-color: #EBFAFF !important;" padding>
+  <ion-nav [root]="rootPage" ></ion-nav>
+  <ion-card style="background-color: #FFF !important;">
+  <div *ngIf="inspectionNotCompleted">
+    <h2>Inspection is Not Completed!</h2>
+
+  </div>
+
+  <div *ngIf ="!inspectionNotCompleted" align='center' padding>
+      <!-- <ion-card-content align='center' padding > -->
+      <h3 align="center">{{templateName}}</h3>
+      <h5 align="center">{{roomtype}} {{roomId}} {{inspectionreport}}</h5>
+      <h6 align="center">{{inspectedby}} {{supervisorName}}</h6>
+      <!-- </ion-card-content> -->
+</div>
+<ion-card>
+<div class="item item-icon-right" *ngFor="let data of inspectionsubmitted">
+    <!-- <a class="item item-text-wrap text-center">   -->
+        <ion-card-content align='center' padding >             
+      <h2>{{data.Question}}</h2>
+      <p>{{scoreType}} {{data.ScoreName}}</p>
+      <p>{{values}} {{data.Value}}</p>
+     <p>{{notes}} {{data.Notes}}</p>
+     </ion-card-content>
+    <!-- </a>    -->
+  </div>
+</ion-card>
+
+
+  
+</ion-card>  
+        
+<div align='center' padding>
+    <ion-button ion-button color="success" (click)='GoBack()'>Done</ion-button>
+</div>
+ 
+
+</ion-content>

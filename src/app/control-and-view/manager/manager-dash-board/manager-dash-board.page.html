@@ -1,0 +1,38 @@
+<!-- <ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>
+      Manager Dash Board
+     
+    </ion-title>
+  </ion-toolbar>
+</ion-header> 
+<ion-content style="background-color: #EBFAFF !important;" padding> -->
+    <ion-header>
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+              </ion-buttons>
+          <ion-title>Manager DashBoard</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content style="background-color: #EBFAFF !important;" padding> 
+    <!-- <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav> -->
+    <ion-nav [root]="rootPage" > </ion-nav>
+<!-- 
+    ...........{{rootPage}}.................... -->
+
+    <div align='center' padding>
+  <ion-button  ion-button color="success" href='manager-menu/work-order-dash-board' size="default"  expand="block">WorkOrder</ion-button> 
+  <!-- <ion-button ion-button color="success" [routerLink]="['WorkOrderDashBoard']" size="default" 
+  expand="block">WorkOrder</ion-button> -->
+  <br>
+  <ion-button ion-button color="success" href='manager-menu/inspection-dash-board' size="default" expand="block">Inspection Order</ion-button>
+  <br>
+  <ion-button ion-button color="success" href='manager-menu/scan-for-work'  size="default" expand="block">Scan For Work</ion-button>
+  </div>
+
+
+</ion-content>

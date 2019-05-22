@@ -242,20 +242,20 @@ export class CreateQuickWorkOrderPage implements OnInit {
 
     };
 
-    // this.workOrderService.addQuickWorkOrder(this.createworkorder).then((data) => {
+    this.workOrderService.addQuickWorkOrder(this.createworkorder).then((data) => {
 
       
-    //    this.EmployeeKey=null;
-    //    this.WorkorderNotes=null;
-    //    this.FacilityKey=null;
-    //    this.PriorityKey=null;
+       this.EmployeeKey=null;
+       this.WorkorderNotes=null;
+       this.FacilityKey=null;
+       this.PriorityKey=null;
        
               
 
-    //   // this.router.navigateByUrl('WorkOrderView');
-    //   this.location.back();
-    //   this.PresentAlert();
-    // });
+      // this.router.navigateByUrl('WorkOrderView');
+      this.location.back();
+      this.PresentAlert();
+    });
 
   }
   GoBack() {

@@ -549,30 +549,30 @@ export class WorkOrderCreatePage implements OnInit {
       repeatinterval: 1,
       occursonday: null
     };
-    // this.workOrderService.addWorkOrderWithOutEqup(this.workorderCreation).then((data) => {
+    this.workOrderService.addWorkOrderWithOutEqup(this.workorderCreation).then((data) => {
       
-    //   this.WorkorderTypeKey=null;
-    //   this.workorderNotes=null;
-    //   this.FacilityKey=null;
-    //   this.FloorKey=null;
-    //   this.ZoneKey=null;
-    //   this.RoomTypeKey=null;
-    //   this.RoomKey=null;
-    //   this.showEqTypes=null;
-    //   this.EquipmentTypeKey=null;
-    //   this.EquipmentKey=null;
-    //   this.PriorityKey=null;
-    //   this.EmployeeKey=null;
+      this.WorkorderTypeKey=null;
+      this.workorderNotes=null;
+      this.FacilityKey=null;
+      this.FloorKey=null;
+      this.ZoneKey=null;
+      this.RoomTypeKey=null;
+      this.RoomKey=null;
+      this.showEqTypes=null;
+      this.EquipmentTypeKey=null;
+      this.EquipmentKey=null;
+      this.PriorityKey=null;
+      this.EmployeeKey=null;
 
       
 
 
-    //   // this.router.navigateByUrl('WorkOrderView');
-    //   // this.router.navigate(['WorkOrderView']);
-    //   this.location.back();
+      // this.router.navigateByUrl('WorkOrderView');
+      // this.router.navigate(['WorkOrderView']);
+      this.location.back();
       
-    //   this.PresentAlert();
-    // });
+      this.PresentAlert();
+    });
   }
   createWorkorder2() {// create workorder with equipment
 
@@ -807,25 +807,25 @@ export class WorkOrderCreatePage implements OnInit {
       repeatinterval: 1,
       occursonday: null
     };
-    // this.workOrderService.addWorkOrderEqup(this.workorderCreation).then((data) => {
-    //   this.WorkorderTypeKey=null;
-    //   this.workorderNotes=null;
-    //   this.FacilityKey=null;
-    //   this.FloorKey=null;
-    //   this.ZoneKey=null;
-    //   this.RoomTypeKey=null;
-    //   this.RoomKey=null;
-    //   this.showEqTypes=null;
-    //   this.EquipmentTypeKey=null;
-    //   this.EquipmentKey=null;
-    //   this.PriorityKey=null;
-    //   this.EmployeeKey=null;
-    //   this.PresentAlert();
-    //   // this.router.navigateByUrl('WorkOrderView');
-    //   // this.router.navigate(['WorkOrderView']);
-    //   this.location.back();
+    this.workOrderService.addWorkOrderEqup(this.workorderCreation).then((data) => {
+      this.WorkorderTypeKey=null;
+      this.workorderNotes=null;
+      this.FacilityKey=null;
+      this.FloorKey=null;
+      this.ZoneKey=null;
+      this.RoomTypeKey=null;
+      this.RoomKey=null;
+      this.showEqTypes=null;
+      this.EquipmentTypeKey=null;
+      this.EquipmentKey=null;
+      this.PriorityKey=null;
+      this.EmployeeKey=null;
+      this.PresentAlert();
+      // this.router.navigateByUrl('WorkOrderView');
+      // this.router.navigate(['WorkOrderView']);
+      this.location.back();
      
-    // });
+    });
 
   }
 

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import{EmployeeMenuPageModule} from './control-and-view/employee/employee-menu/employee-menu.module'
-//import {}from './control-and-view/manager/'
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   //{ path: 'home', loadChildren: './home/home.module#HomePageModule' },

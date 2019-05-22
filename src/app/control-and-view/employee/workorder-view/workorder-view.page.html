@@ -14,7 +14,7 @@
   
      <div *ngIf="!loading"> -->
   <ion-card *ngFor="let data of viewworkorder" style="background-color: #FFF !important;"
-     routerLink="/WorkOrderCompleteEmp/{{data.WorkorderKey}}">
+     routerLink="/work-order-complete/{{data.WorkorderKey}}">
     <ion-card-header align='center' padding>
         <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
     </ion-card-header>

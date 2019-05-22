@@ -9,7 +9,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-// import { EmailComposer } from '@ionic-native/email-composer/ngx';
+
 import { Camera } from '@ionic-native/camera/ngx';
 import { IonicRatingModule } from 'ionic4-rating';
 import { Base64 } from '@ionic-native/base64/ngx';

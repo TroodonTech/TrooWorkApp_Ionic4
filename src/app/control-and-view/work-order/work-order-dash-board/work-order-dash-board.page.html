@@ -1,17 +1,18 @@
 <ion-header>
-  <ion-toolbar>
-    
+  <ion-toolbar  >
+     
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
-         <ion-title>
-      <ion-icon ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Work Order Dash Board
+
+         <ion-title style="margin-left:-17px">
+      <ion-icon style="margin-right:3px" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon >WorkOrder DashBoard
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding style="background-color: #EBFAFF !important;">
-  <ion-nav [root]="rootPage" ></ion-nav>
+  <ion-nav [root]="rootPage" ></ion-nav> 
   <div align='center' padding>
  
     <ion-button class = "button button-block" ion-button color="success" href='work-order-create'>Create Work Order</ion-button>
@@ -21,4 +22,5 @@
     <ion-button class = "button button-block" ion-button color="success"  href='work-order-view' >View Work Order</ion-button>
   
   </div>
+  
 </ion-content>

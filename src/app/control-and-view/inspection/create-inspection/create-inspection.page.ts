@@ -654,7 +654,7 @@ var roomlist = [];
   };
  // debugger;
   this.inspectionServiceService
-  .createInspectionOrder(this.InspectionOrder).subscribe((data:any[]) =>
+  .createInspectionOrder(this.InspectionOrder).then((data) =>
    {
 
     this.newInspectKey=data[0].InspectionOrderKey;

@@ -10,7 +10,6 @@ import { WorkOrderService } from "../../../service/work-order.service";
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { ConnectionSettings } from "../../../service/connectionSetting";
 
-
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.page.html',
@@ -34,6 +33,7 @@ export class FileUploadPage implements OnInit {
   today_DT;
   imageName;
   uploadflag;
+  userrole;
 
   constructor(public workOrderService: WorkOrderService,
     public loadingController: LoadingController,
@@ -143,25 +143,18 @@ export class FileUploadPage implements OnInit {
       this.workOrderService.fileUploadDetails(this.uploadPhoto).then(data => {
         loading.dismiss();
         alert("WorkOrder completed Successfully");
-        this.router.navigateByUrl('Menu/(menucontent:WorkorderViewEmp)')
+        // this.router.navigateByUrl('Menu/(menucontent:WorkorderViewEmp)')
+        if(this.userrole === 'Employee'){
+          this.router.navigate(['/work-order-complete', this.worKey$]);
+        }
+        if(this.userrole === 'Supervisor'){
+          this.router.navigate(['/workorder-supervisor-view-detail', this.worKey$]);
+          }
         });
       });
 
   }
-  // async presentLoadingWithOptions() {
-  //   const loading = await this.loadCtrl.create({
-  //     spinner: 'hide',
-  //    // duration: 5000,
-  //     message: 'Please wait...',
-  //     translucent: true, 
-  //     cssClass: 'custom-class custom-loading'
-  //   });
-  //    await loading.present();
-  //    this.workOrderService.viewDashboardWorkorder(this.convert_DT(new Date()) , this.toServeremployeekey, this.OrganizationID).subscribe((data) => {
-  //     this.viewworkorder = data;
-  //     loading.dismiss();
-  //    });
-  // }
+
   ngOnInit() {
     // debugger;
     var token = localStorage.getItem('token');
@@ -171,6 +164,7 @@ export class FileUploadPage implements OnInit {
     this.toServeremployeekey=profile.employeekey;
     this.OrganizationID = profile.OrganizationID;
     this.uploadflag=false;
+    this.userrole=profile.role;
   }
   GoBack() {
     this.location.back();

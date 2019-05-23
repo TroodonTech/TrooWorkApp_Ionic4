@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConnectionSettings } from "./connectionSetting";
-
+import { HTTP } from '@ionic-native/http/ngx';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InspectionServiceService {
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient,private httppost: HTTP) { }
 //Code by Anju starts
   getTemplateName(empkey,Oid) {
     return this
@@ -159,8 +159,8 @@ export class InspectionServiceService {
     const url=ConnectionSettings.Url+'/addInspectionOrderwithoutWorkorder';
     
     return this
-      .http
-      .post (url,InspectionOrder);
+      .httppost
+      .post (url,InspectionOrder,{});
   }
 
   viewDashboardInspectionorder(to_date,empkey,Oid)
@@ -184,16 +184,16 @@ export class InspectionServiceService {
     const url=ConnectionSettings.Url+'/InspectionCompleted';
     
     return this
-      .http
-      .post (url,inspectionDetail1).subscribe(res => console.log('Done'));
+      .httppost
+      .post (url,inspectionDetail1,{}).then(res => console.log('Done'));
   }
   InspectionSaveService(inspectionDetail)
   {
     const url=ConnectionSettings.Url+'/saveinspectedQuestions';
     
     return this
-      .http
-      .post (url,inspectionDetail).subscribe(res => console.log('Done'));
+      .httppost
+      .post (url,inspectionDetail,{}).then(res => console.log('Done'));
   }
 
   templateQuestionService(templateId,Oid)

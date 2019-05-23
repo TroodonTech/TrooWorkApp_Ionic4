@@ -48,7 +48,7 @@ export class FileUploadPage implements OnInit {
 
    ) 
 { 
-  this.route.params.subscribe(params => this.worKey$ = params.workOrderKey);
+  this.route.params.subscribe(params => this.worKey$ = params.WorkOrderKey);
 }
 
   url_base64_decode(str) {

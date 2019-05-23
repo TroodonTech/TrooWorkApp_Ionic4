@@ -127,7 +127,7 @@ export class WorkorderSupervisorViewDetailPage implements OnInit {
     });
   }
   takePhoto(WorkKey) {
-    this.router.navigate(['/fileUpload', WorkKey]);
+    this.router.navigate(['/file-upload', WorkKey]);
   }
   GoBack() {
    // this.router.navigateByUrl('/workorder_Supervisor_View');

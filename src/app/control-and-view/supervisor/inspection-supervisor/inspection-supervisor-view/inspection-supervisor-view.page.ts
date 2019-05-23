@@ -113,14 +113,14 @@ async presentLoadingWithOptions() {
         this.inspectKey = data.InspectionOrderKey;
         this.templID = data.TemplateId;
         this.templName = data.TemplateName;
-        this.router.navigate(['/inspectionSupervisor_ViewDetail',this.inspectKey]);
+        this.router.navigate(['/inspection-supervisor-view-detail',this.inspectKey]);
        
     }
     else if(data.InspectionCompletedBy !== null)
     { //completed inspection
       console.log("completed inspection");
       // $state.go('managerDashboard.afterInspectionManagerView',{inspectionorderkey: data.InspectionOrderKey});
-      this.router.navigate(['/inspection_supervisor_inspection_completed', data.InspectionOrderKey]);
+      this.router.navigate(['/inspection-supervisor-inspection-completed', data.InspectionOrderKey]);
     }
 
     }

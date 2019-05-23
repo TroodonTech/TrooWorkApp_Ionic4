@@ -26,19 +26,18 @@ export class WorkOrderFilteringByFacilityPage implements OnInit {
     private router: Router,
     public loadCtrl: LoadingController,
     private location: Location) { }
-  selectedEmployees()
-  {
-    this.router.navigateByUrl('workorderFilteringByEmployee');
-  }
-  selectedFacility()
-  {
-    this.router.navigateByUrl('WorkOrderFilteringByFacility');
-  }
-  selectedStatus()
-  {
-    this.router.navigateByUrl('WorkOrderFilteringByStatus');
-  }
-
+    selectedEmployees()
+    {
+      this.router.navigateByUrl('workorder-filtering-by-employee');
+    }
+    selectedFacility()
+    {
+      this.router.navigateByUrl('work-order-filtering-by-facility');
+    }
+    selectedStatus()
+    {
+      this.router.navigateByUrl('work-order-filtering-by-status');
+    }
   url_base64_decode(str) {// decoding function for token
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {

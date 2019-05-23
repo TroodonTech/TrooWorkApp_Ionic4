@@ -10,7 +10,7 @@
 
 <ion-content padding style="background-color: #EBFAFF !important;">
     <ion-grid style="background-color: rgb(255, 255, 255) !important;">
-    <h3 align="center"  >Create Work Order</h3>
+    <h3 align="center"  >Create WorkOrder</h3>
     <ion-item>
         <ion-label> Workorder Type*</ion-label>
         <ion-select value="brown" [(ngModel)]='WorkorderTypeKey'>
@@ -106,7 +106,12 @@
             <ion-select-option *ngFor="let f of employeeList" [value]="f.EmployeeKey"> {{f.EmployeeText}}</ion-select-option>
         </ion-select>
     </ion-item>
-    <ion-item>Select Date-Time </ion-item>
+    <ion-row style ="block-size: 30px" class ="specifics">
+            <ion-item class ="specifics">Select Date-Time
+              <div  style="" class="item item-divider"></div>
+            </ion-item>
+            </ion-row> 
+    <!-- <ion-item>Select Date-Time </ion-item> -->
 
 
     <ion-item>

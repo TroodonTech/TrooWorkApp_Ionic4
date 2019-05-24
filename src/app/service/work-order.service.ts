@@ -176,16 +176,16 @@ export class WorkOrderService {
     .http
     .get(ConnectionSettings.Url+'/barcodeRoom_check?barcode='+barcode+'&wkey=' + workorder_Key +' &OrganizationID='+ OrganizationID);
   }
-  barcodeRoom(workorder_Key,scannedBarcode,type,toServeremployeekey,OrganizationID){
+  barcodeRoom(workorder_Key,scannedBarcode,type,toServeremployeekey,OrganizationID,complete_Time){
     return this
     .http
-    .get(ConnectionSettings.Url+'/barcodeRoom?wkey=' +
-     workorder_Key+'&barcode='+scannedBarcode+'&updatetype='+type+'&employeekey='+ toServeremployeekey+'&OrganizationID='+ OrganizationID);
+    .get(ConnectionSettings.Url+'/barcodeRoomWithSnapshot_Ang?wkey=' +
+     workorder_Key+'&barcode='+scannedBarcode+'&updatetype='+type+'&employeekey='+ toServeremployeekey+'&OrganizationID='+ OrganizationID+'&complete_Time='+complete_Time);
   }
-  workCompleted(workorder_Key,toServeremployeekey,OrganizationID) {
+  workCompleted(workorder_Key,toServeremployeekey,OrganizationID,complete_Time) {
     return this
     .http
-    .get(ConnectionSettings.Url+'/workCompleted?wkey=' + workorder_Key+'&employeekey='+toServeremployeekey +'&OrganizationID='+OrganizationID);
+    .get(ConnectionSettings.Url+'/workCompleted_Ang6?wkey=' + workorder_Key+'&employeekey='+toServeremployeekey +'&OrganizationID='+OrganizationID+'&complete_Time='+complete_Time);
  
   }
   // Anju's code start here
@@ -247,13 +247,19 @@ export class WorkOrderService {
 // code by aswathy
 
 fileUploadDetails(obj) {
-  const url = ConnectionSettings.Url+'/pho1_Ang6';
+  const url = ConnectionSettings.Url+'/pho1Snapshot_Ang6';
   const obj1 = obj;
   return this
     .httppost
     .post(url, obj1,{});
 }
-
+gpsSnapShot(obj) {
+  const url = ConnectionSettings.Url+'/gpsSnapShot';
+  
+  return this
+    .httppost
+    .post(url, obj,{});
+}
 // fileUploadDetails(obj) : Observable<any> {
 //   const url = ConnectionSettings.Url+'/pho1_Ang6';
 //   return this

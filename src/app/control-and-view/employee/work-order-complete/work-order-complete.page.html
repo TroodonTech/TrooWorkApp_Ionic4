@@ -136,8 +136,8 @@
       </ion-label>
 
 
-      <ion-item class="row" *ngIf="items.WorkorderNotes !== 'null'">
-        <ion-row text-center *ngIf="items.IsPhotoRequired == 1">
+      <!-- <ion-item class="row" *ngIf="items.WorkorderNotes !== 'null'"> -->
+        <ion-row text-center *ngIf="items.IsPhotoRequired == 1 &&items.WorkorderStatus != 'Delayed'">
           <ion-button class="text-brown-{{items.WorkorderStatus === 'Scheduled'}} 
                          button-yellow-{{items.WorkorderStatus === 'InProgress'}}
                          button-green-{{items.WorkorderStatus === 'Completed'}} workorder_Button"
@@ -171,7 +171,7 @@
 
 
 
-        <ion-row text-center *ngIf="items.IsBarcodeRequired==0 && items.IsPhotoRequired==0">
+        <ion-row text-center *ngIf="items.IsBarcodeRequired==0 && items.IsPhotoRequired==0 && items.IsSnapshot==0">
           <ion-button class="text-brown-{{items.WorkorderStatus ==='Scheduled'}}
                          button-yellow-{{items.WorkorderStatus === 'InProgress'}}
                          button-green-{{items.WorkorderStatus === 'Completed'}} workorder_Button"
@@ -181,7 +181,17 @@
             Workorder Complete
           </ion-button>
         </ion-row>
-      </ion-item>
+        <ion-row text-center *ngIf="items.IsSnapshot == 1 &&items.WorkorderStatus != 'Delayed'">
+          <ion-button class="text-brown-{{items.WorkorderStatus === 'Scheduled'}} 
+                         button-yellow-{{items.WorkorderStatus === 'InProgress'}}
+                         button-green-{{items.WorkorderStatus === 'Completed'}} workorder_Button"
+                         size="default" buttonType='button' *ngIf="items.IsSnapshot == 1"
+            (click)="locationTracker(items.WorkorderKey)" >
+            <i class="icon ion-camera"></i>
+            Snapshot
+          </ion-button>
+        </ion-row>
+      <!-- </ion-item> -->
     </div>
   </div>
 

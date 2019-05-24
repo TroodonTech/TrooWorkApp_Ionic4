@@ -27,8 +27,8 @@
       </ion-segment>
     </div> -->
 
-    <ion-segment [(ngModel)]="filtering" style="background-color: #FFF !important;" >
-      <ion-segment-button value="employee" (ionSelect)="selectedEmployees()">
+    <!-- <ion-segment style="background-size:8px"[(ngModel)]="filtering" style="background-color: #FFF !important;" >
+      <ion-segment-button  value="employee" (ionSelect)="selectedEmployees()">
         EMPLOYEE
       </ion-segment-button>
       <ion-segment-button value="facility" (ionSelect)="selectedFacility()">
@@ -37,7 +37,20 @@
       <ion-segment-button value="status" (ionSelect)="selectedStatus()">
         STATUS
       </ion-segment-button>
-    </ion-segment>
+    </ion-segment> -->
+
+
+    <ion-segment [(ngModel)]="filtering" style="background-color: #FFF !important;" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="employee" style="background-color: #FFF !important;" (ionSelect)="selectedEmployees()">
+          <ion-label>EMPLOYEE</ion-label>
+        </ion-segment-button>
+        <ion-segment-button  value="facility" (ionSelect)="selectedFacility()">
+          <ion-label>FACILITY</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="status" style="background-color: #FFF !important;"(ionSelect)="selectedStatus()">
+            <ion-label>STATUS</ion-label>
+          </ion-segment-button>
+      </ion-segment>
       <!-- <ion-button ion-button color="success" href="workorderFilteringByEmployee">EMPLOYEE</ion-button>
       <ion-button ion-button color="success" href="WorkOrderFilteringByFacility">FACILITY</ion-button>
       <ion-button ion-button color="success" href="WorkOrderFilteringByStatus">STATUS</ion-button> -->

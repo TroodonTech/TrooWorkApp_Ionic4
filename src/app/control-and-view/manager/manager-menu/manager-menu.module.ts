@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ManagerMenuPage } from './manager-menu.page';
-//import {ManagerDashBoardPageModule} from '../../work-order'
+import {LoginPageModule} from '../../login/login.module'
 const routes: Routes = [
   {
     path: '',
@@ -29,6 +29,10 @@ const routes: Routes = [
       {
         path: 'inspection-dash-board',
         loadChildren: '../../inspection/inspection-dash-board/inspection-dash-board.module#InspectionDashBoardPageModule'
+      },
+      {
+        path: 'login',
+        loadChildren: '../../login/login.module#LoginPageModule'
       }
       
     ]}

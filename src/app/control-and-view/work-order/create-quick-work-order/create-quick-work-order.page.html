@@ -11,7 +11,7 @@
 <ion-content padding style="background-color: #EBFAFF !important;">
   <ion-nav [root]="rootPage" > </ion-nav>
   <ion-grid style="background-color: rgb(255, 255, 255) !important;">
-  <h3 align="center">Create Quick Work Order</h3>
+  <h3 align="center">Create Quick WorkOrder</h3>
   <!-- <div class="list padding-bottom"> -->
     <ion-item>
       <ion-label>Employee*</ion-label>
@@ -24,9 +24,13 @@
       <ion-label>Workorder Notes*</ion-label>
       <ion-input type="text" [(ngModel)]="WorkorderNotes" maxlength="200" placeholder="Workorder Notes"></ion-input>
     </ion-item>
-    <ion-item>
-      <div class="item item-divider">Select Location</div>
+    <!-- <div class="item item-divider">Select Location</div> -->
+    <ion-row style ="block-size: 30px" class ="specifics">
+    <ion-item class ="specifics"> Select Location  
+      <div  style="" class="item item-divider"></div>
     </ion-item>
+    </ion-row> 
+
     <ion-item>
       <ion-label>Facility*</ion-label>
       <ion-select [(ngModel)]="FacilityKey">

@@ -154,7 +154,7 @@
             
            <div>
              <ion-icon name="star" *ngFor="let num of [1,2,3]"
-             (click)="rate(num,i);saveRatings(item.TemplateQuestionID,item.ScoreName)"  [ngStyle]="{'color':getColor(num,i)}">
+             (click)="rate(num,i);saveRatings(i,item.TemplateQuestionID,item.ScoreName)"  [ngStyle]="{'color':getColor(num,i)}">
             
             </ion-icon>
             Rating :- {{rating[i]}} stars

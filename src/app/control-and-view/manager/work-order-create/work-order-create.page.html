@@ -10,7 +10,7 @@
 
 <ion-content padding style="background-color: #EBFAFF !important;">
     <ion-grid style="background-color: rgb(255, 255, 255) !important;">
-    <h3 align="center"  >Create Work Order</h3>
+    <h3 align="center"  >Create WorkOrder</h3>
     <ion-item>
         <ion-label> Workorder Type*</ion-label>
         <ion-select value="brown" [(ngModel)]='WorkorderTypeKey'>
@@ -24,6 +24,11 @@
         <ion-label>Workorder Notes</ion-label>
         <ion-input type="text" [(ngModel)]='workorderNotes' maxlength="200" placeholder="Workorder Notes"></ion-input>
     </ion-item>
+    <ion-row style ="block-size: 30px" class ="specifics">
+            <ion-item class ="specifics">Select Location
+              <div   class="item item-divider"></div>
+            </ion-item>
+            </ion-row> 
     <ion-item>
         <ion-label>Building*</ion-label>
         <ion-select [(ngModel)]="FacilityKey" (ionChange)="selectedFacility()">
@@ -64,12 +69,20 @@
         </ion-select>
     </ion-item>
 
-
+    <ion-row style ="block-size: 30px" class ="specifics">
+            <ion-item class ="specifics">
+              <div   class="item item-divider"></div>
+            </ion-item>
+            </ion-row> 
     <ion-item>
         <ion-label>Is Equipment</ion-label>
         <ion-toggle [(ngModel)]="showEqTypes"></ion-toggle>
     </ion-item>
-
+    <ion-row style ="block-size: 30px" class ="specifics">
+            <ion-item class ="specifics">
+              <div   class="item item-divider"></div>
+            </ion-item>
+            </ion-row> 
     <ion-item *ngIf="showEqTypes == true">
         <ion-label>Equipment Type</ion-label>
         <ion-select [(ngModel)]="EquipmentTypeKey" (ionChange)="selectDomainEquipmenttype()">
@@ -106,7 +119,12 @@
             <ion-select-option *ngFor="let f of employeeList" [value]="f.EmployeeKey"> {{f.EmployeeText}}</ion-select-option>
         </ion-select>
     </ion-item>
-    <ion-item>Select Date-Time </ion-item>
+    <ion-row style ="block-size: 30px" class ="specifics">
+            <ion-item class ="specifics">Select Date-Time
+              <div   class="item item-divider"></div>
+            </ion-item>
+            </ion-row> 
+    <!-- <ion-item>Select Date-Time </ion-item> -->
 
 
     <ion-item>
@@ -118,6 +136,11 @@
         <ion-label>Date</ion-label>
         <ion-datetime [(ngModel)]="dateValue" display-format="YYYY-MM-DD"></ion-datetime>
     </ion-item>
+    <ion-row style ="block-size: 30px" class ="specifics">
+            <ion-item class ="specifics">
+              <div   class="item item-divider"></div>
+            </ion-item>
+            </ion-row> 
     <ion-item>
         <ion-label>Photo Required</ion-label>
         <ion-toggle color="secondary" [(ngModel)]="isPhotoRequired"></ion-toggle>

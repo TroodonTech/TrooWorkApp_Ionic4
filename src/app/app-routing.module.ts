@@ -15,12 +15,12 @@ const routes: Routes = [
   { path: 'supervisor-menu', loadChildren: './control-and-view/supervisor/supervisor-menu/supervisor-menu.module#SupervisorMenuPageModule' },
   { path: 'super-visor-dash-board', loadChildren: './control-and-view/supervisor/super-visor-dash-board/super-visor-dash-board.module#SuperVisorDashBoardPageModule' },
   { path: 'work-order-create', loadChildren: './control-and-view/manager/work-order-create/work-order-create.module#WorkOrderCreatePageModule' },
-  { path: 'scan-for-work', loadChildren: './control-and-view/work-order/scan-for-work/scan-for-work.module#ScanForWorkPageModule' },
+  //{ path: 'scan-for-work', loadChildren: './control-and-view/work-order/scan-for-work/scan-for-work.module#ScanForWorkPageModule' },
   
   { path: 'work-order-view', loadChildren: './control-and-view/work-order/work-order-view/work-order-view.module#WorkOrderViewPageModule' },
-   { path: 'inspection-dash-board', loadChildren: './control-and-view/inspection/inspection-dash-board/inspection-dash-board.module#InspectionDashBoardPageModule' },
+  // { path: 'inspection-dash-board', loadChildren: './control-and-view/inspection/inspection-dash-board/inspection-dash-board.module#InspectionDashBoardPageModule' },
  
-  { path: 'work-order-dash-board', loadChildren: './control-and-view/work-order/work-order-dash-board/work-order-dash-board.module#WorkOrderDashBoardPageModule' },
+  //{ path: 'work-order-dash-board', loadChildren: './control-and-view/work-order/work-order-dash-board/work-order-dash-board.module#WorkOrderDashBoardPageModule' },
   
    { path: 'view-inspection', loadChildren: './control-and-view/inspection/view-inspection/view-inspection.module#ViewInspectionPageModule' },
   { path: 'create-inspection', loadChildren: './control-and-view/inspection/create-inspection/create-inspection.module#CreateInspectionPageModule' },

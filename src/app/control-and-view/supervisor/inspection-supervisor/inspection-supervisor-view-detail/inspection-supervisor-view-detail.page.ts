@@ -381,7 +381,7 @@ var ratingIndexlist = [];
         .inspectionCompletedService(this.inspectionDetail1)
 
         
-        this.router.navigateByUrl('inspectionSupervisor_View');
+        this.router.navigateByUrl('inspection-supervisor-view');
          
         }
         else if (questionidList.length === totalQuestions && this.ScoreName !== 'Pass/Fail')
@@ -462,7 +462,7 @@ var ratingIndexlist = [];
               };
               this.inspectionServiceService
             .inspectionCompletedService(this.inspectionDetail1)
-            this.router.navigateByUrl('inspectionSupervisor_View');
+            this.router.navigateByUrl('inspection-supervisor-view');
              
             }
 

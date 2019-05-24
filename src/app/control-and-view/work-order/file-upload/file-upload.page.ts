@@ -106,7 +106,7 @@ export class FileUploadPage implements OnInit {
     const loading = await this.loadCtrl.create({
       // spinner: 'hide',
      // duration: 5000,
-      message: 'Please wait...',
+      message: 'Uploading...Please Wait',
       translucent: true, 
       cssClass: 'custom-class custom-loading'
     });
@@ -140,10 +140,9 @@ export class FileUploadPage implements OnInit {
         OrganizationID:this.OrganizationID,
         complete_Time:p
       };
+      loading.dismiss();
       this.workOrderService.fileUploadDetails(this.uploadPhoto).then(data => {
-        loading.dismiss();
-        alert("WorkOrder completed Successfully");
-        // this.router.navigateByUrl('Menu/(menucontent:WorkorderViewEmp)')
+        alert("Image Uploaded Successfully");
         if(this.userrole === 'Employee'){
           this.router.navigate(['/work-order-complete', this.worKey$]);
         }

@@ -61,8 +61,8 @@ export class WorkOrderDetailPage implements OnInit {
     });
   }
   GoBack() {
-    // this.router.navigateByUrl('WorkOrderView');
-    this.location.back();
+    this.router.navigateByUrl('workorder-supervisor-view');
+    // this.location.back();
   }
 
 }

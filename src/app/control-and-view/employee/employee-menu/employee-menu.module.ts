@@ -26,6 +26,10 @@ const routes: Routes = [
       {
         path: 'workorder-view',
         loadChildren: '../workorder-view/workorder-view.module#WorkorderViewPageModule'
+      },
+      {
+        path: 'login',
+        loadChildren: '../../login/login.module#LoginPageModule'
       }
     ]
   }

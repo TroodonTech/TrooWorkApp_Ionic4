@@ -49,7 +49,11 @@ export class WorkOrderCompletePage implements OnInit {
     }
     return window.atob(output);
   }
-
+  ionViewWillEnter(){
+    this.workOrderService.workorderDetails(this.worKey$, this.OrganizationID).subscribe((data: any[]) => {
+      this.viewEmpWorkorderDetails = data;
+    });
+  }
   ngOnInit() {
     var token = localStorage.getItem('token');
     localStorage['token'] = token;
@@ -58,9 +62,7 @@ export class WorkOrderCompletePage implements OnInit {
     this.toServeremployeekey = this.profile.employeekey;
     this.OrganizationID = this.profile.OrganizationID;
     this.today_DT = this.convert_DT(new Date());
-    this.workOrderService.workorderDetails(this.worKey$, this.OrganizationID).subscribe((data: any[]) => {
-      this.viewEmpWorkorderDetails = data;
-    });
+    this.ionViewWillEnter();
   }
   delayCurrentWorkOrder(workKey) {
     this.workOrderService.delayCurrentWorkOrder(workKey, this.toServeremployeekey, this.OrganizationID).subscribe(() => {
@@ -128,7 +130,7 @@ export class WorkOrderCompletePage implements OnInit {
     this.router.navigate(['/file-upload', WorkKey]);
   }
   GoBack() {
-    // this.router.navigateByUrl('/WorkorderViewEmp');
-    this.location.back();
+    this.router.navigateByUrl('/workorder-view');
+    // this.location.back();
   }
 }

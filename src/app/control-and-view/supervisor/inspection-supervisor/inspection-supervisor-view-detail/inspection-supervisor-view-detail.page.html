@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title><ion-icon ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>View Inspection</ion-title>
+    <ion-title class="title">
+      <ion-icon class="arrow"ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>View Inspection</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -199,12 +200,9 @@
           <br>
           <br>
           <br>
-
-          <ion-item>
+          <div align='center' padding>
             <ion-button color="success" (click)="inspectionCompleted(templateId)">Submit</ion-button>
-    
-          </ion-item>
-    
+          </div>
         </div>
         </ion-card-content>
         </ion-card>

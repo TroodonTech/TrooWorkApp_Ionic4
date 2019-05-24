@@ -192,6 +192,7 @@ export class LoginPage  implements OnInit {
       localStorage['token'] = this.loginDetalis.token;
       var encodedProfile = this.loginDetalis.token.split('.')[1];
       var profile = JSON.parse(this.url_base64_decode(encodedProfile));
+      this.Username=profile.Username;
 debugger;
       if (this.isAuthenticated && profile.role === 'Manager') {
 

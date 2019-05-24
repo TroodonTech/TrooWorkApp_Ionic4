@@ -228,4 +228,10 @@ export class InspectionServiceService {
   }
 
   //code by Anju End
+
+ InspectionPhotoUpload(inspKey,toServeremployeekey,FileName,OrganizationID){
+  return this
+  .http
+  .get(ConnectionSettings.Url+"/inspectionPhotoUpload?InspectionOrderKey=" + inspKey+"&empkey="+toServeremployeekey+"&Filename="+FileName+"&OrganizationId="+OrganizationID);
+ }
 }

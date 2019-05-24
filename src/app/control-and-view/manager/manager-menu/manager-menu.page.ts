@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-manager-menu',
   templateUrl: './manager-menu.page.html',
@@ -7,7 +9,9 @@ import { Router, RouterEvent } from '@angular/router';
 })
 export class ManagerMenuPage implements OnInit {
   selectedPath = '';
- 
+  welcome;
+  isAuthenticated;
+
   pages = [
     
     {
@@ -33,16 +37,54 @@ export class ManagerMenuPage implements OnInit {
     },
     {
       title: 'Logout',
-      url:  '/manager-menu/login',
+      // url:  '/manager-menu/login',
       icon:"log-out"
     }
     
   ];
   loginDetalis;
   Username;
- 
 
-  constructor(private router: Router) {
+  LogOut(){
+    debugger;
+    this.presentAlert();
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Exit!',
+      subHeader: '',
+      message: 'Are you sure you want to quit?',
+      inputs:[],
+      buttons: [ {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+          console.log('Confirm Cancel');
+          this.router.navigateByUrl('manager-dash-board');
+        }
+      },{
+        text: 'Ok',
+        handler: () => {
+          console.log('Confirm Ok');
+          this.welcome = '';
+    this.isAuthenticated = false;
+    delete sessionStorage.token;
+   // $http.defaults.headers.common['Authorization'] = undefined;
+    localStorage.clear();
+    sessionStorage.clear();
+    localStorage.removeItem('employeekey');
+    delete localStorage.employeekey;
+          this.router.navigateByUrl('login');
+        }
+      }]
+    });
+
+  await alert.present();
+  }
+
+  constructor(private router: Router,public alertController: AlertController) {
     
     this.router.events.subscribe((event: RouterEvent) => {
       if (event && event.url) {

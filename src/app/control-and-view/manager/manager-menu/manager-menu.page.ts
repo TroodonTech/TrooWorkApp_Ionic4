@@ -13,14 +13,19 @@ export class ManagerMenuPage implements OnInit {
   isAuthenticated;
 
   pages = [
-    
+
     {
       title: 'Manager DashBoard',//second
       url: '/manager-menu/manager-dash-board',
       icon: 'home'
     },
     {
-      title: ' WorkOrder ',//first
+      title: 'Find Employee',//second
+      url: '/manager-menu/find-employee',
+      icon: 'search'
+    },
+    {
+      title: ' Work Order',//first
       url: '/manager-menu/work-order-dash-board',
       icon: "logo-buffer"
     },
@@ -36,12 +41,18 @@ export class ManagerMenuPage implements OnInit {
       icon: "barcode"
     },
     {
+      title: 'Inspection Order',
+      url: '/manager-menu/inspection-dash-board',
+      icon: "create"
+    },
+    {
       title: 'Logout',
       // url:  '/manager-menu/login',
       icon:"log-out"
     }
-    
+
   ];
+
   loginDetalis;
   Username;
 

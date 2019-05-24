@@ -15,7 +15,7 @@ const routes: Routes = [
       {
         path: 'manager-dash-board',
         loadChildren: '../manager-dash-board/manager-dash-board.module#ManagerDashBoardPageModule'
-       }
+      }
       ,
       {
         path: 'scan-for-work',
@@ -31,11 +31,16 @@ const routes: Routes = [
         loadChildren: '../../inspection/inspection-dash-board/inspection-dash-board.module#InspectionDashBoardPageModule'
       },
       {
+        path: 'find-employee',
+        loadChildren: '../find-employee/find-employee.module#FindEmployeePageModule'
+      },
+      {
         path: 'login',
         loadChildren: '../../login/login.module#LoginPageModule'
       }
-      
-    ]}
+
+    ]
+  }
 ];
 
 @NgModule({
@@ -47,4 +52,4 @@ const routes: Routes = [
   ],
   declarations: [ManagerMenuPage]
 })
-export class ManagerMenuPageModule {}
+export class ManagerMenuPageModule { }

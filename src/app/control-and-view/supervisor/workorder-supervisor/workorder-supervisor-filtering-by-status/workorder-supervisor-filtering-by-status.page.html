@@ -1,20 +1,20 @@
 <ion-header>
   <ion-toolbar>
     <ion-title class="title">
-      <ion-icon class="arrow"ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>WorkOrder Filtering By Status</ion-title>
+      <ion-icon class="arrow"ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon> Status</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding style="background-color: #EBFAFF ;">
         <ion-segment [(ngModel)]="filtering" style="background-color: #FFF !important;" >
-                <ion-segment-button value="employee" (ionSelect)="selectedEmployees()">
-                  EMPLOYEE
-                </ion-segment-button>
-                <ion-segment-button value="facility" (ionSelect)="selectedFacility()">
-                  FACILITY
-                </ion-segment-button>
-                <ion-segment-button value="status" (ionSelect)="selectedStatus()">
-                  STATUS
+            <ion-segment-button value="employee" style="background-color: #FFF !important;" (ionSelect)="selectedEmployees()">
+                <ion-label>EMPLOYEE</ion-label>
+              </ion-segment-button>
+              <ion-segment-button  value="facility" (ionSelect)="selectedFacility()">
+                <ion-label>FACILITY</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="status" style="background-color: #FFF !important;"(ionSelect)="selectedStatus()">
+                  <ion-label>STATUS</ion-label>
                 </ion-segment-button>
               </ion-segment>
 

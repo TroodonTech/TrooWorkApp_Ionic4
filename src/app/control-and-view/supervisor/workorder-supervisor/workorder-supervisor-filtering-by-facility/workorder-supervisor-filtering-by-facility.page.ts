@@ -27,18 +27,18 @@ export class WorkorderSupervisorFilteringByFacilityPage implements OnInit {
     private router: Router,
     private location: Location,
     public loadCtrl: LoadingController) { }
-  selectedEmployees()
-  {
-    this.router.navigateByUrl('workorder_supervisor_filtering_by_employee');
-  }
-  selectedFacility()
-  {
-    this.router.navigateByUrl('workorder_supervisor_filtering_by_facility');
-  }
-  selectedStatus()
-  {
-    this.router.navigateByUrl('workorder_supervisor_filtering_by_status');
-  }
+    selectedEmployees()
+    {
+      this.router.navigateByUrl('workorder-supervisor-filtering-by-employee');
+    }
+    selectedFacility()
+    {
+      this.router.navigateByUrl('workorder-supervisor-filtering-by-facility');
+    }
+    selectedStatus()
+    {
+      this.router.navigateByUrl('workorder-supervisor-filtering-by-status');
+    }
   url_base64_decode(str) {// decoding function for token
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {

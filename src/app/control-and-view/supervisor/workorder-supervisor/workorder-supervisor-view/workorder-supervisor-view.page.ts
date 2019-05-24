@@ -19,15 +19,15 @@ export class WorkorderSupervisorViewPage implements OnInit {
 
   selectedEmployees()
   {
-    this.router.navigateByUrl('workorder_supervisor_filtering_by_employee');
+    this.router.navigateByUrl('workorder-supervisor-filtering-by-employee');
   }
   selectedFacility()
   {
-    this.router.navigateByUrl('workorder_supervisor_filtering_by_facility');
+    this.router.navigateByUrl('workorder-supervisor-filtering-by-facility');
   }
   selectedStatus()
   {
-    this.router.navigateByUrl('workorder_supervisor_filtering_by_status');
+    this.router.navigateByUrl('workorder-supervisor-filtering-by-status');
   }
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');

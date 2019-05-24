@@ -154,7 +154,7 @@
             
            <div>
              <ion-icon name="star" *ngFor="let num of [1,2,3]"
-             (click)="rate(num,i);saveRatings(item.TemplateQuestionID,item.ScoreName)"  [ngStyle]="{'color':getColor(num,i)}">
+             (click)="rate(num,i);saveRatings(i,item.TemplateQuestionID,item.ScoreName)"  [ngStyle]="{'color':getColor(num,i)}">
             
             </ion-icon>
             Rating :- {{rating[i]}} stars
@@ -186,10 +186,27 @@
           <!-- <ion-item>
             <ion-toggle [(ngModel)]="isMailRequired" toggle-class="toggle-positive" width="51px" height="31px">Send E-mail</ion-toggle>
           </ion-item> -->
-          <ion-item>
+          <ion-row>
+            <ion-col size="12" size-sm>
+                <img *ngIf="base64Image" [src]="DomSanitizer.bypassSecurityTrustUrl(base64Image)"/>
+            </ion-col>
+        </ion-row>
+        <ion-segment style="background-color: #FFF !important;" >
+            <ion-segment-button style="width: 50%; " (click)="capture()">
+                Choose Photo
+            </ion-segment-button>
+            <ion-segment *ngIf="uploadflag">
+                <ion-segment-button class="button icon-left ion-upload" style="width: 50%; " (click)="presentLoadingWithOptions()" ng-disabled="base64Image === null">
+                    Upload
+                </ion-segment-button>
+            </ion-segment>
+        </ion-segment>
+
+          
+          <!-- <ion-item>
               <ion-label>Send E-mail</ion-label>
               <ion-toggle color="secondary"  [(ngModel)]="isMailRequired"></ion-toggle>
-          </ion-item>
+          </ion-item> -->
           <br>
           <br>
           <br>

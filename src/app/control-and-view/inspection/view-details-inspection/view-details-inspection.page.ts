@@ -15,6 +15,15 @@ import {EventEmitter ,Output} from "@angular/core";
 import {Location} from '@angular/common';
 import { LoadingController } from '@ionic/angular';
 
+
+
+
+import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
+
+import { DomSanitizer } from '@angular/platform-browser';
+import { Base64 } from '@ionic-native/base64/ngx';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { ConnectionSettings } from "../../../service/connectionSetting";
 const noop = () => {
 };
 
@@ -86,8 +95,31 @@ export class ViewDetailsInspectionPage implements OnInit {
   starIndexes5=[];
   starList=[];
  value;
+
+
+ uploadflag;
+ base64Image
+ capturedimagePath;
+ imageName;
+ uploadPhoto;
   // rating;
 
+  constructor(
+    // public emailComposer: EmailComposer,
+      public inspectionServiceService:InspectionServiceService,
+       private route: ActivatedRoute,
+       private router: Router,public alertController: AlertController,
+       public Navctrl:NavController,
+       public loadCtrl: LoadingController,
+       private location: Location,
+       public loadingController: LoadingController,
+       private transfer: FileTransfer, 
+       private camera: Camera, 
+       private base64: Base64,
+       private DomSanitizer: DomSanitizer,
+  ) {
+    this.route.params.subscribe(params => this.inspKey$ = params.insKey);
+  }
   // *********************************************************************************************************************
  
   rate(index: number,i) {
@@ -189,16 +221,8 @@ return z;
             saveInspection= {};
              //this.questionsCount=0;
              
-  constructor(
-  // public emailComposer: EmailComposer,
-    public inspectionServiceService:InspectionServiceService,
-     private route: ActivatedRoute,
-     private router: Router,public alertController: AlertController,
-     public Navctrl:NavController,
-     public loadCtrl: LoadingController,
-     private location: Location) {
-    this.route.params.subscribe(params => this.inspKey$ = params.insKey);
-   }
+  
+   
    url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -582,7 +606,59 @@ reloading()
 //this.Navctrl.push(['viewInspection']);
       }
     
+      capture(){
 
+        const options: CameraOptions = {
+          quality: 100,
+          destinationType: this.camera.DestinationType.FILE_URI,
+          encodingType: this.camera.EncodingType.JPEG,
+          mediaType: this.camera.MediaType.PICTURE,
+          // targetWidth: 1000,
+          // targetHeight: 1000,
+          correctOrientation:true
+        };
+        this.uploadflag=true;
+        this.camera.getPicture(options).then((imageData) => {
+          this.base64.encodeFile(imageData).then((base64File: string) => {
+            this.base64Image=base64File;
+            this.capturedimagePath=imageData;
+            this.imageName=imageData.substr(imageData.lastIndexOf('/') + 1)
+            console.log("base64File "+base64File+" path "+this.DomSanitizer.bypassSecurityTrustUrl(this.base64Image));
+          }, (err) => {
+              console.log(err);
+            });
+        }, (err) => {
+            alert("error "+JSON.stringify(err))
+            });   
+      }
+
+
+      async presentLoadingWithOptions() {
+
+        const loading = await this.loadCtrl.create({
+          // spinner: 'hide',
+         // duration: 5000,
+          message: 'Uploading...Please Wait',
+          translucent: true, 
+          cssClass: 'custom-class custom-loading'
+        });
+        var FileName= this.capturedimagePath.substr(this.capturedimagePath.lastIndexOf('/') + 1);
+        const fileTransfer: FileTransferObject = this.transfer.create();
+        console.log("FileName "+FileName+" capturedimagePath "+this.capturedimagePath);
+        let options: FileUploadOptions = {
+          fileKey: 'file',
+          fileName:FileName
+        }
+        loading.present();
+        fileTransfer.upload(this.capturedimagePath, ConnectionSettings.Url+'/uploadImageFromSmallDevices_Inspection', options)
+          .then((data) => {
+            this.inspectionServiceService.InspectionPhotoUpload(this.inspKey$,this.toServeremployeekey,FileName,this.OrganizationID).subscribe((data:any[])=>{
+              loading.dismiss();
+              alert("Image Uploaded Successfully");
+            });
+          });
+    
+      }
   }
 
 

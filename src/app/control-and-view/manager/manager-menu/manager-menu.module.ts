@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ManagerMenuPage } from './manager-menu.page';
-// import { FindEmployeePageModule } from '../find-employee/find-employee.module'
+import {LoginPageModule} from '../../login/login.module'
 const routes: Routes = [
   {
     path: '',
@@ -33,6 +33,10 @@ const routes: Routes = [
       {
         path: 'find-employee',
         loadChildren: '../find-employee/find-employee.module#FindEmployeePageModule'
+      },
+      {
+        path: 'login',
+        loadChildren: '../../login/login.module#LoginPageModule'
       }
 
     ]

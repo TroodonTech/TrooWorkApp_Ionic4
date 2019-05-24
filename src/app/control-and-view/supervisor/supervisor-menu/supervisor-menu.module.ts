@@ -28,6 +28,10 @@ const routes: Routes = [
       {
         path: 'workorder-supervisor-view',
         loadChildren: '../workorder-supervisor/workorder-supervisor-view/workorder-supervisor-view.module#WorkorderSupervisorViewPageModule'
+      },
+      {
+        path: 'login',
+        loadChildren: '../../login/login.module#LoginPageModule'
       }
     ]
   }

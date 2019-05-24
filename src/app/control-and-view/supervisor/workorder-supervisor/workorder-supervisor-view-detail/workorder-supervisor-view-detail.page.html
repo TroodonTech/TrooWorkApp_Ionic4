@@ -1,20 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title><ion-icon ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>  Work Order Detail</ion-title>
+    <ion-title class="title">
+      <ion-icon class="arrow"ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>  WorkOrder Detail</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding style="background-color: #EBFAFF !important;">
-
+ 
   <div class="list " *ngFor="let items of viewEmpWorkorderDetails">
     <div class="item item-text-wrap viewWorkorderDetails">
-
+        <ion-grid style="background-color: rgb(255, 255, 255) !important;">
       <div class="row headerRow">
         <div class="col text-center">
           <h3 align="center">{{items.WorkorderTypeName}}</h3>
 
         </div>
       </div>
+      
       <ion-item>
         <ion-label>Facility </ion-label>
         <ion-label>{{items.FacilityName}}</ion-label>
@@ -88,6 +90,7 @@
           <ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon>
         </ion-label>
       </ion-item>
+      
       <!-- <ion-item *ngIf="items.IsPhotoRequired === 0">
         <ion-label>Photo Required </ion-label>
         <ion-label>
@@ -120,6 +123,7 @@
         </div>
 
       </ion-item>
+    </ion-grid>
 
       <ion-label text-center  *ngIf="items.WorkorderStatus == 'InProgress'">
         <ion-button class=" button facilityBackButton button-energized" size="default" buttonType='button' (click)="delayCurrentWorkOrder(items.WorkorderKey)">

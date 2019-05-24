@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ManagerMenuPage } from './manager-menu.page';
-//import {ManagerDashBoardPageModule} from '../../work-order'
+// import { FindEmployeePageModule } from '../find-employee/find-employee.module'
 const routes: Routes = [
   {
     path: '',
@@ -15,7 +15,7 @@ const routes: Routes = [
       {
         path: 'manager-dash-board',
         loadChildren: '../manager-dash-board/manager-dash-board.module#ManagerDashBoardPageModule'
-       }
+      }
       ,
       {
         path: 'scan-for-work',
@@ -29,9 +29,14 @@ const routes: Routes = [
       {
         path: 'inspection-dash-board',
         loadChildren: '../../inspection/inspection-dash-board/inspection-dash-board.module#InspectionDashBoardPageModule'
+      },
+      {
+        path: 'find-employee',
+        loadChildren: '../find-employee/find-employee.module#FindEmployeePageModule'
       }
-      
-    ]}
+
+    ]
+  }
 ];
 
 @NgModule({
@@ -43,4 +48,4 @@ const routes: Routes = [
   ],
   declarations: [ManagerMenuPage]
 })
-export class ManagerMenuPageModule {}
+export class ManagerMenuPageModule { }

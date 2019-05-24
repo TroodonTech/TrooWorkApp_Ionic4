@@ -7,13 +7,18 @@ import { Router, RouterEvent } from '@angular/router';
 })
 export class ManagerMenuPage implements OnInit {
   selectedPath = '';
- 
+
   pages = [
-    
+
     {
       title: 'Manager DashBoard',//second
       url: '/manager-menu/manager-dash-board',
       icon: 'home'
+    },
+    {
+      title: 'Find Employee',//second
+      url: '/manager-menu/find-employee',
+      icon: 'search'
     },
     {
       title: ' Work Order',//first
@@ -27,12 +32,12 @@ export class ManagerMenuPage implements OnInit {
     },
     {
       title: 'Inspection Order',
-      url:  '/manager-menu/inspection-dash-board',
+      url: '/manager-menu/inspection-dash-board',
       icon: "create"
     }
-    
+
   ];
- 
+
   constructor(private router: Router) {
     this.router.events.subscribe((event: RouterEvent) => {
       if (event && event.url) {
@@ -40,9 +45,9 @@ export class ManagerMenuPage implements OnInit {
       }
     });
   }
- 
+
   ngOnInit() {
- 
+
   }
 
 }

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Find Employee</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="!empStat"><b>Find Employee</b></div>
+  <div *ngIf="empStat"><b>Find Employee : {{emp}}</b></div>
+  <ion-item>
+    <ion-label> Employee*</ion-label>
+    <ion-select value="brown" [(ngModel)]='EmployeeKey'>
+      <ion-select-option value="">Select</ion-select-option>
+      <ion-select-option *ngFor="let e of employeeList" [value]="e.EmployeeKey">
+        {{e.EmployeeText}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button color="success" (click)="getEmpLocation()">Search</ion-button>
+  <div style="height: 100%;width: 100%" id="map_canvas"></div>
+</ion-content>

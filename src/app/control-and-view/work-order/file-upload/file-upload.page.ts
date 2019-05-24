@@ -110,12 +110,15 @@ export class FileUploadPage implements OnInit {
       translucent: true, 
       cssClass: 'custom-class custom-loading'
     });
+
     const fileTransfer: FileTransferObject = this.transfer.create();
     let options: FileUploadOptions = {
       fileKey: 'file',
       fileName: this.capturedimagePath.substr(this.capturedimagePath.lastIndexOf('/') + 1)
     }
+
     loading.present();
+    
     fileTransfer.upload(this.capturedimagePath, ConnectionSettings.Url+'/uploadImageFromSmallDevices', options)
       .then((data) => {
       var t=new Date();
@@ -140,7 +143,9 @@ export class FileUploadPage implements OnInit {
         OrganizationID:this.OrganizationID,
         complete_Time:p
       };
+
       loading.dismiss();
+      
       this.workOrderService.fileUploadDetails(this.uploadPhoto).then(data => {
         alert("Image Uploaded Successfully");
         if(this.userrole === 'Employee'){

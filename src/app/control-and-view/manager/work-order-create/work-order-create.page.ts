@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { WorkOrderService } from '../../../service/work-order.service';
 //import { Workorder } from '../../model/WorkOrder';
 import { Router } from '@angular/router';
-import {AlertController} from '@ionic/angular';
-import {Location} from '@angular/common';
+import { AlertController } from '@ionic/angular';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-work-order-create',
   templateUrl: './work-order-create.page.html',
@@ -38,7 +38,7 @@ export class WorkOrderCreatePage implements OnInit {
   workorderNotes;
   toServeremployeekey;
   OrganizationID;
-
+  isSnapshotRequired;
   // temp-variables
   wot;
   notes;
@@ -67,7 +67,7 @@ export class WorkOrderCreatePage implements OnInit {
 
   //
 
-  constructor(public workOrderService: WorkOrderService, 
+  constructor(public workOrderService: WorkOrderService,
     private router: Router,
     public alertController: AlertController,
     private location: Location) { }
@@ -110,146 +110,127 @@ export class WorkOrderCreatePage implements OnInit {
 
   selectedFacility() { // to get floor by facility
 
-   //debugger;
-   if(this.FacilityKey)
-   {
-
-  
-    this.workOrderService.getFloor(this.FacilityKey,this.OrganizationID).subscribe((data: any[]) => {
-      this.floorList = data;
-      this.FloorKey="";
-    this.ZoneKey="";
-    this.RoomTypeKey="";
-    this.RoomKey="";
+    //debugger;
+    if (this.FacilityKey) {
 
 
-    });
-  }
-  else{
-    this.FloorKey="";
-    this.ZoneKey="";
-    this.RoomTypeKey="";
-    this.RoomKey="";
-  }
+      this.workOrderService.getFloor(this.FacilityKey, this.OrganizationID).subscribe((data: any[]) => {
+        this.floorList = data;
+        this.FloorKey = "";
+        this.ZoneKey = "";
+        this.RoomTypeKey = "";
+        this.RoomKey = "";
+
+
+      });
+    }
+    else {
+      this.FloorKey = "";
+      this.ZoneKey = "";
+      this.RoomTypeKey = "";
+      this.RoomKey = "";
+    }
   }
   changedFloor() {// drop down values when floor value has been selected
-    if(this.FloorKey)
-    {
+    if (this.FloorKey) {
 
-    
-    this.workOrderService.getEquipmentBuildFloor(this.FacilityKey, this.FloorKey,this.OrganizationID).subscribe((data: any[]) => {
-      this.equipmentTypeList = data;
-      this.equipmentList = data;
 
-    });
-    this.workOrderService.zoneByFacility_Floor(this.FacilityKey, this.FloorKey,this.OrganizationID).subscribe((data: any[]) => {
-      this.zoneList = data;
+      this.workOrderService.getEquipmentBuildFloor(this.FacilityKey, this.FloorKey, this.OrganizationID).subscribe((data: any[]) => {
+        this.equipmentTypeList = data;
+        this.equipmentList = data;
 
-    });
-    this.workOrderService.roomtypeByFacility_Floor(this.FacilityKey, this.FloorKey,this.OrganizationID).subscribe((data: any[]) => {
-      this.roomtypeList = data;
+      });
+      this.workOrderService.zoneByFacility_Floor(this.FacilityKey, this.FloorKey, this.OrganizationID).subscribe((data: any[]) => {
+        this.zoneList = data;
 
-    });
-    this.workOrderService.roomByFacility_Floor(this.FacilityKey, this.FloorKey,this.OrganizationID).subscribe((data: any[]) => {
-      this.roomList = data;
+      });
+      this.workOrderService.roomtypeByFacility_Floor(this.FacilityKey, this.FloorKey, this.OrganizationID).subscribe((data: any[]) => {
+        this.roomtypeList = data;
 
-    });
-    this.ZoneKey="";
-    this.RoomTypeKey="";
-    this.RoomKey="";
-  }
-  else{
-    this.ZoneKey="";
-    this.RoomTypeKey="";
-    this.RoomKey="";
-  }
+      });
+      this.workOrderService.roomByFacility_Floor(this.FacilityKey, this.FloorKey, this.OrganizationID).subscribe((data: any[]) => {
+        this.roomList = data;
+
+      });
+      this.ZoneKey = "";
+      this.RoomTypeKey = "";
+      this.RoomKey = "";
+    }
+    else {
+      this.ZoneKey = "";
+      this.RoomTypeKey = "";
+      this.RoomKey = "";
+    }
   }
   changedZone() {// drop down values when zone value has been selected
-    if (this.ZoneKey) 
-    {
-      if(this.FloorKey)
-      {
-      this.workOrderService.roomtypeByFacility_Floor_zone(this.FacilityKey, this.FloorKey, this.ZoneKey,this.OrganizationID).subscribe((data: any[]) => {
-        this.roomtypeList = data;
+    if (this.ZoneKey) {
+      if (this.FloorKey) {
+        this.workOrderService.roomtypeByFacility_Floor_zone(this.FacilityKey, this.FloorKey, this.ZoneKey, this.OrganizationID).subscribe((data: any[]) => {
+          this.roomtypeList = data;
 
-      });
-      this.workOrderService.roomByFacility_Floor_zone(this.FacilityKey, this.FloorKey, this.ZoneKey,this.OrganizationID).subscribe((data: any[]) => {
-        this.roomList = data;
+        });
+        this.workOrderService.roomByFacility_Floor_zone(this.FacilityKey, this.FloorKey, this.ZoneKey, this.OrganizationID).subscribe((data: any[]) => {
+          this.roomList = data;
 
-      });
+        });
 
-      } 
-    else
-     {
-      this.workOrderService.roomtypeByFacility_Zone(this.FacilityKey,this.ZoneKey,this.OrganizationID).subscribe((data: any[]) => {
-        this.roomtypeList = data;
+      }
+      else {
+        this.workOrderService.roomtypeByFacility_Zone(this.FacilityKey, this.ZoneKey, this.OrganizationID).subscribe((data: any[]) => {
+          this.roomtypeList = data;
 
-      });
-      this.workOrderService.roomByFacility_Zone(this.FacilityKey, this.ZoneKey,this.OrganizationID).subscribe((data: any[]) => {
-        this.roomList = data;
+        });
+        this.workOrderService.roomByFacility_Zone(this.FacilityKey, this.ZoneKey, this.OrganizationID).subscribe((data: any[]) => {
+          this.roomList = data;
 
-      });
+        });
+      }
+      this.RoomTypeKey = "";
+      this.RoomKey = "";
     }
-    this.RoomTypeKey="";
-    this.RoomKey="";
+    else {
+      this.RoomTypeKey = "";
+      this.RoomKey = "";
+    }
   }
-  else
-  {
-    this.RoomTypeKey="";
-    this.RoomKey="";
-  }
-  }
-  changedRoomtype()
-  {
-    if(this.RoomTypeKey)
-    {
+  changedRoomtype() {
+    if (this.RoomTypeKey) {
 
-        if(this.FloorKey)
-        {
-          if(this.ZoneKey)
-          {
-            this.workOrderService.roomByFacility_Floor_Zone_RoomType(this.FacilityKey,this.FloorKey,this.ZoneKey,this.RoomTypeKey,this.OrganizationID).subscribe((data: any[]) => 
-            {
-              this.roomList = data;
-            });
-
-          }
-          else
-          {
-            this.workOrderService.roomByFacility_Floor_RoomType(this.FacilityKey,this.FloorKey,this.RoomTypeKey,this.OrganizationID).subscribe((data: any[]) => 
-            {
-              this.roomList = data;
-            });
-
-          }
-        }
-        else if(this.ZoneKey)
-        {
-          this.workOrderService.roomByFacility_Zone_RoomType(this.FacilityKey,this.ZoneKey,this.RoomTypeKey,this.OrganizationID).subscribe((data: any[]) => 
-          {
-            this.roomList = data;
-          });
-        }
-        else
-        {
-          this.workOrderService.roomByFacility_RoomType(this.FacilityKey,this.RoomTypeKey,this.OrganizationID).subscribe((data: any[]) => 
-          {
+      if (this.FloorKey) {
+        if (this.ZoneKey) {
+          this.workOrderService.roomByFacility_Floor_Zone_RoomType(this.FacilityKey, this.FloorKey, this.ZoneKey, this.RoomTypeKey, this.OrganizationID).subscribe((data: any[]) => {
             this.roomList = data;
           });
 
         }
-        this.RoomKey="";
+        else {
+          this.workOrderService.roomByFacility_Floor_RoomType(this.FacilityKey, this.FloorKey, this.RoomTypeKey, this.OrganizationID).subscribe((data: any[]) => {
+            this.roomList = data;
+          });
+
+        }
+      }
+      else if (this.ZoneKey) {
+        this.workOrderService.roomByFacility_Zone_RoomType(this.FacilityKey, this.ZoneKey, this.RoomTypeKey, this.OrganizationID).subscribe((data: any[]) => {
+          this.roomList = data;
+        });
+      }
+      else {
+        this.workOrderService.roomByFacility_RoomType(this.FacilityKey, this.RoomTypeKey, this.OrganizationID).subscribe((data: any[]) => {
+          this.roomList = data;
+        });
+
+      }
+      this.RoomKey = "";
 
     }
-    else
-    {
-      this.RoomKey="";
+    else {
+      this.RoomKey = "";
     }
   }
 
-  selectDomainEquipmenttype()
-  {
-    this.workOrderService.getEquipmentEquTypeChange(this.FacilityKey, this.FloorKey,this.EquipmentTypeKey,this.OrganizationID).subscribe((data: any[]) => {
+  selectDomainEquipmenttype() {
+    this.workOrderService.getEquipmentEquTypeChange(this.FacilityKey, this.FloorKey, this.EquipmentTypeKey, this.OrganizationID).subscribe((data: any[]) => {
       this.equipmentTypeList = data;
     });
   }
@@ -319,10 +300,10 @@ export class WorkOrderCreatePage implements OnInit {
 
     await alert.present();
   }
-  
+
   createWorkorder1() {// workorder create without equipment
 
-   //debugger;
+    //debugger;
 
     var roomlistObj = [];
 
@@ -362,38 +343,34 @@ export class WorkOrderCreatePage implements OnInit {
     this.repeatinterval = 1; // int,/*daily(every `2` days) weekly(every `1` week) monthly(every `3` months)*/
     this.occurenceinstance = null; // int,/*daily(3) weekly(null) monthly(null) monthly(1)*/
     this.occursonday = null;
-    if (this.WorkorderTypeKey)
-     {
+    if (this.WorkorderTypeKey) {
       this.wot = this.WorkorderTypeKey;
-     } 
-     else
-     {
+    }
+    else {
       this.wot = null;
       this.WorkOrderTypeAlert();
       return;
 
     }
-    
+
     if (this.workorderNotes) {
       this.notes = this.workorderNotes;
     } else {
       this.notes = null;
     }
-    
-    if (!this.FacilityKey)
-     {
-       this.FacilityAlert();
-       return;
+
+    if (!this.FacilityKey) {
+      this.FacilityAlert();
+      return;
 
     }
 
-    if (!this.FloorKey)
-     {
-        this.FloorAlert();
-        return;
+    if (!this.FloorKey) {
+      this.FloorAlert();
+      return;
 
     }
-// if values are not selected drop down values are selected for facility,floor,zone,roomtype,floortype,room.
+    // if values are not selected drop down values are selected for facility,floor,zone,roomtype,floortype,room.
     var roomsString;
     if (this.RoomKey) {
       roomsString = this.RoomKey;
@@ -405,7 +382,7 @@ export class WorkOrderCreatePage implements OnInit {
         }
         roomsString = roomList.join(',');
       } else {
-                this.RoomAlert();
+        this.RoomAlert();
         return;
       }
     }
@@ -499,6 +476,11 @@ export class WorkOrderCreatePage implements OnInit {
       this.is_BarcodeRequired = 0;
     }
 
+    if (this.isSnapshotRequired) {
+      this.isSnapshotRequired = 1;
+    } else {
+      this.isSnapshotRequired = 0;
+    }
 
     this.isReccuring = false;
     this.isrecurring = 0;
@@ -543,6 +525,7 @@ export class WorkOrderCreatePage implements OnInit {
       todate: this.endDT,
       isbar: this.is_BarcodeRequired,
       isphoto: this.is_PhotoRequired,
+      IsSnapshot: this.isSnapshotRequired,
       metaupdatedby: this.toServeremployeekey,
       OrganizationID: this.OrganizationID,
       intervaltype: '0', // char(1),/*d for day, w for week, m for month*/
@@ -550,33 +533,30 @@ export class WorkOrderCreatePage implements OnInit {
       occursonday: null
     };
     this.workOrderService.addWorkOrderWithOutEqup(this.workorderCreation).then((data) => {
-      
-      this.WorkorderTypeKey=null;
-      this.workorderNotes=null;
-      this.FacilityKey=null;
-      this.FloorKey=null;
-      this.ZoneKey=null;
-      this.RoomTypeKey=null;
-      this.RoomKey=null;
-      this.showEqTypes=null;
-      this.EquipmentTypeKey=null;
-      this.EquipmentKey=null;
-      this.PriorityKey=null;
-      this.EmployeeKey=null;
 
-      
-
+      this.WorkorderTypeKey = null;
+      this.workorderNotes = null;
+      this.FacilityKey = null;
+      this.FloorKey = null;
+      this.ZoneKey = null;
+      this.RoomTypeKey = null;
+      this.RoomKey = null;
+      this.showEqTypes = null;
+      this.EquipmentTypeKey = null;
+      this.EquipmentKey = null;
+      this.PriorityKey = null;
+      this.EmployeeKey = null;
 
       // this.router.navigateByUrl('WorkOrderView');
       // this.router.navigate(['WorkOrderView']);
       this.location.back();
-      
+
       this.PresentAlert();
     });
   }
   createWorkorder2() {// create workorder with equipment
 
-   //debugger;
+    //debugger;
 
     var roomlistObj = [];
 
@@ -624,38 +604,35 @@ export class WorkOrderCreatePage implements OnInit {
 
     if (this.WorkorderTypeKey) {
       this.wot = this.WorkorderTypeKey;
-    } 
-    else
-     {
+    }
+    else {
       this.wot = null;
       this.WorkOrderTypeAlert();
       return;
 
     }
-    
+
     if (this.workorderNotes) {
       this.notes = this.workorderNotes;
     } else {
       this.notes = null;
     }
-    if (!this.FacilityKey)
-    {
+    if (!this.FacilityKey) {
       this.FacilityAlert();
       return;
 
-   }
-   if (!this.FloorKey)
-     {
-        this.FloorAlert();
-        return;
+    }
+    if (!this.FloorKey) {
+      this.FloorAlert();
+      return;
 
     }
 
     var roomsString;
     roomsString = -1;
-  
 
-// if values are not selected drop down values are selected for facility,floor,zone,roomtype,floortype,room.
+
+    // if values are not selected drop down values are selected for facility,floor,zone,roomtype,floortype,room.
     var facilityString;
     if (this.FacilityKey) {
       facilityString = this.FacilityKey;
@@ -757,6 +734,11 @@ export class WorkOrderCreatePage implements OnInit {
       this.is_BarcodeRequired = 0;
     }
 
+    if (this.isSnapshotRequired) {
+      this.isSnapshotRequired = 1;
+    } else {
+      this.isSnapshotRequired = 0;
+    }
 
     this.isReccuring = false;
     this.isrecurring = 0;
@@ -801,6 +783,7 @@ export class WorkOrderCreatePage implements OnInit {
       todate: this.endDT,
       isbar: this.is_BarcodeRequired,
       isphoto: this.is_PhotoRequired,
+      IsSnapshot: this.isSnapshotRequired,
       metaupdatedby: this.toServeremployeekey,
       OrganizationID: this.OrganizationID,
       intervaltype: '0', // char(1),/*d for day, w for week, m for month*/
@@ -808,23 +791,23 @@ export class WorkOrderCreatePage implements OnInit {
       occursonday: null
     };
     this.workOrderService.addWorkOrderEqup(this.workorderCreation).then((data) => {
-      this.WorkorderTypeKey=null;
-      this.workorderNotes=null;
-      this.FacilityKey=null;
-      this.FloorKey=null;
-      this.ZoneKey=null;
-      this.RoomTypeKey=null;
-      this.RoomKey=null;
-      this.showEqTypes=null;
-      this.EquipmentTypeKey=null;
-      this.EquipmentKey=null;
-      this.PriorityKey=null;
-      this.EmployeeKey=null;
+      this.WorkorderTypeKey = null;
+      this.workorderNotes = null;
+      this.FacilityKey = null;
+      this.FloorKey = null;
+      this.ZoneKey = null;
+      this.RoomTypeKey = null;
+      this.RoomKey = null;
+      this.showEqTypes = null;
+      this.EquipmentTypeKey = null;
+      this.EquipmentKey = null;
+      this.PriorityKey = null;
+      this.EmployeeKey = null;
       this.PresentAlert();
       // this.router.navigateByUrl('WorkOrderView');
       // this.router.navigate(['WorkOrderView']);
       this.location.back();
-     
+
     });
 
   }
@@ -844,33 +827,33 @@ export class WorkOrderCreatePage implements OnInit {
     var profile = JSON.parse(this.url_base64_decode(encodedProfile));
 
 
-   // var token = localStorage.getItem('token');
+    // var token = localStorage.getItem('token');
     //localStorage['token'] = token;
     // var encodedProfile = token.split('.')[1];
     // var profile = JSON.parse(this.url_base64_decode(encodedProfile));
 
-    this.toServeremployeekey=profile.employeekey;
+    this.toServeremployeekey = profile.employeekey;
     this.OrganizationID = profile.OrganizationID;
 
-    this.WorkorderTypeKey="";
-    this.FacilityKey="";
-    this.FloorKey="";
-    this.ZoneKey="";
-    this.RoomTypeKey="";
-    this.RoomKey="";
-    this.EquipmentTypeKey="";
-    this.EquipmentKey="";
-    this.PriorityKey="";
-    this.EmployeeKey="";
+    this.WorkorderTypeKey = "";
+    this.FacilityKey = "";
+    this.FloorKey = "";
+    this.ZoneKey = "";
+    this.RoomTypeKey = "";
+    this.RoomKey = "";
+    this.EquipmentTypeKey = "";
+    this.EquipmentKey = "";
+    this.PriorityKey = "";
+    this.EmployeeKey = "";
 
     this.showEqTypes = false;
     this.dateValue = this.convert_DT(new Date());
     this.timeValue = new Date().getHours() + ':' + new Date().getMinutes();
-    this.workOrderService.GetWorkorderType(this.toServeremployeekey,this.OrganizationID).subscribe((data: any[]) => {
+    this.workOrderService.GetWorkorderType(this.toServeremployeekey, this.OrganizationID).subscribe((data: any[]) => {
       this.workOrdertypeList = data;
 
     });
-    this.workOrderService.getBuilding(this.toServeremployeekey,this.OrganizationID).subscribe((data: any[]) => {
+    this.workOrderService.getBuilding(this.toServeremployeekey, this.OrganizationID).subscribe((data: any[]) => {
       this.facilityList = data;
 
     });
@@ -878,7 +861,7 @@ export class WorkOrderCreatePage implements OnInit {
       this.priorityList = data;
 
     });
-    this.workOrderService.allemployees(this.toServeremployeekey,this.OrganizationID).subscribe((data: any[]) => {
+    this.workOrderService.allemployees(this.toServeremployeekey, this.OrganizationID).subscribe((data: any[]) => {
       this.employeeList = data;
 
     });

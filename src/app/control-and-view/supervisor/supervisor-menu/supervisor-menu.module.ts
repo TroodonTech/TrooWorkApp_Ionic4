@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { SupervisorMenuPage } from './supervisor-menu.page';
-import { } from '../workorder-supervisor/workorder-supervisor-filtering-by-employee/workorder-supervisor-filtering-by-employee.module'
+import { FindEmployeeSupervisorPageModule } from '../find-employee-supervisor/find-employee-supervisor.module'
 // supervisor-menu/
 const routes: Routes = [
   {
@@ -57,6 +57,10 @@ const routes: Routes = [
       {
         path: 'workorder-supervisor-view-detail/:WorkOrderKey',
         loadChildren: '../workorder-supervisor/workorder-supervisor-view-detail/workorder-supervisor-view-detail.module#WorkorderSupervisorViewDetailPageModule'
+      },
+      {
+        path: 'find-employee-supervisor',
+        loadChildren: '../find-employee-supervisor/find-employee-supervisor.module#FindEmployeeSupervisorPageModule'
       }
     ]
   }

@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SupervisorMenuPage implements OnInit {
   selectedPath = '';
- 
+
   pages = [
-    
+
     {
       title: 'Supervisor DashBoard',//second
       url: '/supervisor-menu/super-visor-dash-board',
@@ -29,15 +29,22 @@ export class SupervisorMenuPage implements OnInit {
       title: 'Scan For Work',//first
       url: '/supervisor-menu/scan-for-work-supervisor',
       icon: "barcode"
-    } ,
-    
-    
+    },
+
+
+    {
+      title: 'Find Employee',
+      url: '/supervisor-menu/find-employee-supervisor',
+      icon: "search"
+    },
+
+
     {
       title: 'Logout',
-      url:  '/manager-menu/login',
-      icon:"log-out"
+      url: '/manager-menu/login',
+      icon: "log-out"
     }
-    
+
   ];
   loginDetalis;
   Username;
@@ -63,9 +70,9 @@ export class SupervisorMenuPage implements OnInit {
     localStorage['token'] = token;
     var encodedProfile = token.split('.')[1];
     var profile = JSON.parse(this.url_base64_decode(encodedProfile));
-  
 
-    this.Username=profile.username;
+
+    this.Username = profile.username;
   }
 
 }

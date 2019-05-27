@@ -50,6 +50,8 @@ const routes: Routes = [
   { path: 'inspection-completed/:insKey', loadChildren: './control-and-view/inspection/inspection-completed/inspection-completed.module#InspectionCompletedPageModule' },
   { path: 'view-details-inspection/:insKey', loadChildren: './control-and-view/inspection/view-details-inspection/view-details-inspection.module#ViewDetailsInspectionPageModule' },
   { path: 'view-star/:insKey', loadChildren: './control-and-view/inspection/view-star/view-star.module#ViewStarPageModule' },
+  // { path: 'find-employee-supervisor', loadChildren: './control-and-view/supervisor/find-employee-supervisor/find-employee-supervisor.module#FindEmployeeSupervisorPageModule' },
+
   //{ path: 'find-employee', loadChildren: './control-and-view/manager/find-employee/find-employee.module#FindEmployeePageModule' },
 
 ];

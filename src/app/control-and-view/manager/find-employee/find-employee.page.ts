@@ -96,17 +96,17 @@ export class FindEmployeePage implements OnInit {
     this.map.getMyLocation().then((location: MyLocation) => {
       console.log(JSON.stringify(location, null, 2));
       // const latLng = new google.maps.LatLng(28.6117993, 77.2194934);
-
-      // Move the map camera to the location with animation
-      this.map.animateCamera({
-        target: location.latLng, //location.latLng
-        zoom: 17,
-        duration: 5000
-      });
       let position1: ILatLng = {
         lat: lat1,
         lng: lng1
       };
+      // Move the map camera to the location with animation
+      this.map.animateCamera({
+        target: position1, //location.latLng
+        zoom: 17,
+        duration: 5000
+      });
+
       //add a marker
       let marker: Marker = this.map.addMarkerSync({
         title: '',

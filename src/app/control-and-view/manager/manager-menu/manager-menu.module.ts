@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ManagerMenuPage } from './manager-menu.page';
-import {LoginPageModule} from '../../login/login.module'
+import{CreateInspectionPageModule} from '../../inspection/create-inspection/create-inspection.module'
 const routes: Routes = [
   {
     path: '',
@@ -37,6 +37,14 @@ const routes: Routes = [
       {
         path: 'login',
         loadChildren: '../../login/login.module#LoginPageModule'
+      },
+      {
+        path: 'view-inspection',
+        loadChildren: '../../inspection/view-inspection/view-inspection.module#ViewInspectionPageModule'
+      },
+      {
+        path: 'create-inspection',
+        loadChildren: '../../inspection/create-inspection/create-inspection.module#CreateInspectionPageModule'
       }
 
     ]

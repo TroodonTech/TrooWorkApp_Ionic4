@@ -20,11 +20,6 @@ export class ManagerMenuPage implements OnInit {
       icon: 'home'
     },
     {
-      title: 'Find Employee',//second
-      url: '/manager-menu/find-employee',
-      icon: 'search'
-    },
-    {
       title: ' Work Order',//first
       url: '/manager-menu/work-order-dash-board',
       icon: "logo-buffer"
@@ -34,16 +29,15 @@ export class ManagerMenuPage implements OnInit {
       url:  '/manager-menu/inspection-dash-board',
       icon: "create"
     },
-    
     {
       title: 'Scan For Work',//first
       url: '/manager-menu/scan-for-work',
       icon: "barcode"
     },
     {
-      title: 'Inspection Order',
-      url: '/manager-menu/inspection-dash-board',
-      icon: "create"
+      title: 'Find Employee',//second
+      url: '/manager-menu/find-employee',
+      icon: 'search'
     },
     {
       title: 'Logout',

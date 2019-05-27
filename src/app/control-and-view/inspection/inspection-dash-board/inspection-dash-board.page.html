@@ -1,22 +1,25 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title class="title">
-            <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'>
-        
-      </ion-icon>Inspection Order</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">
+      <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'>
+
+      </ion-icon>Inspection Order
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content style="background-color: #EBFAFF !important;" padding>
-  <ion-nav [root]="rootPage" ></ion-nav>
+  <ion-nav [root]="rootPage"></ion-nav>
   <div align='center' padding>
-  
-  <ion-button class = "button button-block" ion-button color="success" href='create-inspection' >Create Inspection Order</ion-button>
-<br>
-  <ion-button class = "button button-block" ion-button color="success" href='view-inspection' > View Inspection Order</ion-button>
-  
+
+    <ion-button class="button button-block" ion-button color="success" href='manager-menu/create-inspection'>Create
+      Inspection Order</ion-button>
+    <br>
+    <ion-button class="button button-block" ion-button color="success" href='manager-menu/view-inspection'> View
+      Inspection Order</ion-button>
+
   </div>
 </ion-content>

@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ManagerMenuPage } from './manager-menu.page';
-import {LoginPageModule} from '../../login/login.module'
+import{WorkOrderFilteringByStatusPageModule} from '../../work-order/work-order-filtering-by-status/work-order-filtering-by-status.module'
 const routes: Routes = [
   {
     path: '',
@@ -37,6 +37,38 @@ const routes: Routes = [
       {
         path: 'login',
         loadChildren: '../../login/login.module#LoginPageModule'
+      },
+      {
+        path: 'work-order-create',
+        loadChildren: '../work-order-create/work-order-create.module#WorkOrderCreatePageModule'
+      },
+      {
+        path: 'create-quick-work-order',
+        loadChildren: '../../work-order/create-quick-work-order/create-quick-work-order.module#CreateQuickWorkOrderPageModule'
+      },
+      {
+        path: 'work-order-view',
+        loadChildren: '../../work-order/work-order-view/work-order-view.module#WorkOrderViewPageModule'
+      },
+      {
+        path: 'view-inspection',
+        loadChildren: '../../inspection/view-inspection/view-inspection.module#ViewInspectionPageModule'
+      },
+      {
+        path: 'create-inspection',
+        loadChildren: '../../inspection/create-inspection/create-inspection.module#CreateInspectionPageModule'
+      },
+      {
+        path: 'workorder-filtering-by-employee',
+        loadChildren: '../../work-order/workorder-filtering-by-employee/workorder-filtering-by-employee.module#WorkorderFilteringByEmployeePageModule'
+      },
+      {
+        path: 'work-order-filtering-by-facility',
+        loadChildren: '../../work-order/work-order-filtering-by-facility/work-order-filtering-by-facility.module#WorkOrderFilteringByFacilityPageModule'
+      },
+      {
+        path: 'work-order-filtering-by-status',
+        loadChildren: '../../work-order/work-order-filtering-by-status/work-order-filtering-by-status.module#WorkOrderFilteringByStatusPageModule'
       }
 
     ]

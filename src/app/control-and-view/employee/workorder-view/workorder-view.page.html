@@ -10,37 +10,41 @@
 
 <ion-content padding style="background-color: #EBFAFF !important;">
   
-    <ion-nav [root]="rootPage"></ion-nav>
     <!-- <img  *ngIf="loading" src="../../../../../assets/img/Loading_icon.gif" style="width: 10rem;" />
   
      <div *ngIf="!loading"> -->
-  <ion-card *ngFor="let data of viewworkorder" style="background-color: #FFF !important;"
-     routerLink="/work-order-complete/{{data.WorkorderKey}}">
-    <ion-card-header align='center' padding>
-        <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content align='center' padding>
-        <div *ngIf="data.FacilityName">
-            <p>{{data.FacilityName}} - {{data.ZoneName}} - {{data.FloorName}}</p>
-            <p>{{data.WorkorderTime}}</p>
-            <p>Assigned to : {{data.LastName}},{{data.FirstName}} </p>
-            <p>Priority : {{data.PriorityValue}}</p>
-            <p>
-                      <ion-label class="label text-brown-{{data.WorkorderStatus === 'Scheduled'}} 
-                             text-yellow-{{data.WorkorderStatus === 'InProgress'}}
-                             text-green-{{data.WorkorderStatus === 'Completed'}}
-                             text-orange-{{data.WorkorderStatus === 'Delayed'}}">
-                            {{data.WorkorderStatus}}
-                      </ion-label>
-                    </p>
-           </div> 
-    </ion-card-content> 
-  
-</ion-card>
-<ion-card *ngIf="viewworkorder?.length == 0" style="background-color: #FFF !important;">
-  <ion-card-content>
-  No records found
-</ion-card-content>
-</ion-card>
+        <ion-card *ngFor="let data of viewworkorder" style="background-color: #FFF !important;"
+      (click)=" workorderredirect(data.WorkorderKey)"
+        >
+       <ion-card-header  align='center'  padding>
+           <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
+       </ion-card-header>
+       <ion-card-content align='center' padding>
+           <div *ngIf="data.FacilityName">
+               <p>{{data.FacilityName}} - {{data.ZoneName}} - {{data.FloorName}}</p>
+               <p>{{data.WorkorderTime}}</p>
+               <p>Assigned to : {{data.LastName}},{{data.FirstName}} </p>
+               <p>Priority : {{data.PriorityValue}}</p>
+               <br>
+               
+               <p>
+                         <ion-label class="label text-brown-{{data.WorkorderStatus === 'Scheduled'}} 
+                                text-yellow-{{data.WorkorderStatus === 'InProgress'}}
+                                text-green-{{data.WorkorderStatus === 'Completed'}}
+                                text-orange-{{data.WorkorderStatus === 'Delayed'}}">
+                               {{data.WorkorderStatus}}
+                         </ion-label>
+                       </p>
+              </div> 
+       </ion-card-content> 
+     <!-- </a> -->
+   </ion-card>
+   <ion-card *ngIf="viewworkorder?.length == 0" style="background-color: #FFF !important;">
+       <ion-card-content>
+       No records found
+     </ion-card-content>
+   </ion-card>
 <!-- </div> -->
+
+  
 </ion-content>

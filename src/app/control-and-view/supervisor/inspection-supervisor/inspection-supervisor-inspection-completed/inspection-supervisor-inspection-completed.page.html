@@ -1,40 +1,53 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title class="title">
       <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>View Inspection Order</ion-title>
   </ion-toolbar>
+</ion-header> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">
+      <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>View Inspection
+      Order
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
- <ion-content style="background-color: #EBFAFF !important;" padding>
+
+<ion-content style="background-color: #EBFAFF !important;" padding>
   <ion-card style="background-color: #FFF !important;">
-  <div *ngIf="inspectionNotCompleted">
-    <h2>Inspection is Not Completed!</h2>
+    <div *ngIf="inspectionNotCompleted">
+      <h2>Inspection is Not Completed!</h2>
 
-  </div>
+    </div>
 
-  <div *ngIf ="!inspectionNotCompleted" align='center' padding>
+    <div *ngIf="!inspectionNotCompleted" align='center' padding>
       <h3 align="center">{{templateName}}</h3>
       <h5 align="center">{{roomtype}} {{roomId}} {{inspectionreport}}</h5>
       <h6 align="center">{{inspectedby}} {{supervisorName}}</h6>
-</div>
-<ion-card>
-<div class="item item-icon-right" *ngFor="let data of inspectionsubmitted">
-    <ion-card-content align='center' padding >                
-      <h2>{{data.Question}}</h2>
-      <p>{{scoreType}} {{data.ScoreName}}</p>
-      <p>{{values}} {{data.Value}}</p>
-     <p>{{notes}} {{data.Notes}}</p>
-  </ion-card-content>
-  </div>
-</ion-card>
+    </div>
+    <ion-card>
+      <div class="item item-icon-right" *ngFor="let data of inspectionsubmitted">
+        <ion-card-content align='center' padding>
+          <h2>{{data.Question}}</h2>
+          <p>{{scoreType}} {{data.ScoreName}}</p>
+          <p>{{values}} {{data.Value}}</p>
+          <p>{{notes}} {{data.Notes}}</p>
+        </ion-card-content>
+      </div>
+    </ion-card>
 
 
-  
-</ion-card>  
-        
-<p>
+
+  </ion-card>
+
+  <p>
     <ion-button ion-button color="primary" (click)='GoBack()'>Done</ion-button>
-</p>
- 
+  </p>
+
 
 </ion-content>

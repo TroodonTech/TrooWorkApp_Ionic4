@@ -1,21 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="title">
-      <ion-icon class="arrow"ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>  WorkOrder Detail</ion-title>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="title">
+          <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>WorkOrder Detail
+      </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding style="background-color: #EBFAFF !important;">
-
+ 
   <div class="list " *ngFor="let items of viewEmpWorkorderDetails">
     <div class="item item-text-wrap viewWorkorderDetails">
-
+      <ion-grid style="background-color: rgb(255, 255, 255) !important;">
       <div class="row headerRow">
         <div class="col text-center">
           <h3 align="center">{{items.WorkorderTypeName}}</h3>
 
         </div>
       </div>
+     
       <ion-item>
         <ion-label>Facility </ion-label>
         <ion-label>{{items.FacilityName}}</ion-label>
@@ -80,7 +85,6 @@
 
       </ion-item>
       <ion-item *ngIf="items.WorkorderNotes !== 'null'">
-
         <ion-label>{{items.WorkorderNotes}}</ion-label>
       </ion-item>
       <ion-item *ngIf="items.IsPhotoRequired === 1">
@@ -89,6 +93,7 @@
           <ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon>
         </ion-label>
       </ion-item>
+
       <!-- <ion-item *ngIf="items.IsPhotoRequired === 0">
         <ion-label>Photo Required </ion-label>
         <ion-label>
@@ -159,7 +164,7 @@
           </ion-button>
         </ion-row>
 
-
+      </ion-grid>
         <!-- <div class = " col text-center" ng-if="items.IsBarcodeRequired == 1 ">
           <button class=" button button-large button-brown-true workorder_Button"
                          on-hold="showBarcodePopupWorks(items.WorkorderKey)" (click)="reloadWorkOrderView()" ng-if="items.IsBarcodeRequired == 1">

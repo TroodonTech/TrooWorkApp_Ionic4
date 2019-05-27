@@ -13,9 +13,9 @@ import {Location} from '@angular/common';
 export class ScanForWorkPage implements OnInit {
 
   inbarcode;
-  toServeremployeekey: 2861;
+  toServeremployeekey;
   today_DT;
-  OrganizationID: 21;
+  OrganizationID;
   imageScan;
   viewworkorder;
   //rootPage: any = TabsPage;
@@ -25,11 +25,42 @@ export class ScanForWorkPage implements OnInit {
     private router: Router,
     private location: Location) { }
 
-  ngOnInit() {
-    // console.log(" scanner page");
+  convert_DT(str) { // date convertion function YYYY/MM/DD
+    var date = new Date(str),
+      mnth = ('0' + (date.getMonth() + 1)).slice(-2),
+      day = ('0' + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join('-');
   }
+
+  url_base64_decode(str) {
+    var output = str.replace('-', '+').replace('_', '/');
+    switch (output.length % 4) {
+      case 0:
+        break;
+      case 2:
+        output += '==';
+        break;
+      case 3:
+        output += '=';
+        break;
+      default:
+        throw new Error('Illegal base64url string!');
+    }
+    return window.atob(output); //polifyll https://github.com/davidchambers/Base64.js
+  }
+
+  ngOnInit() {
+    var token = localStorage.getItem('token');
+    localStorage['token'] = token;
+    var encodedProfile = token.split('.')[1];
+    var profile = JSON.parse(this.url_base64_decode(encodedProfile));
+    this.toServeremployeekey=profile.employeekey;
+    this.OrganizationID = profile.OrganizationID;
+    this.today_DT = this.convert_DT(new Date());
+  }
+
   getEmployeeWorkorderByBarcode() {
-  console.log("inside barcode scanner function");
+  // console.log("inside barcode scanner function");
     this.barcodeScanner.scan().then(data => {
       // this is called when a barcode is found
       this.inbarcode = data.text;
@@ -44,6 +75,7 @@ export class ScanForWorkPage implements OnInit {
       console.log('Error', err);
     });
   }
+  
   GoBack() {
     // this.router.navigateByUrl('ManagerDashBoard');
     this.location.back();

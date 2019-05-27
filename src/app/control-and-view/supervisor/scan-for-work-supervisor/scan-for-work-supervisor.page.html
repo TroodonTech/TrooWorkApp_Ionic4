@@ -20,12 +20,12 @@
     <img style="width: 100px; height: 100px;" src="../../../../assets/icon/shelfari-scanner-icon.png">
   </ion-button>
 
-  <ion-card *ngFor="let data of viewworkorder">
-    <a routerLink="/workorder-supervisor-view-detail/{{data.WorkorderKey}}">
-    <ion-card-header>
+  <ion-card *ngFor="let data of viewworkorder" style="background-color: #FFF !important;"
+    routerLink="/workorder-supervisor-view-detail/{{data.WorkorderKey}}">
+    <ion-card-header align='center'  padding>
         <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content align='center' padding>
         <div *ngIf="data.FacilityName">
             <p>{{data.FacilityName}} - {{data.ZoneName}} - {{data.FloorName}}</p>
             <p>{{data.WorkorderTime}}</p>
@@ -41,7 +41,6 @@
                     </p>
            </div> 
     </ion-card-content> 
-  </a>
 </ion-card>
 <ion-card *ngIf="viewworkorder?.length == 0" style="background-color: #FFF !important;">
     <ion-card-content>

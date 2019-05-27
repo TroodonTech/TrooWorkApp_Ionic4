@@ -16,7 +16,15 @@ export class ScanForWorkSupervisorPage implements OnInit {
   OrganizationID;
   imageScan;
   viewworkorder;
+
   constructor(public workOrderService: WorkOrderService,private location: Location, private barcodeScanner: BarcodeScanner,private router: Router) { }
+  
+  convert_DT(str) { // date convertion function YYYY/MM/DD
+    var date = new Date(str),
+      mnth = ('0' + (date.getMonth() + 1)).slice(-2),
+      day = ('0' + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join('-');
+  }
 
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
@@ -34,16 +42,17 @@ export class ScanForWorkSupervisorPage implements OnInit {
     }
     return window.atob(output); //polifyll https://github.com/davidchambers/Base64.js
   }
+
   ngOnInit()
+
    {
     var token = localStorage.getItem('token');
     localStorage['token'] = token;
     var encodedProfile = token.split('.')[1];
     var profile = JSON.parse(this.url_base64_decode(encodedProfile));
-  
     this.toServeremployeekey=profile.employeekey;
     this.OrganizationID = profile.OrganizationID;
-  
+    this.today_DT = this.convert_DT(new Date());
   }
 
   getEmployeeWorkorderByBarcode() {
@@ -60,10 +69,6 @@ export class ScanForWorkSupervisorPage implements OnInit {
     }).catch(err => {
       console.log('Error', err);
     });
-
-
-
-
   }
 
   GoBack() {

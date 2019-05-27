@@ -1,7 +1,21 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title class="title">
-      <ion-icon class="arrow"ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>  WorkOrder Detail</ion-title>
+      <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon> WorkOrder Detail
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">
+      <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'>
+
+      </ion-icon>WorkOrder Detail
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,7 +30,7 @@
 
         </div>
       </div>
-      
+
       <ion-item>
         <ion-label>Facility </ion-label>
         <ion-label>{{items.FacilityName}}</ion-label>
@@ -90,7 +104,7 @@
           <ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon>
         </ion-label>
       </ion-item>
-      
+
       <!-- <ion-item *ngIf="items.IsPhotoRequired === 0">
         <ion-label>Photo Required </ion-label>
         <ion-label>
@@ -124,14 +138,16 @@
 
       </ion-item>
 
-      <ion-label text-center  *ngIf="items.WorkorderStatus == 'InProgress'">
-        <ion-button class=" button facilityBackButton button-energized" size="default" buttonType='button' (click)="delayCurrentWorkOrder(items.WorkorderKey)">
+      <ion-label text-center *ngIf="items.WorkorderStatus == 'InProgress'">
+        <ion-button class=" button facilityBackButton button-energized" size="default" buttonType='button'
+          (click)="delayCurrentWorkOrder(items.WorkorderKey)">
           Delay
 
         </ion-button>
       </ion-label>
       <ion-label text-center *ngIf="items.WorkorderStatus == 'Delayed'">
-        <ion-button class=" button facilityBackButton button-energized"size="default" buttonType='button' (click)="continueCurrentWorkOrder(items.WorkorderKey)">
+        <ion-button class=" button facilityBackButton button-energized" size="default" buttonType='button'
+          (click)="continueCurrentWorkOrder(items.WorkorderKey)">
           Continue
 
         </ion-button>
@@ -139,30 +155,28 @@
 
 
       <!-- <ion-item class="row" *ngIf="items.WorkorderNotes !== 'null'"> -->
-        <ion-row text-center *ngIf="items.IsPhotoRequired == 1 &&items.WorkorderStatus != 'Delayed'">
-          <ion-button class="text-brown-{{items.WorkorderStatus === 'Scheduled'}} 
+      <ion-row text-center *ngIf="items.IsPhotoRequired == 1 &&items.WorkorderStatus != 'Delayed'">
+        <ion-button class="text-brown-{{items.WorkorderStatus === 'Scheduled'}} 
                          button-yellow-{{items.WorkorderStatus === 'InProgress'}}
-                         button-green-{{items.WorkorderStatus === 'Completed'}} workorder_Button"
-                         size="default" buttonType='button' *ngIf="items.IsPhotoRequired == 1"
-            (click)="takePhoto(items.WorkorderKey)" >
-            <i class="icon ion-camera"></i>
-            Take Photo
-          </ion-button>
-        </ion-row>
-        <ion-row text-center *ngIf="items.IsBarcodeRequired == 1 &&items.WorkorderStatus != 'Delayed'">
-          <ion-button class="text-brown-{{items.WorkorderStatus === 'Scheduled'}} 
+                         button-green-{{items.WorkorderStatus === 'Completed'}} workorder_Button" size="default"
+          buttonType='button' *ngIf="items.IsPhotoRequired == 1" (click)="takePhoto(items.WorkorderKey)">
+          <i class="icon ion-camera"></i>
+          Take Photo
+        </ion-button>
+      </ion-row>
+      <ion-row text-center *ngIf="items.IsBarcodeRequired == 1 &&items.WorkorderStatus != 'Delayed'">
+        <ion-button class="text-brown-{{items.WorkorderStatus === 'Scheduled'}} 
                          button-yellow-{{items.WorkorderStatus === 'InProgress'}}
-                         button-green-{{items.WorkorderStatus === 'Completed'}} workorder_Button"
-                         size="default" buttonType='button'
-            (click)="scanBarcode(items.WorkorderKey)" *ngIf="items.IsBarcodeRequired == 1">
-            <i class="icon ion-ios-barcode"></i>
-            Barcode
+                         button-green-{{items.WorkorderStatus === 'Completed'}} workorder_Button" size="default"
+          buttonType='button' (click)="scanBarcode(items.WorkorderKey)" *ngIf="items.IsBarcodeRequired == 1">
+          <i class="icon ion-ios-barcode"></i>
+          Barcode
 
-          </ion-button>
-        </ion-row>
+        </ion-button>
+      </ion-row>
 
 
-        <!-- <div class = " col text-center" ng-if="items.IsBarcodeRequired == 1 ">
+      <!-- <div class = " col text-center" ng-if="items.IsBarcodeRequired == 1 ">
           <button class=" button button-large button-brown-true workorder_Button"
                          on-hold="showBarcodePopupWorks(items.WorkorderKey)" (click)="reloadWorkOrderView()" ng-if="items.IsBarcodeRequired == 1">
                          <i class="icon ion-ios-barcode"></i><h2>Reload</h2>
@@ -173,26 +187,25 @@
 
 
 
-        <ion-row text-center *ngIf="items.IsBarcodeRequired==0 && items.IsPhotoRequired==0 && items.IsSnapshot==0">
-          <ion-button class="text-brown-{{items.WorkorderStatus ==='Scheduled'}}
+      <ion-row text-center *ngIf="items.IsBarcodeRequired==0 && items.IsPhotoRequired==0 && items.IsSnapshot==0">
+        <ion-button class="text-brown-{{items.WorkorderStatus ==='Scheduled'}}
                          button-yellow-{{items.WorkorderStatus === 'InProgress'}}
-                         button-green-{{items.WorkorderStatus === 'Completed'}} workorder_Button"
-                         size="default" buttonType='button'
-            (click)="workCompleted(items.WorkorderKey)" *ngIf="items.IsBarcodeRequired==0 && items.IsPhotoRequired==0">
-            <i class="icon ion-checkmark-circled"></i>
-            Workorder Complete
-          </ion-button>
-        </ion-row>
-        <ion-row text-center *ngIf="items.IsSnapshot == 1 &&items.WorkorderStatus != 'Delayed'">
-          <ion-button class="text-brown-{{items.WorkorderStatus === 'Scheduled'}} 
+                         button-green-{{items.WorkorderStatus === 'Completed'}} workorder_Button" size="default"
+          buttonType='button' (click)="workCompleted(items.WorkorderKey)"
+          *ngIf="items.IsBarcodeRequired==0 && items.IsPhotoRequired==0">
+          <i class="icon ion-checkmark-circled"></i>
+          Workorder Complete
+        </ion-button>
+      </ion-row>
+      <ion-row text-center *ngIf="items.IsSnapshot == 1 &&items.WorkorderStatus != 'Delayed'">
+        <ion-button class="text-brown-{{items.WorkorderStatus === 'Scheduled'}} 
                          button-yellow-{{items.WorkorderStatus === 'InProgress'}}
-                         button-green-{{items.WorkorderStatus === 'Completed'}} workorder_Button"
-                         size="default" buttonType='button' *ngIf="items.IsSnapshot == 1"
-            (click)="locationTracker(items.WorkorderKey)" >
-            <i class="icon ion-camera"></i>
-            Snapshot
-          </ion-button>
-        </ion-row>
+                         button-green-{{items.WorkorderStatus === 'Completed'}} workorder_Button" size="default"
+          buttonType='button' *ngIf="items.IsSnapshot == 1" (click)="locationTracker(items.WorkorderKey)">
+          <i class="icon ion-camera"></i>
+          Snapshot
+        </ion-button>
+      </ion-row>
       <!-- </ion-item> -->
     </div>
   </div>

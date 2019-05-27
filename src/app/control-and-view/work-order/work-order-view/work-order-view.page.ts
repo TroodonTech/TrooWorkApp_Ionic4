@@ -51,15 +51,15 @@ export class WorkOrderViewPage implements OnInit {
   
   selectedEmployees()
   {
-    this.router.navigateByUrl('workorder-filtering-by-employee');
+    this.router.navigateByUrl('manager-menu/workorder-filtering-by-employee');
   }
   selectedFacility()
   {
-    this.router.navigateByUrl('work-order-filtering-by-facility');
+    this.router.navigateByUrl('manager-menu/work-order-filtering-by-facility');
   }
   selectedStatus()
   {
-    this.router.navigateByUrl('work-order-filtering-by-status');
+    this.router.navigateByUrl('manager-menu/work-order-filtering-by-status');
   }
   convert_DT(str) {
     var date = new Date(str),

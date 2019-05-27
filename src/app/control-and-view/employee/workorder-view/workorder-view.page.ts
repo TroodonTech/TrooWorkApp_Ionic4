@@ -42,7 +42,10 @@ export class WorkorderViewPage implements OnInit {
     }
     return window.atob(output);
   }
-
+  workorderredirect(WorkorderKey)
+  {
+    this.router.navigate(['employee-menu/work-order-complete',WorkorderKey]);
+  }
   async presentLoadingWithOptions() {
     const loading = await this.loadCtrl.create({
       //spinner: 'hide',

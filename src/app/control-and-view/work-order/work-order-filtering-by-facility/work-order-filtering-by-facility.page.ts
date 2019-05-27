@@ -28,15 +28,15 @@ export class WorkOrderFilteringByFacilityPage implements OnInit {
     private location: Location) { }
     selectedEmployees()
     {
-      this.router.navigateByUrl('workorder-filtering-by-employee');
+      this.router.navigateByUrl('manager-menu/workorder-filtering-by-employee');
     }
     selectedFacility()
     {
-      this.router.navigateByUrl('work-order-filtering-by-facility');
+      this.router.navigateByUrl('manager-menu/work-order-filtering-by-facility');
     }
     selectedStatus()
     {
-      this.router.navigateByUrl('work-order-filtering-by-status');
+      this.router.navigateByUrl('manager-menu/work-order-filtering-by-status');
     }
   url_base64_decode(str) {// decoding function for token
     var output = str.replace('-', '+').replace('_', '/');

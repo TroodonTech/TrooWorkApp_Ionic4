@@ -21,8 +21,8 @@
   </ion-button>
 
   <ion-card *ngFor="let data of viewworkorder" style="background-color: #FFF !important;"
-    routerLink="/workorder-supervisor-view-detail/{{data.WorkorderKey}}">
-    <ion-card-header align='center'  padding>
+    routerLink="/supervisor-menu/workorder-supervisor-view-detail/{{data.WorkorderKey}}">
+    <ion-card-header>
         <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
     </ion-card-header>
     <ion-card-content align='center' padding>

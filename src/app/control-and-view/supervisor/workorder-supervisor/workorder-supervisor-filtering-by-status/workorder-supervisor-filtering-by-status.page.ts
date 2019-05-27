@@ -24,15 +24,15 @@ export class WorkorderSupervisorFilteringByStatusPage implements OnInit {
 
   selectedEmployees()
   {
-    this.router.navigateByUrl('workorder-supervisor-filtering-by-employee');
+    this.router.navigateByUrl('supervisor-menu/workorder-supervisor-filtering-by-employee');
   }
   selectedFacility()
   {
-    this.router.navigateByUrl('workorder-supervisor-filtering-by-facility');
+    this.router.navigateByUrl('supervisor-menu/workorder-supervisor-filtering-by-facility');
   }
   selectedStatus()
   {
-    this.router.navigateByUrl('workorder-supervisor-filtering-by-status');
+    this.router.navigateByUrl('supervisor-menu/workorder-supervisor-filtering-by-status');
   }
 
   url_base64_decode(str) {// decoding function for token

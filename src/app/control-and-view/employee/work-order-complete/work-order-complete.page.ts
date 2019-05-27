@@ -196,7 +196,7 @@ export class WorkOrderCompletePage implements OnInit {
   }
 
   GoBack() {
-    this.router.navigateByUrl('/workorder-view');
-    // this.location.back();
+    //this.router.navigateByUrl('/workorder-view');
+     this.location.back();
   }
 }

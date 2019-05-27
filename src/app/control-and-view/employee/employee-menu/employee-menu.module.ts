@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { EmployeeMenuPage } from './employee-menu.page';
-import {WorkorderViewPageModule} from '../workorder-view/workorder-view.module'
+import {WorkOrderCompletePageModule} from '../work-order-complete/work-order-complete.module'
 const routes: Routes = [
   {
     path: '',
@@ -26,6 +26,10 @@ const routes: Routes = [
       {
         path: 'workorder-view',
         loadChildren: '../workorder-view/workorder-view.module#WorkorderViewPageModule'
+      },
+      {
+        path: 'work-order-complete/:WorkOrderKey',
+        loadChildren: '../work-order-complete/work-order-complete.module#WorkOrderCompletePageModule'
       },
       {
         path: 'login',

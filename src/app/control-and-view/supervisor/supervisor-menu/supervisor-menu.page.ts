@@ -15,13 +15,9 @@ export class SupervisorMenuPage implements OnInit {
       url: '/supervisor-menu/super-visor-dash-board',
       icon: "home"
     },
+   
     {
-      title: ' View Inspection',//first
-      url: '/supervisor-menu/inspection-supervisor-view',
-      icon: "create"
-    },
-    {
-      title: ' WorkOrder View',//first
+      title: ' WorkOrder',//first
       url: '/supervisor-menu/workorder-supervisor-view',
       icon: "logo-buffer"
     },
@@ -30,7 +26,11 @@ export class SupervisorMenuPage implements OnInit {
       url: '/supervisor-menu/scan-for-work-supervisor',
       icon: "barcode"
     },
-
+    {
+      title: 'Inspection Order',//first
+      url: '/supervisor-menu/inspection-supervisor-view',
+      icon: "create"
+    },
 
     {
       title: 'Find Employee',

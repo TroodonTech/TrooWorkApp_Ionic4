@@ -12,11 +12,14 @@
 <ion-content padding style="background-color: #EBFAFF !important;">
   <ion-nav [root]="rootPage"></ion-nav>
   <div align='center' padding>
-    <img type="sumbit" style="width: 100px; height: 100px;" class="imageStyleScan" src="../../../../assets/icon/shelfari-scanner-icon.png" (click)="getEmployeeWorkorderByBarcode()">
+    <ion-button size="large" (click)="getEmployeeWorkorderByBarcode()" fill="clear">
+      <img style="width: 100px; height: 100px;" src="../../../../assets/icon/shelfari-scanner-icon.png">
+    </ion-button>
+    <!-- <img type="sumbit" style="width: 100px; height: 100px;" class="imageStyleScan" src="../../../../assets/icon/shelfari-scanner-icon.png" (click)="getEmployeeWorkorderByBarcode()"> -->
   </div>
 
   <ion-card *ngFor="let data of viewworkorder">
-    <a routerLink="/WorkOrderCompleteEmp/{{data.WorkorderKey}}">
+    <a routerLink="/work-order-complete/{{data.WorkorderKey}}">
       <ion-card-header>
         <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
       </ion-card-header>

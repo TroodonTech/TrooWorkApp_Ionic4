@@ -15,11 +15,13 @@
 
     <ion-nav [root]="rootPage" > </ion-nav>
   <div align='center' padding>
-  <img type="sumbit"  style="width: 100px; height: 100px;" class="imageStyleScan"  src="../../../../assets/icon/shelfari-scanner-icon.png" (click)="getEmployeeWorkorderByBarcode()" >
-
+  <!-- <img type="sumbit"  style="width: 100px; height: 100px;" class="imageStyleScan"  src="../../../../assets/icon/shelfari-scanner-icon.png" (click)="getEmployeeWorkorderByBarcode()" > -->
+  <ion-button size="large" (click)="getEmployeeWorkorderByBarcode()" fill="clear">
+    <img style="width: 100px; height: 100px;" src="../../../../assets/icon/shelfari-scanner-icon.png">
+  </ion-button>
 
   <ion-card *ngFor="let data of viewworkorder">
-    <a routerLink="/WorkOrderDetail/{{data.WorkorderKey}}">
+    <a routerLink="/workorder-supervisor-view-detail/{{data.WorkorderKey}}">
     <ion-card-header>
         <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
     </ion-card-header>

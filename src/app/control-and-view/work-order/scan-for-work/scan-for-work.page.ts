@@ -26,9 +26,10 @@ export class ScanForWorkPage implements OnInit {
     private location: Location) { }
 
   ngOnInit() {
+    // console.log(" scanner page");
   }
   getEmployeeWorkorderByBarcode() {
-
+  console.log("inside barcode scanner function");
     this.barcodeScanner.scan().then(data => {
       // this is called when a barcode is found
       this.inbarcode = data.text;

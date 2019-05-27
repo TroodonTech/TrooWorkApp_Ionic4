@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController, Platform, NavController, LoadingController } from '@ionic/angular';
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, Marker, GoogleMapsAnimation, MyLocation, ILatLng } from '@ionic-native/google-maps';
 import { WorkOrderService } from '../../../service/work-order.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-find-employee',
   templateUrl: './find-employee.page.html',
@@ -19,7 +20,10 @@ export class FindEmployeePage implements OnInit {
   locationDetails;
   lat;
   lng;
-  constructor(public loadCtrl: LoadingController, public workOrderService: WorkOrderService, public toastCtrl: ToastController, private platform: Platform, public navCtrl: NavController, ) { }
+  constructor(public loadCtrl: LoadingController,
+     public workOrderService: WorkOrderService, 
+     public toastCtrl: ToastController, private platform: Platform,
+      public navCtrl: NavController, private location: Location ) { }
 
   url_base64_decode(str) {// decoding function for token
     var output = str.replace('-', '+').replace('_', '/');
@@ -143,5 +147,8 @@ export class FindEmployeePage implements OnInit {
     });
     toast.present();
   }
-
+  GoBack() {// go back option
+    // this.router.navigateByUrl('WorkOrderDashBoard');
+    this.location.back();
+}
 }

@@ -1,9 +1,22 @@
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="menuTitle">Find Employee</ion-title>
+  </ion-toolbar>
+</ion-header> -->
 <ion-header>
   <ion-toolbar>
-    <ion-title>Find Employee</ion-title>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="title">
+          <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Find Employee
+      </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
   <div *ngIf="!empStat"><b>Find Employee</b></div>
   <div *ngIf="empStat"><b>Find Employee : {{emp}}</b></div>

@@ -9,7 +9,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-
+import {WebView} from '@ionic-native/ionic-webview/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { IonicRatingModule } from 'ionic4-rating';
 import { Base64 } from '@ionic-native/base64/ngx';
@@ -32,6 +32,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     Camera,
     HTTP,
     Geolocation,
+    WebView,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

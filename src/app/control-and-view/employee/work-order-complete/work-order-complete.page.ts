@@ -3,7 +3,7 @@ import { WorkOrderService } from '../../../service/work-order.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
@@ -22,7 +22,7 @@ export class WorkOrderCompletePage implements OnInit {
   respo_barcodeComp;
 
 
-  constructor(public workOrderService: WorkOrderService, 
+  constructor(public workOrderService: WorkOrderService,
     private route: ActivatedRoute, private router: Router,
     private barcodeScanner: BarcodeScanner,
     private location: Location,
@@ -52,7 +52,7 @@ export class WorkOrderCompletePage implements OnInit {
     }
     return window.atob(output);
   }
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.workOrderService.workorderDetails(this.worKey$, this.OrganizationID).subscribe((data: any[]) => {
       this.viewEmpWorkorderDetails = data;
     });
@@ -79,18 +79,18 @@ export class WorkOrderCompletePage implements OnInit {
   }
 
   scanBarcode(workKey) {
-   //debugger;
-   var t=new Date();
-    var y=t.getFullYear();
-    var m=t.getMonth();
-    var d=t.getDate();
-    var h=t.getHours();
-    var mi=t.getMinutes();
-    var s=t.getSeconds();
+    //debugger;
+    var t = new Date();
+    var y = t.getFullYear();
+    var m = t.getMonth();
+    var d = t.getDate();
+    var h = t.getHours();
+    var mi = t.getMinutes();
+    var s = t.getSeconds();
 
-     var today_DT = this.convert_DT(new Date());
-     var p="";
-      p= today_DT+" "+h+":"+mi+":"+s;
+    var today_DT = this.convert_DT(new Date());
+    var p = "";
+    p = today_DT + " " + h + ":" + mi + ":" + s;
     this.barcodeScanner.scan().then(data => {
       // this is called when a barcode is found
       this.inbarcode = data.text;
@@ -100,33 +100,33 @@ export class WorkOrderCompletePage implements OnInit {
         .subscribe((data1) => {
           var type = 'automatic';
           if (data1 == 1) {
-          this.workOrderService.barcodeRoom(this.worKey$, this.inbarcode, type, this.toServeremployeekey, this.OrganizationID,p)
-            .subscribe((data2: any[]) => {
-              this.respo_barcodeComp = data2;
-              console.log('this.respo_barcodeComp.WorkorderStatus  ' + this.respo_barcodeComp.WorkorderStatus);
-              if (this.respo_barcodeComp.WorkorderStatus === 'Completed') {
-                console.log('inside complete');
-                this.workOrderService.workorderDetails(this.worKey$, this.OrganizationID).subscribe((data4: any[]) => {
-                  this.viewEmpWorkorderDetails = data4;
-                  for (var i = 0; this.viewEmpWorkorderDetails.WorkorderStatus === 'Completed'; i++) {
-                    console.log('inside complete loop');
+            this.workOrderService.barcodeRoom(this.worKey$, this.inbarcode, type, this.toServeremployeekey, this.OrganizationID, p)
+              .subscribe((data2: any[]) => {
+                this.respo_barcodeComp = data2;
+                console.log('this.respo_barcodeComp.WorkorderStatus  ' + this.respo_barcodeComp.WorkorderStatus);
+                if (this.respo_barcodeComp.WorkorderStatus === 'Completed') {
+                  console.log('inside complete');
+                  this.workOrderService.workorderDetails(this.worKey$, this.OrganizationID).subscribe((data4: any[]) => {
+                    this.viewEmpWorkorderDetails = data4;
+                    for (var i = 0; this.viewEmpWorkorderDetails.WorkorderStatus === 'Completed'; i++) {
+                      console.log('inside complete loop');
+                      this.workOrderService.workorderDetails(this.worKey$, this.OrganizationID).subscribe((data5: any[]) => {
+                        this.viewEmpWorkorderDetails = data5;
+                      });
+                    }
+                  });
+                } else {
+                  console.log('inside schedule');
+                  for (var i = 0; this.viewEmpWorkorderDetails.WorkorderStatus === !'Scheduled'; i++) {
+                    console.log('inside inprogress loop');
                     this.workOrderService.workorderDetails(this.worKey$, this.OrganizationID).subscribe((data5: any[]) => {
                       this.viewEmpWorkorderDetails = data5;
                     });
                   }
-                });
-              } else {
-                console.log('inside schedule');
-                for (var i = 0; this.viewEmpWorkorderDetails.WorkorderStatus === !'Scheduled'; i++) {
-                  console.log('inside inprogress loop');
-                  this.workOrderService.workorderDetails(this.worKey$, this.OrganizationID).subscribe((data5: any[]) => {
-                    this.viewEmpWorkorderDetails = data5;
-                  });
-                }
 
-              }
+                }
               });
-          }else{
+          } else {
             alert("Scan the correct barcode!")
           }
         });
@@ -136,19 +136,19 @@ export class WorkOrderCompletePage implements OnInit {
 
   }
   workCompleted(work) {
-    var t=new Date();
-    var y=t.getFullYear();
-    var m=t.getMonth();
-    var d=t.getDate();
-    var h=t.getHours();
-    var mi=t.getMinutes();
-    var s=t.getSeconds();
+    var t = new Date();
+    var y = t.getFullYear();
+    var m = t.getMonth();
+    var d = t.getDate();
+    var h = t.getHours();
+    var mi = t.getMinutes();
+    var s = t.getSeconds();
 
-     var today_DT = this.convert_DT(new Date());
-     var p="";
-      p= today_DT+" "+h+":"+mi+":"+s;
+    var today_DT = this.convert_DT(new Date());
+    var p = "";
+    p = today_DT + " " + h + ":" + mi + ":" + s;
 
-    this.workOrderService.workCompleted(work, this.toServeremployeekey, this.OrganizationID,p).subscribe(() => {
+    this.workOrderService.workCompleted(work, this.toServeremployeekey, this.OrganizationID, p).subscribe(() => {
       this.workOrderService.workorderDetails(this.worKey$, this.OrganizationID).subscribe((data5: any[]) => {
         this.viewEmpWorkorderDetails = data5;
       });
@@ -158,45 +158,45 @@ export class WorkOrderCompletePage implements OnInit {
     this.router.navigate(['/file-upload', WorkKey]);
   }
 
-  locationTracker(WorkorderKey){
+  locationTracker(WorkorderKey) {
 
-    var t=new Date();
-    var y=t.getFullYear();
-    var m=t.getMonth();
-    var d=t.getDate();
-    var h=t.getHours();
-    var mi=t.getMinutes();
-    var s=t.getSeconds();
+    var t = new Date();
+    var y = t.getFullYear();
+    var m = t.getMonth();
+    var d = t.getDate();
+    var h = t.getHours();
+    var mi = t.getMinutes();
+    var s = t.getSeconds();
 
-     var today_DT = this.convert_DT(new Date());
-     var p="";
-      p= today_DT+" "+h+":"+mi+":"+s;
-      
+    var today_DT = this.convert_DT(new Date());
+    var p = "";
+    p = today_DT + " " + h + ":" + mi + ":" + s;
+
     this.geolocation.getCurrentPosition().then((resp) => {
-       
-       resp.coords.longitude
-        console.log("lant "+resp.coords.latitude+" long "+resp.coords.longitude);
-      let backgroundlocation={
-        geolatitude : resp.coords.latitude,
-        geolongitude : resp.coords.longitude,
-        EmployeeKey : this.toServeremployeekey,
-        WorkOrderKey : WorkorderKey,
-        systime:p,
-        OrganizationID:this.OrganizationID
+
+      resp.coords.longitude
+      console.log("lant " + resp.coords.latitude + " long " + resp.coords.longitude);
+      let backgroundlocation = {
+        geolatitude: resp.coords.latitude,
+        geolongitude: resp.coords.longitude,
+        EmployeeKey: this.toServeremployeekey,
+        WorkOrderKey: WorkorderKey,
+        systime: p,
+        OrganizationID: this.OrganizationID
       }
       this.workOrderService.gpsSnapShot(backgroundlocation).then((data) => {
         this.workOrderService.workorderDetails(this.worKey$, this.OrganizationID).subscribe((data4: any[]) => {
           this.viewEmpWorkorderDetails = data4;
-          
+
         });
       });
-     }).catch((error) => {
-       console.log('Error getting location', error);
-     });
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
   }
 
   GoBack() {
     //this.router.navigateByUrl('/workorder-view');
-     this.location.back();
+    this.location.back();
   }
 }

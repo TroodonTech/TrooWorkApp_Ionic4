@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../service/login.service';
-import { Router,Routes } from '@angular/router';
-import {AlertController} from '@ionic/angular';
+import { Router, Routes } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { Location } from '@angular/common';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -21,8 +23,11 @@ import {AlertController} from '@ionic/angular';
 //   { this.router.navigate(['menu3/supervisor-dash-board']);}
 //   }
 // }
-export class LoginPage  implements OnInit {
-  constructor(private loginService: LoginService, private router: Router,public alertController: AlertController) { }
+export class LoginPage implements OnInit {
+  constructor(private loginService: LoginService, private router: Router,
+    private location: Location,
+    private geolocation: Geolocation,
+    public alertController: AlertController) { }
   // Username;
   // Password;
   // 
@@ -34,7 +39,13 @@ export class LoginPage  implements OnInit {
   isAuthenticated;
   loginAl;
 
-  
+  convert_DT(str) {
+    var date = new Date(str),
+      mnth = ('0' + (date.getMonth() + 1)).slice(-2),
+      day = ('0' + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join('-');
+  }
+
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -122,27 +133,23 @@ export class LoginPage  implements OnInit {
   }
   Login() {
 
-    if(!this.Username&&!this.Password&&!this.TenantID)
-    {
+    if (!this.Username && !this.Password && !this.TenantID) {
       this.LoginAlert();
       return;
 
     }
 
-    if(this.Username&&!this.Password)
-    {
+    if (this.Username && !this.Password) {
       this.LoginAlert1();
       return;
     }
 
-    if(!this.Username&&this.Password)
-    {
+    if (!this.Username && this.Password) {
       this.LoginAlert2();
       return;
     }
 
-    if(this.Username&&this.Password&&!this.TenantID)
-    {
+    if (this.Username && this.Password && !this.TenantID) {
       this.LoginAlert3();
       return;
 
@@ -156,7 +163,7 @@ export class LoginPage  implements OnInit {
     this.loginService.authent(this.auth).subscribe((data: any[]) => {
       this.loginDetalis = data;
       // tslint:disable-next-line:no-debugger
-    //debugger;
+      //debugger;
       // if (this.loginDetalis.token !== null || this.loginDetalis.token !== '') {
       //   localStorage.setItem('token', this.loginDetalis.token);
       //   this.isAuthenticated = true;
@@ -171,17 +178,15 @@ export class LoginPage  implements OnInit {
 
       // }
 
-      if (this.loginDetalis.token == null || this.loginDetalis.token == "" || data.length == 0) 
-      {
+      if (this.loginDetalis.token == null || this.loginDetalis.token == "" || data.length == 0) {
         this.isAuthenticated = false;
-          localStorage.clear();
-          localStorage.removeItem('employeekey');
-  
-          delete localStorage.employeekey;
+        localStorage.clear();
+        localStorage.removeItem('employeekey');
+
+        delete localStorage.employeekey;
         //  this.LoginAlert4();
       }
-      else
-      {
+      else {
         localStorage.setItem('token', this.loginDetalis.token);
         this.isAuthenticated = true;
       }
@@ -192,63 +197,96 @@ export class LoginPage  implements OnInit {
       localStorage['token'] = this.loginDetalis.token;
       var encodedProfile = this.loginDetalis.token.split('.')[1];
       var profile = JSON.parse(this.url_base64_decode(encodedProfile));
-      this.Username=profile.Username;
-debugger;
+      this.Username = profile.Username;
+      debugger;
       if (this.isAuthenticated && profile.role === 'Manager') {
 
         // this.router.navigateByUrl('ManagerDashBoard');
-        this.reloading();
+        // this.reloading();
+        this.locationTracker(profile.employeekey, profile.OrganizationID);
         this.router.navigate(['manager-menu/manager-dash-board']);
+
         // this.router.navigateByUrl('Menu/(menucontent:ManagerDashBoard)');
 
       } else if (this.isAuthenticated && profile.role === 'Employee' && profile.IsSupervisor === 0) {
 
         // this.router.navigateByUrl('EmployeeDashBoard');
-        this.reloading();
+        // this.reloading();
+        this.locationTracker(profile.employeekey, profile.OrganizationID);
         this.router.navigate(['employee-menu/employee-dash-board']);
         // this.router.navigateByUrl('Menu/(menucontent:EmployeeDashBoard)');
       } else if (this.isAuthenticated && profile.role === 'Employee' && profile.IsSupervisor === 1) {
 
         // this.router.navigateByUrl('SuperVisorDashBoard');
-        this.reloading();
+        // this.reloading();
+        this.locationTracker(profile.employeekey, profile.OrganizationID);
         this.router.navigate(['supervisor-menu/super-visor-dash-board']);
         // this.router.navigateByUrl('Menu/(menucontent:SuperVisorDashBoard)');
       }
-      else{
+      else {
         this.LoginAlert5();
         this.router.navigateByUrl('Login');
       }
 
 
     },
-    res => {
-     //debugger;
-    //  this.loginAl="Invalid username & password";
-      // var test = res;
-      // alert("hi...");
-      if (res.error.text === "Wrong user or password") {
-       // console.log("Invalid username");
-        this.LoginAlert4();
+      res => {
+        //debugger;
+        //  this.loginAl="Invalid username & password";
+        // var test = res;
+        // alert("hi...");
+        if (res.error.text === "Wrong user or password") {
+          // console.log("Invalid username");
+          this.LoginAlert4();
 
-      }
-      // alert("bye...");
-    });
-    
+        }
+        // alert("bye...");
+      });
+
 
   }
 
-  reloading()
-  {
-     if( window.localStorage )
-      {
-        if( !localStorage.getItem( 'firstLoad' ) )
-        {
-            localStorage[ 'firstLoad' ] = true;
-            window.location.reload();
-        }  
+  locationTracker(empKey, orgID) {
 
-        else
-            localStorage.removeItem( 'firstLoad' );
+    var t = new Date();
+    var y = t.getFullYear();
+    var m = t.getMonth();
+    var d = t.getDate();
+    var h = t.getHours();
+    var mi = t.getMinutes();
+    var s = t.getSeconds();
+
+    var today_DT = this.convert_DT(new Date());
+    var p = "";
+    p = today_DT + " " + h + ":" + mi + ":" + s;
+
+    this.geolocation.getCurrentPosition().then((resp) => {
+
+      resp.coords.longitude
+      console.log("lant " + resp.coords.latitude + " long " + resp.coords.longitude);
+      let backgroundlocation = {
+        geolatitude: resp.coords.latitude,
+        geolongitude: resp.coords.longitude,
+        EmployeeKey: empKey,
+        currenttime: p,
+        OrganizationID: orgID
+      }
+
+      this.loginService.setCurrentLocation(backgroundlocation).then((data) => { });
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+  }
+
+  reloading() {
+    if (window.localStorage) {
+      if (!localStorage.getItem('firstLoad')) {
+        localStorage['firstLoad'] = true;
+        window.location.reload();
+      }
+
+      else
+        localStorage.removeItem('firstLoad');
     }
   }
 }

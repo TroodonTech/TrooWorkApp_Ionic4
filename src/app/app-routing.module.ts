@@ -43,13 +43,15 @@ const routes: Routes = [
    { path: 'workorder-supervisor-view', loadChildren: './control-and-view/supervisor/workorder-supervisor/workorder-supervisor-view/workorder-supervisor-view.module#WorkorderSupervisorViewPageModule' },
 
   { path: 'workorder-supervisor-view-detail/:WorkOrderKey', loadChildren: './control-and-view/supervisor/workorder-supervisor/workorder-supervisor-view-detail/workorder-supervisor-view-detail.module#WorkorderSupervisorViewDetailPageModule' },
-  { path: 'work-order-detail/:WorkOrderKey', loadChildren: './control-and-view/work-order/work-order-detail/work-order-detail.module#WorkOrderDetailPageModule' },
+  // { path: 'work-order-detail/:WorkOrderKey', loadChildren: './control-and-view/work-order/work-order-detail/work-order-detail.module#WorkOrderDetailPageModule' },
   { path: 'workorder-filtering-by-employee', loadChildren: './control-and-view/work-order/workorder-filtering-by-employee/workorder-filtering-by-employee.module#WorkorderFilteringByEmployeePageModule' },
   { path: 'work-order-filtering-by-facility', loadChildren: './control-and-view/work-order/work-order-filtering-by-facility/work-order-filtering-by-facility.module#WorkOrderFilteringByFacilityPageModule' },
   { path: 'work-order-filtering-by-status', loadChildren: './control-and-view/work-order/work-order-filtering-by-status/work-order-filtering-by-status.module#WorkOrderFilteringByStatusPageModule' },
   { path: 'inspection-completed/:insKey', loadChildren: './control-and-view/inspection/inspection-completed/inspection-completed.module#InspectionCompletedPageModule' },
   { path: 'view-details-inspection/:insKey', loadChildren: './control-and-view/inspection/view-details-inspection/view-details-inspection.module#ViewDetailsInspectionPageModule' },
   { path: 'view-star/:insKey', loadChildren: './control-and-view/inspection/view-star/view-star.module#ViewStarPageModule' },
+  // { path: 'find-employee-supervisor', loadChildren: './control-and-view/supervisor/find-employee-supervisor/find-employee-supervisor.module#FindEmployeeSupervisorPageModule' },
+
   //{ path: 'find-employee', loadChildren: './control-and-view/manager/find-employee/find-employee.module#FindEmployeePageModule' },
 
 ];

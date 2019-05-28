@@ -42,7 +42,7 @@
   <ion-grid style="background-color: rgb(255, 255, 255) !important;">
     <ion-item>
       <ion-label>Facility</ion-label>
-      <ion-select [(ngModel)]="FacilityKey"
+      <ion-select interface="popover" [(ngModel)]="FacilityKey"
         (ionChange)="toggleGroup($event.target.value);getFloorByFacilityKey($event.target.value);">
 
         <ion-select-option *ngFor="let group of facilityList" [value]="group.FacilityKey">
@@ -54,7 +54,7 @@
   <ion-grid style="background-color: rgb(255, 255, 255) !important;">
     <ion-item>
       <ion-label>Floor</ion-label>
-      <ion-select [(ngModel)]="FloorKey" [disabled]="!FacilityKey"
+      <ion-select interface="popover" [(ngModel)]="FloorKey" [disabled]="!FacilityKey"
         (ionChange)="getZoneByFacilityFloorKey(FacilityKey,$event.target.value,group)">
 
         <ion-select-option *ngFor="let item of zoneByFacilityKeyList" [value]="item.FloorKey">
@@ -76,7 +76,7 @@
   <ion-grid style="background-color: rgb(255, 255, 255) !important;">
     <ion-item>
       <ion-label>Zone</ion-label>
-      <ion-select [(ngModel)]="ZoneKey" [disabled]="!FloorKey"
+      <ion-select interface="popover" [(ngModel)]="ZoneKey" [disabled]="!FloorKey"
         (ionChange)="getAllWorkorderByFacilityFloorZone(FacilityKey,ZoneKey,temp_floorkey)">
 
         <ion-select-option *ngFor="let data of floorListByZoneFacility" [value]="data.ZoneKey">
@@ -97,7 +97,7 @@
 </ion-card> -->
 
   <ion-card *ngFor="let data of viewworkorder" style="background-color: #FFF !important;"
-    routerLink="/WorkOrderDetail/{{data.WorkorderKey}}">
+    routerLink="/supervisor-menu/workorder-supervisor-view-detail/{{data.WorkorderKey}}">
     <ion-card-header align='center' padding>
       <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
     </ion-card-header>

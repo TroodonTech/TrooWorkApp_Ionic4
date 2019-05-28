@@ -41,7 +41,7 @@
   <ion-grid style="background-color: rgb(255, 255, 255) !important;">
     <ion-item>
       <ion-label>Employee</ion-label>
-      <ion-select [(ngModel)]="EmployeeKey" (ionChange)="toggleGroup($event.target.value)">
+      <ion-select interface="popover" [(ngModel)]="EmployeeKey" (ionChange)="toggleGroup($event.target.value)">
 
         <ion-select-option *ngFor="let group of employeeList" [value]="group.EmployeeKey">
           {{group.EmployeeText}}</ion-select-option>
@@ -143,7 +143,7 @@
 
 
   <ion-card *ngFor="let data of viewworkorder" style="background-color: #FFF !important;"
-    routerLink="/WorkOrderDetail/{{data.WorkorderKey}}">
+    routerLink="/supervisor-menu/workorder-supervisor-view-detail/{{data.WorkorderKey}}">
     <ion-card-header align='center' padding>
       <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
     </ion-card-header>

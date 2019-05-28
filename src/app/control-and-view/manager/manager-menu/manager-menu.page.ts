@@ -25,15 +25,16 @@ export class ManagerMenuPage implements OnInit {
       icon: "logo-buffer"
     },
     {
-      title: 'Inspection Order',
-      url:  '/manager-menu/inspection-dash-board',
-      icon: "create"
-    },
-    {
       title: 'Scan For Work',//first
       url: '/manager-menu/scan-for-work',
       icon: "barcode"
     },
+    {
+      title: 'Inspection Order',
+      url:  '/manager-menu/inspection-dash-board',
+      icon: "create"
+    },
+    
     {
       title: 'Find Employee',//second
       url: '/manager-menu/find-employee',

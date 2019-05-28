@@ -1,22 +1,30 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Supervisor DashBoard
-        
-      
+
+
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content style="background-color: #EBFAFF !important;" padding>
-  <ion-nav [root]="rootPage" ></ion-nav>
+  <ion-nav [root]="rootPage"></ion-nav>
   <div align='center' padding>
-    <ion-button ion-button color="success"  href='supervisor-menu/inspection-supervisor-view'  size="default" expand="block">Inspection Order</ion-button>
+    
+    <ion-button ion-button color="success" href='supervisor-menu/workorder-supervisor-view' size="default"
+      expand="block">Work Order</ion-button>
+    <br>
+    <ion-button ion-button color="success" href='supervisor-menu/scan-for-work-supervisor' size="default"
+      expand="block">Scan for Work</ion-button>
+    <br>
+    <ion-button ion-button color="success" href='supervisor-menu/inspection-supervisor-view' size="default"
+      expand="block">Inspection Order</ion-button>
     <br>
     <ion-button ion-button color="success" href='supervisor-menu/workorder-supervisor-view'  size="default" expand="block">WorkOrder</ion-button>
    <br>
     <ion-button ion-button color="success" href='supervisor-menu/scan-for-work-supervisor' size="default" expand="block">Scan for Work</ion-button>
   </div>
-  </ion-content>
+</ion-content>

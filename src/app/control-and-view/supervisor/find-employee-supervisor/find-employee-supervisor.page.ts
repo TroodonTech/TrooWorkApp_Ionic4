@@ -3,12 +3,13 @@ import { ToastController, Platform, NavController, LoadingController } from '@io
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, Marker, GoogleMapsAnimation, MyLocation, ILatLng } from '@ionic-native/google-maps';
 import { WorkOrderService } from '../../../service/work-order.service';
 import { Location } from '@angular/common';
+
 @Component({
-  selector: 'app-find-employee',
-  templateUrl: './find-employee.page.html',
-  styleUrls: ['./find-employee.page.scss'],
+  selector: 'app-find-employee-supervisor',
+  templateUrl: './find-employee-supervisor.page.html',
+  styleUrls: ['./find-employee-supervisor.page.scss'],
 })
-export class FindEmployeePage implements OnInit {
+export class FindEmployeeSupervisorPage implements OnInit {
   map: GoogleMap;
   address: string;
   toServeremployeekey;

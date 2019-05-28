@@ -16,19 +16,15 @@ export class SupervisorMenuPage implements OnInit {
   Username;
 
   pages = [
-    
+
     {
       title: 'Supervisor DashBoard',//second
       url: '/supervisor-menu/super-visor-dash-board',
       icon: "home"
     },
+   
     {
-      title: ' View Inspection',//first
-      url: '/supervisor-menu/inspection-supervisor-view',
-      icon: "create"
-    },
-    {
-      title: ' WorkOrder View',//first
+      title: ' WorkOrder',//first
       url: '/supervisor-menu/workorder-supervisor-view',
       icon: "logo-buffer"
     },
@@ -36,15 +32,26 @@ export class SupervisorMenuPage implements OnInit {
       title: 'Scan For Work',//first
       url: '/supervisor-menu/scan-for-work-supervisor',
       icon: "barcode"
-    } ,
-    
-    
+    },
+    {
+      title: 'Inspection Order',//first
+      url: '/supervisor-menu/inspection-supervisor-view',
+      icon: "create"
+    },
+
+    {
+      title: 'Find Employee',
+      url: '/supervisor-menu/find-employee-supervisor',
+      icon: "search"
+    },
+
+
     {
       title: 'Logout',
       // url:  '/manager-menu/login',
       icon:"log-out"
     }
-    
+
   ];
 
 
@@ -110,9 +117,9 @@ export class SupervisorMenuPage implements OnInit {
     localStorage['token'] = token;
     var encodedProfile = token.split('.')[1];
     var profile = JSON.parse(this.url_base64_decode(encodedProfile));
-  
 
-    this.Username=profile.username;
+
+    this.Username = profile.username;
   }
 
 }

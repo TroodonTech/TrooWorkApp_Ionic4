@@ -13,13 +13,15 @@
     </ion-buttons>
     <ion-title class="title">
       <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'>
-
       </ion-icon>WorkOrder Detail
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding style="background-color: #EBFAFF !important;">
+  <ion-grid style="background-color: rgb(255, 255, 255) !important;">
+    <div class="list " *ngFor="let items of viewEmpWorkorderDetails">
+      <div class="item item-text-wrap viewWorkorderDetails">
 
   <div class="list " *ngFor="let items of viewEmpWorkorderDetails">
     <div class="item item-text-wrap viewWorkorderDetails">
@@ -28,96 +30,96 @@
         <div class="col text-center">
           <h3 align="center">{{items.WorkorderTypeName}}</h3>
 
+          </div>
         </div>
-      </div>
 
-      <ion-item>
-        <ion-label>Facility </ion-label>
-        <ion-label>{{items.FacilityName}}</ion-label>
-      </ion-item>
-      <ion-item *ngIf="items.ZoneName !== 'null'">
-        <ion-label>Zone </ion-label>
-        <ion-label>{{items.ZoneName}}</ion-label>
-      </ion-item>
-      <ion-item *ngIf="items.FloorName !== 'null'">
-        <ion-label>Floor </ion-label>
-        <ion-label>{{items.FloorName}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Room </ion-label>
-        <ion-label>{{items.RoomText}}</ion-label>
-      </ion-item>
-      <ion-item *ngIf="items.EquipmentType !== 'null'">
-        <ion-label>Equipment Type </ion-label>
-        <ion-label>{{items.EquipmentType}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Equipment </ion-label>
-        <ion-label>{{items.EquipmentName}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Assigned to </ion-label>
-        <ion-label>{{items.EmployeeText}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Date </ion-label>
-        <ion-label>{{items.WorkorderDate}}</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Time </ion-label>
-        <ion-label>{{items.WorkorderTime}}</ion-label>
-      </ion-item>
+        <ion-item>
+          <ion-label>Facility </ion-label>
+          <ion-label>{{items.FacilityName}}</ion-label>
+        </ion-item>
+        <ion-item *ngIf="items.ZoneName !== 'null'">
+          <ion-label>Zone </ion-label>
+          <ion-label>{{items.ZoneName}}</ion-label>
+        </ion-item>
+        <ion-item *ngIf="items.FloorName !== 'null'">
+          <ion-label>Floor </ion-label>
+          <ion-label>{{items.FloorName}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Room </ion-label>
+          <ion-label>{{items.RoomText}}</ion-label>
+        </ion-item>
+        <ion-item *ngIf="items.EquipmentType !== 'null'">
+          <ion-label>Equipment Type </ion-label>
+          <ion-label>{{items.EquipmentType}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Equipment </ion-label>
+          <ion-label>{{items.EquipmentName}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Assigned to </ion-label>
+          <ion-label>{{items.EmployeeText}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Date </ion-label>
+          <ion-label>{{items.WorkorderDate}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Time </ion-label>
+          <ion-label>{{items.WorkorderTime}}</ion-label>
+        </ion-item>
 
-      <ion-item *ngIf="items.WorkorderStatus === 'Completed'">
-        <ion-label>Check in </ion-label>
-        <ion-label>{{items.checkin1}}</ion-label>
-      </ion-item>
+        <ion-item *ngIf="items.WorkorderStatus === 'Completed'">
+          <ion-label>Check in </ion-label>
+          <ion-label>{{items.checkin1}}</ion-label>
+        </ion-item>
 
-      <ion-item *ngIf="items.WorkorderStatus === 'Completed'">
-        <ion-label>Check out </ion-label>
-        <ion-label>{{items.checkout1}}</ion-label>
-      </ion-item>
+        <ion-item *ngIf="items.WorkorderStatus === 'Completed'">
+          <ion-label>Check out </ion-label>
+          <ion-label>{{items.checkout1}}</ion-label>
+        </ion-item>
 
-      <ion-item *ngIf="items.WorkorderStatus === 'Completed'">
-        <ion-label>Delay time </ion-label>
-        <ion-label>{{items.DelayTime}}</ion-label>
-      </ion-item>
-
-
-      <ion-item *ngIf="items.WorkorderStatus === 'Completed'">
-        <ion-label>Duration </ion-label>
-        <ion-label>{{items.duration}}</ion-label>
-      </ion-item>
+        <ion-item *ngIf="items.WorkorderStatus === 'Completed'">
+          <ion-label>Delay time </ion-label>
+          <ion-label>{{items.DelayTime}}</ion-label>
+        </ion-item>
 
 
-      <ion-item *ngIf="items.WorkorderNotes !== 'null'">
-        <ion-label>Notes </ion-label>
+        <ion-item *ngIf="items.WorkorderStatus === 'Completed'">
+          <ion-label>Duration </ion-label>
+          <ion-label>{{items.duration}}</ion-label>
+        </ion-item>
 
-      </ion-item>
-      <ion-item *ngIf="items.WorkorderNotes !== 'null'">
 
-        <ion-label>{{items.WorkorderNotes}}</ion-label>
-      </ion-item>
-      <ion-item *ngIf="items.IsPhotoRequired === 1">
-        <ion-label>Photo Required </ion-label>
-        <ion-label>
-          <ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon>
-        </ion-label>
-      </ion-item>
+        <ion-item *ngIf="items.WorkorderNotes !== 'null'">
+          <ion-label>Notes </ion-label>
 
-      <!-- <ion-item *ngIf="items.IsPhotoRequired === 0">
+        </ion-item>
+        <ion-item *ngIf="items.WorkorderNotes !== 'null'">
+
+          <ion-label>{{items.WorkorderNotes}}</ion-label>
+        </ion-item>
+        <ion-item *ngIf="items.IsPhotoRequired === 1">
+          <ion-label>Photo Required </ion-label>
+          <ion-label>
+            <ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon>
+          </ion-label>
+        </ion-item>
+
+        <!-- <ion-item *ngIf="items.IsPhotoRequired === 0">
         <ion-label>Photo Required </ion-label>
         <ion-label>
           <ion-icon ios="ios-close" md="md-close"></ion-icon>
         </ion-label>
       </ion-item> -->
-      <!-- <ion-item *ngIf="items.IsBarcodeRequired === 1">
+        <!-- <ion-item *ngIf="items.IsBarcodeRequired === 1">
         <ion-label>Barcode Required </ion-label>
         <ion-label>
           <ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle-outline"></ion-icon>
         </ion-label>
       </ion-item> -->
-      <!-- <ion-item *ngIf="items.IsBarcodeRequired === 0">
+        <!-- <ion-item *ngIf="items.IsBarcodeRequired === 0">
         <ion-label>Barcode Required </ion-label>
         <ion-label>
           <ion-icon ios="ios-close" md="md-close"></ion-icon>
@@ -193,6 +195,5 @@
     </ion-grid>
     
     </div>
-  </div>
-
+  </ion-grid>
 </ion-content>

@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title class="title">
-            <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Scan For Work
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">
+      <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Scan For Work
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,9 +12,9 @@
 
 <ion-content style="background-color: #EBFAFF !important;" padding>
 
-   
+
   <div align='center' padding>
-    <ion-nav [root]="rootPage" ></ion-nav>
+    <ion-nav [root]="rootPage"></ion-nav>
 
     <ion-button size="large" (click)="getEmployeeWorkorderByBarcode()" fill="clear">
       <img style="width: 100px; height: 100px;" src="../../../../assets/icon/shelfari-scanner-icon.png">
@@ -23,11 +23,11 @@
   </div>
 
   <ion-card *ngFor="let data of viewworkorder" style="background-color: #FFF !important;">
-    <a routerLink="/work-order-detail/{{data.WorkorderKey}}">
-      <ion-card-header align='center'  padding>
+    <a routerLink="/manager-menu/work-order-detail/{{data.WorkorderKey}}">
+      <ion-card-header align='center' padding>
         <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
       </ion-card-header>
-      <ion-card-content align='center'  padding>
+      <ion-card-content align='center' padding>
         <div *ngIf="data.FacilityName">
           <p>{{data.FacilityName}} - {{data.ZoneName}} - {{data.FloorName}}</p>
           <p>{{data.WorkorderTime}}</p>
@@ -46,7 +46,7 @@
     </a>
   </ion-card>
   <ion-card *ngIf="viewworkorder?.length == 0" style="background-color: #FFF !important;">
-      <ion-card-content>
+    <ion-card-content>
       No records found
     </ion-card-content>
   </ion-card>

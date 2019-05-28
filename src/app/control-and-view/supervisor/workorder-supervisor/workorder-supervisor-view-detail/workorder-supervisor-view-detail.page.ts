@@ -63,6 +63,7 @@ export class WorkorderSupervisorViewDetailPage implements OnInit {
 
     //debugger;
     this.workOrderService.workorderDetails(this.worKey$, this.OrganizationID).subscribe((data: any[]) => {
+      debugger;
       this.viewEmpWorkorderDetails = data;
     });
   }

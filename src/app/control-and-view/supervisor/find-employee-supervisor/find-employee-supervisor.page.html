@@ -13,7 +13,7 @@
   <div *ngIf="empStat"><b>Find Employee : {{emp}}</b></div>
   <ion-item>
     <ion-label> Employee*</ion-label>
-    <ion-select value="brown" [(ngModel)]='EmployeeKey'>
+    <ion-select interface="popover" value="brown" [(ngModel)]='EmployeeKey'>
       <ion-select-option value="">Select</ion-select-option>
       <ion-select-option *ngFor="let e of employeeList" [value]="e.EmployeeKey">
         {{e.EmployeeText}}</ion-select-option>

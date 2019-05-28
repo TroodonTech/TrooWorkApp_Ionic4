@@ -1,132 +1,142 @@
 <ion-header>
-  <ion-toolbar>
+    <ion-toolbar>
         <ion-buttons slot="start">
-                <ion-menu-button></ion-menu-button>
-              </ion-buttons>
-              <ion-title class="title">
-                    <ion-icon class="arrow"ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Create Inspection</ion-title>
-  </ion-toolbar>
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title class="title">
+            <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Create
+            Inspection
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 <!-- <ion-nav [root]="rootPage" ></ion-nav> -->
 <ion-content style="background-color: #ebfaff ;" padding>
-        <!-- <ion-nav [root]="rootPage" ></ion-nav>
+    <!-- <ion-nav [root]="rootPage" ></ion-nav>
          -->
     <ion-grid style="background-color: rgb(255, 255, 255) !important;">
-    <div class="col text-center" align="center">
-            <h3>Create Inspection Order</h3>  
-    </div>
-     <ion-item>
-    <ion-label>Template Name*</ion-label>     
-    <!-- <ion-select placeholder="Select "> </ion-select> -->
-          <ion-select  [(ngModel)]="TemplateID" placeholder="--Select--">
+        <div class="col text-center" align="center">
+            <h3>Create Inspection Order</h3>
+        </div>
+        <ion-item>
+            <ion-label>Template Name*</ion-label>
+            <!-- <ion-select placeholder="Select "> </ion-select> -->
+            <ion-select interface="popover" [(ngModel)]="TemplateID" placeholder="--Select--">
                 <!-- <ion-select value="" okText="Okay" cancelText="Dismiss"> -->
-                       
-                <ion-select-option value="" >  
-                   
+
+                <ion-select-option value="">
+
                     Select
-                
+
                 </ion-select-option>
-                        <ion-select-option *ngFor="let t of templateName" [value]="t.TemplateID" class="text-input place-field" >
-                {{t.TemplateName}}
-            </ion-select-option>
-       
-           
-        </ion-select>   
-      </ion-item>    
+                <ion-select-option *ngFor="let t of templateName" [value]="t.TemplateID" class="text-input place-field">
+                    {{t.TemplateName}}
+                </ion-select-option>
 
-      <ion-item>
-        <ion-label>Time</ion-label>
-        <ion-datetime [(ngModel)]="timeValue" display-format="HH:mm:ss" picker-format="HH:mm:ss"></ion-datetime>
-      </ion-item>
 
-      <ion-item>
-      <ion-label>Date</ion-label>
-      <ion-datetime [(ngModel)]="dateValue" display-format="YYYY-MM-DD" picker-format="YYYY-MM-DD" ></ion-datetime>
-    </ion-item>
+            </ion-select>
+        </ion-item>
 
-    <ion-item>
-        <ion-label>Auditor*</ion-label>
-        <ion-select [(ngModel)]="SupervisorKey" placeholder="--Select--">
+        <ion-item>
+            <ion-label>Time</ion-label>
+            <ion-datetime [(ngModel)]="timeValue" display-format="HH:mm:ss" picker-format="HH:mm:ss"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime [(ngModel)]="dateValue" display-format="YYYY-MM-DD" picker-format="YYYY-MM-DD"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Auditor*</ion-label>
+            <ion-select interface="popover" [(ngModel)]="SupervisorKey" placeholder="--Select--">
                 <ion-select-option value="">Select</ion-select-option>
-          <ion-select-option *ngFor="let a of auditor" [value]="a.SupervisorKey">
-              {{a.SupervisorText}}
-          </ion-select-option>
-      </ion-select>   
-    </ion-item>
+                <ion-select-option *ngFor="let a of auditor" [value]="a.SupervisorKey">
+                    {{a.SupervisorText}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
 
-    <ion-item>
+        <ion-item>
 
-        <ion-label >Employee</ion-label>
-        <ion-select [(ngModel)]="EmployeeKey" placeholder="--Select--">
+            <ion-label>Employee</ion-label>
+            <ion-select interface="popover" [(ngModel)]="EmployeeKey" placeholder="--Select--">
                 <ion-select-option value="">Select</ion-select-option>
-          <ion-select-option *ngFor="let e of employee" [value]="e.EmployeeKey">
-              {{e.EmployeeText}}
-          </ion-select-option>
-      </ion-select>   
-    </ion-item>
+                <ion-select-option *ngFor="let e of employee" [value]="e.EmployeeKey">
+                    {{e.EmployeeText}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
 
 
 
-    <ion-item>
-        <ion-label >Building*</ion-label>
-        <ion-select  [(ngModel)]="FacilityKey" (ionChange)="selectFloorfromBuildings($event.target.value)" placeholder="--Select--" >
-            <ion-select-option value="">Select</ion-select-option>
-          <ion-select-option *ngFor="let b of building" [value]="b.FacilityKey">
-              {{b.FacilityText}}
-            
-          </ion-select-option>
-      </ion-select>   
-      </ion-item>
-
-      <ion-item>
-          <ion-label >Floor*</ion-label>
-          <ion-select  [(ngModel)]="FloorKey" (ionChange)="selectZonefromFloor($event.target.value)" [disabled]="!FacilityKey" placeholder="--Select--">
-                <ion-select-option value="" >Select</ion-select-option>
-            <ion-select-option *ngFor="let f of floors" [value]="f.FloorKey">
-                {{f.FloorName}}
-            </ion-select-option>
-        </ion-select>   
-
-      </ion-item>
-
-      <ion-item>
-          <ion-label>Zone</ion-label>
-          <ion-select  [(ngModel)]="Zone"  (ionChange)="selectroomtypefromZone($event.target.value,FloorKey)" [disabled]="!FloorKey" placeholder="--Select--">
+        <ion-item>
+            <ion-label>Building*</ion-label>
+            <ion-select interface="popover" [(ngModel)]="FacilityKey"
+                (ionChange)="selectFloorfromBuildings($event.target.value)" placeholder="--Select--">
                 <ion-select-option value="">Select</ion-select-option>
-            <ion-select-option *ngFor="let z of zone" [value]="z.ZoneKey">
-                {{z.ZoneName}}
-            </ion-select-option>
-        </ion-select>   
-      </ion-item>
+                <ion-select-option *ngFor="let b of building" [value]="b.FacilityKey">
+                    {{b.FacilityText}}
 
-      <ion-item>
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
 
-          <ion-label>Room Type</ion-label>
-          <ion-select [(ngModel)]="RoomTypeKey" (ionChange)="selectroomfromRoomtype($event.target.value,Zone)" [disabled]="!FloorKey" placeholder="--Select--">
+        <ion-item>
+            <ion-label>Floor*</ion-label>
+            <ion-select interface="popover" [(ngModel)]="FloorKey"
+                (ionChange)="selectZonefromFloor($event.target.value)" [disabled]="!FacilityKey"
+                placeholder="--Select--">
                 <ion-select-option value="">Select</ion-select-option>
-            <ion-select-option *ngFor="let r of room" [value]="r.RoomTypeKey"  >
-                {{r.RoomTypeName}}
-            </ion-select-option>
-          </ion-select>   
-      </ion-item>
+                <ion-select-option *ngFor="let f of floors" [value]="f.FloorKey">
+                    {{f.FloorName}}
+                </ion-select-option>
+            </ion-select>
 
-      <ion-item>
-        <ion-label>Room</ion-label>
-        <ion-select [(ngModel)]="RoomKey" [disabled]="!FloorKey" placeholder="--Select--">
-                <ion-select-option value="" >Select</ion-select-option>
-          <ion-select-option *ngFor="let r of rooms" [value]="r.RoomKey">
-              {{r.RoomName}}
-          </ion-select-option>
-        </ion-select>   
-      </ion-item>
-   
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Zone</ion-label>
+            <ion-select interface="popover" [(ngModel)]="Zone"
+                (ionChange)="selectroomtypefromZone($event.target.value,FloorKey)" [disabled]="!FloorKey"
+                placeholder="--Select--">
+                <ion-select-option value="">Select</ion-select-option>
+                <ion-select-option *ngFor="let z of zone" [value]="z.ZoneKey">
+                    {{z.ZoneName}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+
+            <ion-label>Room Type</ion-label>
+            <ion-select interface="popover" [(ngModel)]="RoomTypeKey"
+                (ionChange)="selectroomfromRoomtype($event.target.value,Zone)" [disabled]="!FloorKey"
+                placeholder="--Select--">
+                <ion-select-option value="">Select</ion-select-option>
+                <ion-select-option *ngFor="let r of room" [value]="r.RoomTypeKey">
+                    {{r.RoomTypeName}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Room</ion-label>
+            <ion-select interface="popover" [(ngModel)]="RoomKey" [disabled]="!FloorKey" placeholder="--Select--">
+                <ion-select-option value="">Select</ion-select-option>
+                <ion-select-option *ngFor="let r of rooms" [value]="r.RoomKey">
+                    {{r.RoomName}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
     </ion-grid>
     <div align='center' padding style="margin-bottom: 10px">
-        <ion-button color="success" (click)="createInspectionorder()" [routerLink]="['CreateInspection']">Submit</ion-button>
+        <ion-button color="success" (click)="createInspectionorder()" [routerLink]="['CreateInspection']">Submit
+        </ion-button>
 
     </div>
 
 
-   
+
 
 </ion-content>

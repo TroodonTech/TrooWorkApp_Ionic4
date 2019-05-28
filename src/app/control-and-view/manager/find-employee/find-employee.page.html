@@ -1,4 +1,3 @@
-
 <!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -9,12 +8,12 @@
 </ion-header> -->
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title class="title">
-          <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Find Employee
-      </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">
+      <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Find Employee
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
@@ -22,7 +21,7 @@
   <div *ngIf="empStat"><b>Find Employee : {{emp}}</b></div>
   <ion-item>
     <ion-label> Employee*</ion-label>
-    <ion-select value="brown" [(ngModel)]='EmployeeKey'>
+    <ion-select interface="popover" value="brown" [(ngModel)]='EmployeeKey'>
       <ion-select-option value="">Select</ion-select-option>
       <ion-select-option *ngFor="let e of employeeList" [value]="e.EmployeeKey">
         {{e.EmployeeText}}</ion-select-option>

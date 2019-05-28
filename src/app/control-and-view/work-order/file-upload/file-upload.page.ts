@@ -154,7 +154,7 @@ export class FileUploadPage implements OnInit {
           this.router.navigate(['/work-order-complete', this.worKey$]);
         }
         if(this.userrole === 'Supervisor'){
-          this.router.navigate(['/workorder-supervisor-view-detail', this.worKey$]);
+          this.router.navigate(['/supervisor-menu/workorder-supervisor-view-detail', this.worKey$]);
           }
         });
       });

@@ -1,23 +1,24 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title class="title">
-                <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Status</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">
+      <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Status
+    </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content  padding style="background-color: #EBFAFF !important;">
-<ion-segment [(ngModel)]="filtering" style="background-color: #FFF !important;" (ionChange)="segmentChanged($event)">
+<ion-content padding style="background-color: #EBFAFF !important;">
+  <ion-segment [(ngModel)]="filtering" style="background-color: #FFF !important;" (ionChange)="segmentChanged($event)">
     <ion-segment-button value="employee" style="background-color: #FFF !important;" (ionSelect)="selectedEmployees()">
       <ion-label>EMPLOYEE</ion-label>
     </ion-segment-button>
-    <ion-segment-button  value="facility" (ionSelect)="selectedFacility()">
+    <ion-segment-button value="facility" (ionSelect)="selectedFacility()">
       <ion-label>FACILITY</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="status" style="background-color: #FFF !important;"(ionSelect)="selectedStatus()">
-        <ion-label>STATUS</ion-label>
-      </ion-segment-button>
+    <ion-segment-button value="status" style="background-color: #FFF !important;" (ionSelect)="selectedStatus()">
+      <ion-label>STATUS</ion-label>
+    </ion-segment-button>
   </ion-segment>
 
   <!-- <ion-button ion-button color="success" href="workorderFilteringByEmployee" >EMPLOYEE</ion-button>
@@ -26,7 +27,7 @@
   <br> -->
   <br>
   <br>
-  
+
   <!-- <ion-card  *ngFor="let item of workorderStatusList"
     
       (click)="getWorkorderBYStatusKey(item.WorkorderStatusKey)"
@@ -37,23 +38,24 @@
     {{item.WorkorderStatus}} ({{item.totalItems}}) 
     
 </ion-card> -->
-<ion-grid>
-<ion-item  *ngFor="let item of workorderStatusList" >
-    
-     
-    
-        <br>
-        <br>
-        <br> 
-        <button type="button"  color="#FFF" class="button-brown-{{item.WorkorderStatus===temp_status}} " align='center' (click)="getWorkorderBYStatusKey(item.WorkorderStatusKey)" padding>
-          
-        
+  <ion-grid>
+    <ion-item *ngFor="let item of workorderStatusList">
 
-        
-            {{item.WorkorderStatus}} ({{item.totalItems}}) 
-            <br>
-                </button>   
-                          <!-- /****************************************************************/
+
+
+      <br>
+      <br>
+      <br>
+      <button type="button" color="#FFF" class="button-brown-{{item.WorkorderStatus===temp_status}} " align='center'
+        (click)="getWorkorderBYStatusKey(item.WorkorderStatusKey)" padding>
+
+
+
+
+        {{item.WorkorderStatus}} ({{item.totalItems}})
+        <br>
+      </button>
+      <!-- /****************************************************************/
                  <ion-button class="button-brown-{{item.WorkorderStatus===temp_status}} "align='center' (click)="getWorkorderBYStatusKey(item.WorkorderStatusKey)" padding>
  
                     {{item.WorkorderStatus===temp_status}}
@@ -62,42 +64,42 @@
                     {{item.WorkorderStatus}} ({{item.totalItems}}) 
                 </ion-button> -->
 
-</ion-item>
-</ion-grid>
+    </ion-item>
+  </ion-grid>
 
-<!-- <ion-button ion-button color="light" class=" button-brown-{{true}}" >Finish</ion-button> -->
+  <!-- <ion-button ion-button color="light" class=" button-brown-{{true}}" >Finish</ion-button> -->
 
 
-<ion-card *ngFor="let data of viewworkorder" style="background-color: #FFF !important;"
-routerLink="/work-order-detail/{{data.WorkorderKey}}">
-<ion-card-header  align='center'  padding>
-   <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
-</ion-card-header>
-<ion-card-content align='center' padding>
-   <div *ngIf="data.FacilityName">
-       <p>{{data.FacilityName}} - {{data.ZoneName}} - {{data.FloorName}}</p>
-       <p>{{data.WorkorderTime}}</p>
-       <p>Assigned to : {{data.LastName}},{{data.FirstName}} </p>
-       <p>Priority : {{data.PriorityValue}}</p>
-       <br>
-       <br>
-       <p>
-                 <ion-label class="label text-brown-{{data.WorkorderStatus === 'Scheduled'}} 
+  <ion-card *ngFor="let data of viewworkorder" style="background-color: #FFF !important;"
+    routerLink="/manager-menu/work-order-detail/{{data.WorkorderKey}}">
+    <ion-card-header align='center' padding>
+      <ion-card-title>{{data.WorkorderTypeName}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content align='center' padding>
+      <div *ngIf="data.FacilityName">
+        <p>{{data.FacilityName}} - {{data.ZoneName}} - {{data.FloorName}}</p>
+        <p>{{data.WorkorderTime}}</p>
+        <p>Assigned to : {{data.LastName}},{{data.FirstName}} </p>
+        <p>Priority : {{data.PriorityValue}}</p>
+        <br>
+        <br>
+        <p>
+          <ion-label class="label text-brown-{{data.WorkorderStatus === 'Scheduled'}} 
                         text-yellow-{{data.WorkorderStatus === 'InProgress'}}
                         text-green-{{data.WorkorderStatus === 'Completed'}}
                         text-orange-{{data.WorkorderStatus === 'Delayed'}}">
-                       {{data.WorkorderStatus}}
-                 </ion-label>
-               </p>
-      </div> 
-</ion-card-content> 
-<!-- </a> -->
-</ion-card>
-<ion-card *ngIf="viewworkorder?.length == 0" style="background-color: #FFF !important;">
-        <ion-card-content>
-        No records found
-      </ion-card-content>
-    </ion-card>
+            {{data.WorkorderStatus}}
+          </ion-label>
+        </p>
+      </div>
+    </ion-card-content>
+    <!-- </a> -->
+  </ion-card>
+  <ion-card *ngIf="viewworkorder?.length == 0" style="background-color: #FFF !important;">
+    <ion-card-content>
+      No records found
+    </ion-card-content>
+  </ion-card>
 
 
 </ion-content>

@@ -1,23 +1,26 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title class="title">
-            <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Create Quick WorkOrder</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">
+      <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>Create Quick
+      WorkOrder
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding style="background-color: #EBFAFF !important;">
-  <ion-nav [root]="rootPage" > </ion-nav>
+  <ion-nav [root]="rootPage"> </ion-nav>
   <ion-grid style="background-color: rgb(255, 255, 255) !important;">
-  <h3 align="center">Create Quick WorkOrder</h3>
-  <!-- <div class="list padding-bottom"> -->
+    <h3 align="center">Create Quick WorkOrder</h3>
+    <!-- <div class="list padding-bottom"> -->
     <ion-item>
       <ion-label>Employee*</ion-label>
-      <ion-select [(ngModel)]="EmployeeKey">
-          <ion-select-option value="">Select</ion-select-option>
-        <ion-select-option *ngFor="let w of employeeList" [value]="w.EmployeeKey"> {{w.EmployeeText}}</ion-select-option>
+      <ion-select interface="popover" [(ngModel)]="EmployeeKey">
+        <ion-select-option value="">Select</ion-select-option>
+        <ion-select-option *ngFor="let w of employeeList" [value]="w.EmployeeKey"> {{w.EmployeeText}}
+        </ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
@@ -25,17 +28,18 @@
       <ion-input type="text" [(ngModel)]="WorkorderNotes" maxlength="200" placeholder="Workorder Notes"></ion-input>
     </ion-item>
     <!-- <div class="item item-divider">Select Location</div> -->
-    <ion-row style ="block-size: 30px" class ="specifics">
-    <ion-item class ="specifics"> Select Location  
-      <div  style="" class="item item-divider"></div>
-    </ion-item>
-    </ion-row> 
+    <ion-row style="block-size: 30px" class="specifics">
+      <ion-item class="specifics"> Select Location
+        <div style="" class="item item-divider"></div>
+      </ion-item>
+    </ion-row>
 
     <ion-item>
       <ion-label>Facility*</ion-label>
-      <ion-select [(ngModel)]="FacilityKey">
+      <ion-select interface="popover" [(ngModel)]="FacilityKey">
         <ion-select-option value="">Select</ion-select-option>
-        <ion-select-option *ngFor="let w of facilityList" [value]="w.FacilityKey"> {{w.FacilityText}}</ion-select-option>
+        <ion-select-option *ngFor="let w of facilityList" [value]="w.FacilityKey"> {{w.FacilityText}}
+        </ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -45,25 +49,26 @@
 
     <ion-item>
       <ion-label>Priority Level</ion-label>
-      <ion-select [(ngModel)]="PriorityKey">
+      <ion-select interface="popover" [(ngModel)]="PriorityKey">
         <ion-select-option value="">Select</ion-select-option>
-        <ion-select-option *ngFor="let w of priorityList" [value]="w.PriorityKey"> {{w.PriorityText}}</ion-select-option>
+        <ion-select-option *ngFor="let w of priorityList" [value]="w.PriorityKey"> {{w.PriorityText}}
+        </ion-select-option>
       </ion-select>
     </ion-item>
 
     <div class="item item-divider"></div>
     <ion-item>
-        <ion-label>Photo Required</ion-label>
+      <ion-label>Photo Required</ion-label>
       <ion-toggle [(ngModel)]="isPhotoRequired" color="secondary"></ion-toggle>
     </ion-item>
 
   </ion-grid>
   <div align='center' padding>
-      <ion-button color="success" (click)="newWorkordersave()">Create</ion-button>
-    </div>
-    
+    <ion-button color="success" (click)="newWorkordersave()">Create</ion-button>
+  </div>
 
-    
+
+
   <!-- </div> -->
 
 </ion-content>

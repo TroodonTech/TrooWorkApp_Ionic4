@@ -1,41 +1,58 @@
-<ion-content 
- style="background-color:  rgb(16, 167, 218) !important;">
-
-  <!-- <h1 align='center' style="color: #2b542c"><strong>TrooWork</strong> </h1> -->
+<ion-content style="background-color:  rgb(16, 167, 218) !important;">
   <div align='center' style="margin-top: 20%;">
-  <img  src="../../../assets/TROOWORK.png" style="width: 10rem;">
-</div>
+    <img src="../../../assets/TROOWORK.png" style="width: 10rem;">
+  </div>
   <h2 align='center' style="color: #5f2a91">Login</h2>
   <p align='center' style="color: #2b542c">Enter your username, password and tenantID</p>
-<ion-grid style="margin-left:5%;background-color: rgb(255, 255, 255) !important;margin-right:6%">
-  <ion-row >
+  <ion-grid style="background-color: rgb(255, 255, 255) !important;">
+    <ion-row justify-content-center>
+      <ion-col align-self-center>
 
-    <ion-item>
-      <ion-label>Username</ion-label>
+        <div padding>
+          <ion-item>
+            <ion-label>Username</ion-label>
+            <ion-input [(ngModel)]='Username' type="text" value=""></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Password</ion-label>
+            <ion-input [(ngModel)]='Password' type="password" value=""></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Tenant ID</ion-label>
+            <ion-input [(ngModel)]='TenantID' type="text" value=""></ion-input>
+          </ion-item>
+        </div>
 
-      <ion-input [(ngModel)]='Username' type="text" value=""></ion-input>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label>Password</ion-label>
-      <ion-input [(ngModel)]='Password' type="password" value=""></ion-input>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label>Tenant ID</ion-label>
-      <ion-input [(ngModel)]='TenantID' type="text" value=""></ion-input>
-    </ion-item>
-    <!-- {{loginAl}} -->
-
-  </ion-row>
-</ion-grid>
-
-<div align='center' padding>
-  <!-- <button routerLink="/ManagerDashBoard" ion-button color="primary" block>Sign In</button> -->
-  <!-- <ion-button routerLink="/ManagerDashBoard">Login</ion-button> -->
-  <ion-button ion-button color="success" (click)=Login(Username,Password)>Login</ion-button>
-</div>
-
+        <div padding>
+          <ion-button color="success" size="large" (click)=Login(Username,Password) expand="block">Login</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<!-- <ion-grid>
+  <ion-row justify-content-center>
+    <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+
+      <div padding>
+        <ion-item>
+          <ion-label>Username</ion-label>
+          <ion-input [(ngModel)]='Username' type="text" value=""></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Password</ion-label>
+          <ion-input [(ngModel)]='Password' type="password" value=""></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tenant ID</ion-label>
+          <ion-input [(ngModel)]='TenantID' type="text" value=""></ion-input>
+        </ion-item>
+      </div>
+
+      <div padding>
+        <ion-button color="success" size="large" (click)=Login(Username,Password) expand="block">Login</ion-button>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid> -->

@@ -23,21 +23,33 @@
 
 .textgreentrue {
     background-color: green !important;
-       /*width: auto ;*/
-       
-   }  
+    /*width: auto ;*/   
+}  
 
-   .button-brown-true {
-    background-color: blue;
-    width: 150px;
+.button-text-workorder{
+    color: black;
+}
+
+.button-red-true {
+    background-color: brown !important;
+    // width: 150px;
     /*height: 30px;*/
 }  
 
-.button-brown-false {
-    background-color: red;
-    width:150px;
-    /*height: 30px;*/
-}  
+// .button-brown-false {
+//     background-color: red;
+//     width:150px;
+//     /*height: 30px;*/
+// } 
+
+.button-yellow-true {
+    background-color: yellow;
+    /*width: 20% !important;*/
+    
+}
+.button-green-true{
+    background-color: green;
+}
 
 .valid_text{
     color: red;
@@ -51,30 +63,27 @@
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-   
     font-size: 16px;
 }
 
 .text-brown-true {
     color: brown;
-       /*width: auto ;*/
-       
-   } 
+    /*width: auto ;*/
+} 
 
-   .text-yellow-true {
+.text-yellow-true {
     color: blue;
-       /*width: auto ;*/
-      
-   } 
+    /*width: auto ;*/
+    
+} 
 
-   .text-green-true {
+.text-green-true {
     color: green;
-       /*width: auto ;*/
-       
-   }  
+    /*width: auto ;*/
+    
+}  
 
-   .text-orange-true {
+.text-orange-true {
     color: orange;
-       /*width: auto ;*/
-       
-   } 
+    /*width: auto ;*/
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterEvent } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-supervisor-menu',
@@ -6,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./supervisor-menu.page.scss'],
 })
 export class SupervisorMenuPage implements OnInit {
+
   selectedPath = '';
+  welcome;
+  isAuthenticated;
+  loginDetalis;
+  Username;
 
   pages = [
 
@@ -41,14 +48,54 @@ export class SupervisorMenuPage implements OnInit {
 
     {
       title: 'Logout',
-      url: '/manager-menu/login',
-      icon: "log-out"
+      // url:  '/manager-menu/login',
+      icon:"log-out"
     }
 
   ];
-  loginDetalis;
-  Username;
-  constructor() { }
+
+
+  LogOut(){
+    debugger;
+    this.presentAlert();
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Exit!',
+      subHeader: '',
+      message: 'Are you sure you want to quit?',
+      inputs:[],
+      buttons: [ {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+          console.log('Confirm Cancel');
+          // this.router.navigateByUrl('super-visor-dash-board');
+        }
+      },{
+        text: 'Ok',
+        handler: () => {
+          console.log('Confirm Ok');
+          this.welcome = '';
+    this.isAuthenticated = false;
+    delete sessionStorage.token;
+   // $http.defaults.headers.common['Authorization'] = undefined;
+    localStorage.clear();
+    sessionStorage.clear();
+    localStorage.removeItem('employeekey');
+    delete localStorage.employeekey;
+          this.router.navigateByUrl('login');
+        }
+      }]
+    });
+
+  await alert.present();
+  }
+
+  constructor(private router: Router,public alertController: AlertController) { }
+  
   url_base64_decode(str) {
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {

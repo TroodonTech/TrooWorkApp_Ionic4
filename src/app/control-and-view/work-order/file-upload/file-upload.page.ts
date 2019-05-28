@@ -88,14 +88,16 @@ export class FileUploadPage implements OnInit {
     };
     this.uploadflag=true;
     this.camera.getPicture(options).then((imageData) => {
-      this.base64.encodeFile(imageData).then((base64File: string) => {
-        this.base64Image=base64File;
+      // this.base64.encodeFile(imageData).then((base64File: string) => {
+      //   this.base64Image=base64File;
+      //   this.capturedimagePath=imageData;
+      //   this.imageName=imageData.substr(imageData.lastIndexOf('/') + 1)
+      //   console.log(base64File);
+      // }, (err) => {
+      //     console.log(err);
+      //   });
         this.capturedimagePath=imageData;
         this.imageName=imageData.substr(imageData.lastIndexOf('/') + 1)
-        console.log(base64File);
-      }, (err) => {
-          console.log(err);
-        });
     }, (err) => {
         alert("error "+JSON.stringify(err))
         });   

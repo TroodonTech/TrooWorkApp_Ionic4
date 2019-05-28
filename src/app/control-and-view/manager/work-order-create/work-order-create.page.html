@@ -15,7 +15,7 @@
         <h3 align="center">Create WorkOrder</h3>
         <ion-item>
             <ion-label> Workorder Type*</ion-label>
-            <ion-select value="brown" [(ngModel)]='WorkorderTypeKey'>
+            <ion-select interface="popover" value="brown" [(ngModel)]='WorkorderTypeKey'>
                 <ion-select-option value="">Select</ion-select-option>
                 <ion-select-option *ngFor="let w of workOrdertypeList" [value]="w.WorkorderTypeKey">
                     {{w.WorkorderTypeText}}

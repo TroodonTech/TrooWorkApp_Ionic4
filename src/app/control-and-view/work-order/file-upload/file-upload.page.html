@@ -24,6 +24,7 @@
         <img *ngIf="base64Image" [src]="DomSanitizer.bypassSecurityTrustUrl(base64Image)"/>
     </ion-col>
 </ion-row>
+
 <ion-segment style="background-color: #FFF !important;" >
     <ion-segment-button style="width: 50%; " (click)="capture()">
         Choose Photo

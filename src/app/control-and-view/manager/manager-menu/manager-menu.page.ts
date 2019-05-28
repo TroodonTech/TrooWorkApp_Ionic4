@@ -20,7 +20,7 @@ export class ManagerMenuPage implements OnInit {
       icon: 'home'
     },
     {
-      title: ' Work Order',//first
+      title: ' WorkOrder',//first
       url: '/manager-menu/work-order-dash-board',
       icon: "logo-buffer"
     },
@@ -67,7 +67,7 @@ export class ManagerMenuPage implements OnInit {
         cssClass: 'secondary',
         handler: () => {
           console.log('Confirm Cancel');
-          this.router.navigateByUrl('manager-dash-board');
+          // this.router.navigateByUrl('manager-dash-board');
         }
       },{
         text: 'Ok',

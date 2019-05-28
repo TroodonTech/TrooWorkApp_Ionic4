@@ -38,22 +38,16 @@
     {{item.WorkorderStatus}} ({{item.totalItems}}) 
     
 </ion-card> -->
-  <ion-grid>
-    <ion-item *ngFor="let item of workorderStatusList">
+  <ion-grid text-center>
+    <ion-label  text-center *ngFor="let item of workorderStatusList">
 
 
 
-      <br>
-      <br>
-      <br>
-      <button type="button" color="#FFF" class="button-brown-{{item.WorkorderStatus===temp_status}} " align='center'
+      
+      <button  type="button" style="margin-top: 1%" color="#FFF" class="button-brown-{{item.WorkorderStatus===temp_status}} " align='center'
         (click)="getWorkorderBYStatusKey(item.WorkorderStatusKey)" padding>
-
-
-
-
         {{item.WorkorderStatus}} ({{item.totalItems}})
-        <br>
+    
       </button>
       <!-- /****************************************************************/
                  <ion-button class="button-brown-{{item.WorkorderStatus===temp_status}} "align='center' (click)="getWorkorderBYStatusKey(item.WorkorderStatusKey)" padding>
@@ -64,7 +58,7 @@
                     {{item.WorkorderStatus}} ({{item.totalItems}}) 
                 </ion-button> -->
 
-    </ion-item>
+    </ion-label>
   </ion-grid>
 
   <!-- <ion-button ion-button color="light" class=" button-brown-{{true}}" >Finish</ion-button> -->

@@ -65,7 +65,7 @@ export class FindEmployeeSupervisorPage implements OnInit {
     const loading = await this.loadCtrl.create({
       // spinner: 'hide',
       // duration: 5000,
-      message: 'Uploading...Please Wait',
+      message: 'Please Wait while the map is being loaded...',
       translucent: true,
       cssClass: 'custom-class custom-loading'
     });

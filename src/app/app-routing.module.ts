@@ -43,7 +43,7 @@ const routes: Routes = [
    { path: 'workorder-supervisor-view', loadChildren: './control-and-view/supervisor/workorder-supervisor/workorder-supervisor-view/workorder-supervisor-view.module#WorkorderSupervisorViewPageModule' },
 
   { path: 'workorder-supervisor-view-detail/:WorkOrderKey', loadChildren: './control-and-view/supervisor/workorder-supervisor/workorder-supervisor-view-detail/workorder-supervisor-view-detail.module#WorkorderSupervisorViewDetailPageModule' },
-  { path: 'work-order-detail/:WorkOrderKey', loadChildren: './control-and-view/work-order/work-order-detail/work-order-detail.module#WorkOrderDetailPageModule' },
+  // { path: 'work-order-detail/:WorkOrderKey', loadChildren: './control-and-view/work-order/work-order-detail/work-order-detail.module#WorkOrderDetailPageModule' },
   { path: 'workorder-filtering-by-employee', loadChildren: './control-and-view/work-order/workorder-filtering-by-employee/workorder-filtering-by-employee.module#WorkorderFilteringByEmployeePageModule' },
   { path: 'work-order-filtering-by-facility', loadChildren: './control-and-view/work-order/work-order-filtering-by-facility/work-order-filtering-by-facility.module#WorkOrderFilteringByFacilityPageModule' },
   { path: 'work-order-filtering-by-status', loadChildren: './control-and-view/work-order/work-order-filtering-by-status/work-order-filtering-by-status.module#WorkOrderFilteringByStatusPageModule' },

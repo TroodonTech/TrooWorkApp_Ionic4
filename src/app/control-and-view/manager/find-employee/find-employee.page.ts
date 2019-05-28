@@ -21,9 +21,9 @@ export class FindEmployeePage implements OnInit {
   lat;
   lng;
   constructor(public loadCtrl: LoadingController,
-     public workOrderService: WorkOrderService, 
-     public toastCtrl: ToastController, private platform: Platform,
-      public navCtrl: NavController, private location: Location ) { }
+    public workOrderService: WorkOrderService,
+    public toastCtrl: ToastController, private platform: Platform,
+    public navCtrl: NavController, private location: Location) { }
 
   url_base64_decode(str) {// decoding function for token
     var output = str.replace('-', '+').replace('_', '/');
@@ -64,7 +64,7 @@ export class FindEmployeePage implements OnInit {
     const loading = await this.loadCtrl.create({
       // spinner: 'hide',
       // duration: 5000,
-      message: 'Uploading...Please Wait',
+      message: 'Please Wait while the map is being loaded...',
       translucent: true,
       cssClass: 'custom-class custom-loading'
     });
@@ -150,5 +150,5 @@ export class FindEmployeePage implements OnInit {
   GoBack() {// go back option
     // this.router.navigateByUrl('WorkOrderDashBoard');
     this.location.back();
-}
+  }
 }

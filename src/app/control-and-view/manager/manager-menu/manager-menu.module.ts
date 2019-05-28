@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ManagerMenuPage } from './manager-menu.page';
-import{WorkOrderFilteringByStatusPageModule} from '../../work-order/work-order-filtering-by-status/work-order-filtering-by-status.module'
+import { WorkOrderDetailPageModule } from '../../work-order/work-order-detail/work-order-detail.module'
 const routes: Routes = [
   {
     path: '',
@@ -69,6 +69,10 @@ const routes: Routes = [
       {
         path: 'work-order-filtering-by-status',
         loadChildren: '../../work-order/work-order-filtering-by-status/work-order-filtering-by-status.module#WorkOrderFilteringByStatusPageModule'
+      },
+      {
+        path: 'work-order-detail/:workOrderKey',
+        loadChildren: '../../work-order/work-order-detail/work-order-detail.module#WorkOrderDetailPageModule'
       }
 
     ]

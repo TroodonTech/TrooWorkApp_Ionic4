@@ -73,7 +73,7 @@
                                                     {{x.names}}
                                                 </ion-select-option>
                                           </ion-select> -->
-                  <ion-select [(ngModel)]='Scoringtype.rating_yn[item.TemplateQuestionID]'
+                  <ion-select interface="popover" [(ngModel)]='Scoringtype.rating_yn[item.TemplateQuestionID]'
                     (ionChange)="saveRatings(item.TemplateQuestionID,item.ScoreName)">
 
                     <ion-select-option *ngFor="let w of names" [value]=w.names>
@@ -104,7 +104,7 @@
                 <ion-item>
                   <ion-label>Score Type</ion-label>
 
-                  <ion-select [(ngModel)]='Scoringtype.rating_yn[item.TemplateQuestionID]'
+                  <ion-select interface="popover" [(ngModel)]='Scoringtype.rating_yn[item.TemplateQuestionID]'
                     (ionChange)="saveRatings(item.TemplateQuestionID,item.ScoreName)">
                     <ion-select-option>Pass</ion-select-option>
                     <ion-select-option *ngFor="let w of names" [value]=w.names>

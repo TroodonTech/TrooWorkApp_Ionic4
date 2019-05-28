@@ -44,7 +44,7 @@
 
 
       
-      <button  type="button" style="margin-top: 1%" color="#FFF" class="button-brown-{{item.WorkorderStatus===temp_status}} " align='center'
+      <button  type="button" style="margin-top: 1%" color="#FFF" class="statusFilter-{{item.WorkorderStatus===temp_status}} " align='center'
         (click)="getWorkorderBYStatusKey(item.WorkorderStatusKey)" padding>
         {{item.WorkorderStatus}} ({{item.totalItems}})
     

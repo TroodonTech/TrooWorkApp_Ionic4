@@ -98,9 +98,9 @@
             </ion-select>
         </ion-item>
         <div class="item item-divider"></div>
-        <ion-row style="block-size: 30px" class="specifics">
-            <ion-item class="specifics">Select Date-Time
-                <div class="item item-divider"></div>
+        <!-- <ion-row style="block-size: 30px" class="specifics"> -->
+            <!-- <ion-item  -->
+                <!-- <div class="item item-divider"></div> -->
                 <ion-item>
                     <ion-label>Priority Level</ion-label>
                     <ion-select [(ngModel)]="PriorityKey">
@@ -142,8 +142,8 @@
                     <ion-label>Snapshot Required</ion-label>
                     <ion-toggle color="secondary" [(ngModel)]="isSnapshotRequired"></ion-toggle>
                 </ion-item>
-            </ion-item>
-        </ion-row>
+            <!-- </ion-item> -->
+        <!-- </ion-row> -->
     </ion-grid>
     <div align='center' padding>
         <ion-button color="success" (click)="createWorkorder()">Create Work Order</ion-button>

@@ -25,13 +25,13 @@
           <ion-label>Facility </ion-label>
           <ion-label>{{items.FacilityName}}</ion-label>
         </ion-item>
-        <ion-item *ngIf="items.ZoneName !== 'null'">
-          <ion-label>Zone </ion-label>
-          <ion-label>{{items.ZoneName}}</ion-label>
-        </ion-item>
         <ion-item *ngIf="items.FloorName !== 'null'">
           <ion-label>Floor </ion-label>
           <ion-label>{{items.FloorName}}</ion-label>
+        </ion-item>
+        <ion-item *ngIf="items.ZoneName !== 'null'">
+          <ion-label>Zone </ion-label>
+          <ion-label>{{items.ZoneName}}</ion-label>
         </ion-item>
         <ion-item>
           <ion-label>Room </ion-label>

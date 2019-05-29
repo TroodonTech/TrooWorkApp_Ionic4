@@ -4,8 +4,8 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title class="title">
-            <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>WorkOrder
-            Create
+            <ion-icon class="arrow" ios="ios-arrow-back" md="md-arrow-back" (click)='GoBack()'></ion-icon>
+            Create WorkOrder
         </ion-title>
     </ion-toolbar>
 </ion-header>
@@ -15,7 +15,7 @@
         <h3 align="center">Create WorkOrder</h3>
         <ion-item>
             <ion-label> Workorder Type*</ion-label>
-            <ion-select interface="popover" value="brown" [(ngModel)]='WorkorderTypeKey'>
+            <ion-select interface="popover" [(ngModel)]='WorkorderTypeKey'>
                 <ion-select-option value="">Select</ion-select-option>
                 <ion-select-option *ngFor="let w of workOrdertypeList" [value]="w.WorkorderTypeKey">
                     {{w.WorkorderTypeText}}

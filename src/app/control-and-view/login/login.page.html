@@ -21,12 +21,12 @@
             <ion-label>Tenant ID</ion-label>
             <ion-input [(ngModel)]='TenantID' type="text" value=""></ion-input>
           </ion-item>
-          <ion-item>
+          <div style="text-align: center;margin-top: 3%">
             <ion-checkbox class="marginTop" id="checkbox" style="border-style: none;" [(ngModel)]="passwordCheckbox"
               (click)="showPassword(input)"></ion-checkbox> &nbsp;
             <ion-label for="checkbox" *ngIf="!passwordCheckbox">Show Password</ion-label>
             <ion-label for="checkbox" *ngIf="passwordCheckbox">Hide Password</ion-label>
-          </ion-item>
+          </div>
         </div>
 
         <div padding>

@@ -19,7 +19,7 @@
     font-size: 0.9rem;
     
 }
-.column{column-size:3}
+// .column{column-size:3}
 
 .textgreentrue {
     background-color: green !important;
@@ -76,23 +76,23 @@
 }
 
 .text-brown-true {
-    color: brown;
+    color: brown !important;
     /*width: auto ;*/
 } 
 
 .text-yellow-true {
-    color: blue;
+    color: blue !important;
     /*width: auto ;*/
     
 } 
 
 .text-green-true {
-    color: green;
+    color: green !important;
     /*width: auto ;*/
     
 }  
 
 .text-orange-true {
-    color: orange;
+    color: orange !important;
     /*width: auto ;*/
 }

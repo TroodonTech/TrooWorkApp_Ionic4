@@ -146,7 +146,7 @@
              </ionic3-star-rating> -->
 
                 <div>
-                  <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]" (click)="rate(num,i)"
+                  <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]" (click)="rate(num,i);saveRatings(item.TemplateQuestionID,item.ScoreName)"
                     [ngStyle]="{'color':getColor(num,i)}">
 
                   </ion-icon>

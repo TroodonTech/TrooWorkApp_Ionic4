@@ -12,7 +12,7 @@
 <ion-content style="background-color: #EBFAFF !important;" padding>
   <ion-nav [root]="rootPage"></ion-nav>
   <ion-card style="background-color: #FFF !important;">
-    <ion-card-content>
+    <ion-card-content *ngIf="viewEmpInspectionDetails">
       <div class="list ">
         <!-- <div class="list " > -->
         <!-- <div class="item item-text-wrap "> -->
@@ -131,7 +131,7 @@
 
                 <div>
                   <ion-icon name="star" *ngFor="let num of [1,2,3,4,5]"
-                    (click)="rate(num,i);saveRatings(i,item.TemplateQuestionID,item.ScoreName)"
+                    (click)="rate(num,i);saveRatings(item.TemplateQuestionID,item.ScoreName)"
                     [ngStyle]="{'color':getColor(num,i)}">
 
                   </ion-icon>
@@ -162,7 +162,7 @@
 
                 <div>
                   <ion-icon name="star" *ngFor="let num of [1,2,3]"
-                    (click)="rate(num,i);saveRatings(i,item.TemplateQuestionID,item.ScoreName)"
+                    (click)="rate(num,i);saveRatings(item.TemplateQuestionID,item.ScoreName)"
                     [ngStyle]="{'color':getColor(num,i)}">
 
                   </ion-icon>

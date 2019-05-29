@@ -262,8 +262,8 @@ ngOnInit() {
 
 saveRatings(TemplateQuestionID,ScoreName)
 {
-
-debugger;
+  var newVal=this.value;
+// debugger;
 if(ScoreName === 'Yes/No' || ScoreName==='Pass/Fail'){
   // console.log($scope.Scoringtype);
   var length = Object.keys(this.Scoringtype.rating_yn).length;
@@ -276,10 +276,10 @@ if(ScoreName === 'Yes/No' || ScoreName==='Pass/Fail'){
 // }
 
 else if (ScoreName === '5 Star') {
-this.Scoringtype.ratingValue.push({rating: this.value, questionID: TemplateQuestionID});
+this.Scoringtype.ratingValue.push({rating: newVal, questionID: TemplateQuestionID});
 }
 else if (ScoreName === '3 Star') {
-this.Scoringtype.ratingValue.push({rating: this.value, questionID: TemplateQuestionID});
+this.Scoringtype.ratingValue.push({rating: newVal, questionID: TemplateQuestionID});
 }
 console.log(this.Scoringtype);
 }
@@ -386,7 +386,9 @@ var ratingIndexlist = [];
           };
          // debugger;
           this.inspectionServiceService
-.InspectionSaveService(this.inspectionDetail)
+.InspectionSaveService(this.inspectionDetail).then((data)=>{
+
+});
 
 //   var alertPopup = $ionicPopup.alert({
 //     title: 'Inspection',
@@ -403,10 +405,12 @@ var ratingIndexlist = [];
                
           };
           this.inspectionServiceService
-        .inspectionCompletedService(this.inspectionDetail1)
+        .inspectionCompletedService(this.inspectionDetail1).then((data)=>{
+          this.location.back();
+        });
 
         
-        this.router.navigateByUrl('supervisor-menu/inspection-supervisor-view');
+        // this.router.navigateByUrl('supervisor-menu/inspection-supervisor-view');
          
         }
         else if (questionidList.length === totalQuestions && this.ScoreName !== 'Pass/Fail')
@@ -469,7 +473,9 @@ var ratingIndexlist = [];
               };
              // debugger;
               this.inspectionServiceService
-    .InspectionSaveService(this.inspectionDetail)
+    .InspectionSaveService(this.inspectionDetail).then((data)=>{
+
+    });
   
   //   var alertPopup = $ionicPopup.alert({
   //     title: 'Inspection',
@@ -486,8 +492,10 @@ var ratingIndexlist = [];
                    
               };
               this.inspectionServiceService
-            .inspectionCompletedService(this.inspectionDetail1)
-            this.router.navigateByUrl('supervisor-menu/inspection-supervisor-view');
+            .inspectionCompletedService(this.inspectionDetail1).then((data)=>{
+              this.location.back();
+            });
+            // this.router.navigateByUrl('supervisor-menu/inspection-supervisor-view');
              
             }
 
@@ -495,42 +503,42 @@ var ratingIndexlist = [];
 
             // if(this.isMailRequired)
             // {
-              this.inspectionServiceService
-                   .getEmailService( this.toServeremployeekey,this.OrganizationID)
-                    .subscribe((data:any) => {
-         // debugger;
-                          this.email = data;
+        //       this.inspectionServiceService
+        //            .getEmailService( this.toServeremployeekey,this.OrganizationID)
+        //             .subscribe((data:any) => {
+        //  // debugger;
+        //                   this.email = data;
                     
-                     this.EmailId=this.email[0].EmailId;
+        //              this.EmailId=this.email[0].EmailId;
 
-                     this.inspectionServiceService
-                     .getEmailInspectionService(this.inspKey$,this.OrganizationID)
-                      .subscribe((data:any) => {
-          //debugger;
-                            this.emailinsp = data;
-                       });
+        //              this.inspectionServiceService
+        //              .getEmailInspectionService(this.inspKey$,this.OrganizationID)
+        //               .subscribe((data:any) => {
+        //   //debugger;
+        //                     this.emailinsp = data;
+        //                });
 
-                      });
+        //               });
 
-                       this.inspectionEmail=this.emailinsp;
+        //                this.inspectionEmail=this.emailinsp;
 
-                       var emailBody;
+        //                var emailBody;
 
-                       emailBody='<b>'+this.inspectionEmail[0].TemplateName+'</b>'+'('+this.inspectionEmail[0].ScoreName+')'+'<br>'
+        //                emailBody='<b>'+this.inspectionEmail[0].TemplateName+'</b>'+'('+this.inspectionEmail[0].ScoreName+')'+'<br>'
 
-                       for(var i=0;i<this.emailinsp.length;i++)
-                       {
-                        emailBody=emailBody+this.inspectionEmail[i].Question+' : '+this.inspectionEmail[i].Value+'<br>';
+        //                for(var i=0;i<this.emailinsp.length;i++)
+        //                {
+        //                 emailBody=emailBody+this.inspectionEmail[i].Question+' : '+this.inspectionEmail[i].Value+'<br>';
 
-                       }
+        //                }
 
-                       let email1={
-                        to:      this.EmailId,
-                        subject: 'Inspection By -'+this.inspectionEmail[0].InspectorName,
-                        body:    emailBody                        
+        //                let email1={
+        //                 to:      this.EmailId,
+        //                 subject: 'Inspection By -'+this.inspectionEmail[0].InspectorName,
+        //                 body:    emailBody                        
 
 
-                       };
+        //                };
 
                      // this.emailComposer.open(email1);
                 //  }

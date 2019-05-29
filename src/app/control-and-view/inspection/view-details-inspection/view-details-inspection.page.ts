@@ -302,7 +302,8 @@ return z;
 saveRatings(TemplateQuestionID,ScoreName)
 {
 
-//debugger;
+var newVal=this.value;
+// debugger;
   if(ScoreName === 'Yes/No' || ScoreName==='Pass/Fail'){
     // console.log($scope.Scoringtype);
     var length = Object.keys(this.Scoringtype.rating_yn).length;
@@ -315,10 +316,10 @@ saveRatings(TemplateQuestionID,ScoreName)
 // }
 
 else if (ScoreName === '5 Star') {
-  this.Scoringtype.ratingValue.push({rating: this.value, questionID: TemplateQuestionID});
+  this.Scoringtype.ratingValue.push({rating: newVal, questionID: TemplateQuestionID});
 }
 else if (ScoreName === '3 Star') {
-  this.Scoringtype.ratingValue.push({rating: this.value, questionID: TemplateQuestionID});
+  this.Scoringtype.ratingValue.push({rating: newVal, questionID: TemplateQuestionID});
 }
 console.log(this.Scoringtype);
 }
@@ -326,7 +327,7 @@ console.log(this.Scoringtype);
 //this.value=0;
 inspectionCompleted(TemplateQuestionID,templateId)
 {
-debugger;
+// debugger;
   var temp=[];
    var choices1 = [];
   choices1[0] = this.Scoringtype;
@@ -425,7 +426,9 @@ debugger;
             };
            // debugger;
             this.inspectionServiceService
-  .InspectionSaveService(this.inspectionDetail)
+  .InspectionSaveService(this.inspectionDetail).then((data)=>{
+
+  });
 
 //   var alertPopup = $ionicPopup.alert({
 //     title: 'Inspection',
@@ -442,11 +445,13 @@ debugger;
                  
             };
             this.inspectionServiceService
-          .inspectionCompletedService(this.inspectionDetail1)
+          .inspectionCompletedService(this.inspectionDetail1).then((data)=>{
+            this.location.back();
+          });
         //  window.location.reload();
-        this.reloading();
+        // this.reloading();
           // this.router.navigateByUrl('viewInspection');
-          this.location.back();
+         
            
           }
           else if (questionidList.length === totalQuestions && this.ScoreName !== 'Pass/Fail')
@@ -509,7 +514,9 @@ debugger;
                 };
                // debugger;
                 this.inspectionServiceService
-      .InspectionSaveService(this.inspectionDetail)
+      .InspectionSaveService(this.inspectionDetail).then((data)=>{
+
+      });
     
     //   var alertPopup = $ionicPopup.alert({
     //     title: 'Inspection',
@@ -526,10 +533,12 @@ debugger;
                      
                 };
                 this.inspectionServiceService
-              .inspectionCompletedService(this.inspectionDetail1)
-              this.reloading();
+              .inspectionCompletedService(this.inspectionDetail1).then((data)=>{
+                this.location.back();
+              });
+              // this.reloading();
               // this.router.navigateByUrl('viewInspection');
-              this.location.back();
+           
               
                
               }
@@ -537,47 +546,47 @@ debugger;
               //Email generation
 
               //if(this.isMailRequired)
-              {
-                this.inspectionServiceService
-                     .getEmailService(this.toServeremployeekey, this.OrganizationID)
-                      .subscribe((data:any) => {
-           // debugger;
-                            this.email = data;
+          //     {
+          //       this.inspectionServiceService
+          //            .getEmailService(this.toServeremployeekey, this.OrganizationID)
+          //             .subscribe((data:any) => {
+          //  // debugger;
+          //                   this.email = data;
                       
-                       this.EmailId=this.email[0].EmailId;
+          //              this.EmailId=this.email[0].EmailId;
 
-                       this.inspectionServiceService
-                       .getEmailInspectionService(this.inspKey$,this. OrganizationID )
-                        .subscribe((data:any) => {
-            //debugger;
-                              this.emailinsp = data;
-                         });
+          //              this.inspectionServiceService
+          //              .getEmailInspectionService(this.inspKey$,this. OrganizationID )
+          //               .subscribe((data:any) => {
+          //   //debugger;
+          //                     this.emailinsp = data;
+          //                });
 
-                        });
+          //               });
 
-                         this.inspectionEmail=this.emailinsp;
+          //                this.inspectionEmail=this.emailinsp;
 
-                         var emailBody;
+          //                var emailBody;
 
-                         emailBody='<b>'+this.inspectionEmail[0].TemplateName+'</b>'+'('+this.inspectionEmail[0].ScoreName+')'+'<br>'
+          //                emailBody='<b>'+this.inspectionEmail[0].TemplateName+'</b>'+'('+this.inspectionEmail[0].ScoreName+')'+'<br>'
 
-                         for(var i=0;i<this.emailinsp.length;i++)
-                         {
-                          emailBody=emailBody+this.inspectionEmail[i].Question+' : '+this.inspectionEmail[i].Value+'<br>';
+          //                for(var i=0;i<this.emailinsp.length;i++)
+          //                {
+          //                 emailBody=emailBody+this.inspectionEmail[i].Question+' : '+this.inspectionEmail[i].Value+'<br>';
 
-                         }
+          //                }
 
-                         let email1={
-                          //to:      this.EmailId,
-                          to: 'raimavarghese.troodon@outlook.com',
-                          subject: 'Inspection By -'+this.inspectionEmail[0].InspectorName,
-                          body:    emailBody                        
+          //                let email1={
+          //                 //to:      this.EmailId,
+          //                 to: 'raimavarghese.troodon@outlook.com',
+          //                 subject: 'Inspection By -'+this.inspectionEmail[0].InspectorName,
+          //                 body:    emailBody                        
 
 
-                         };
+          //                };
 
-                        //  this.emailComposer.open(email1);
-                   }
+          //               //  this.emailComposer.open(email1);
+          //          }
                       
                   
                    this.presentAlert();
@@ -599,9 +608,8 @@ reloading()
 }
        GoBack() {
        
-    this.reloading();
-   this.router.navigateByUrl('viewInspection');
- // this.location.back();
+   
+ this.location.back();
      //this.Navctrl.navigateRoot('/viewInspection');
 //this.Navctrl.push(['viewInspection']);
       }

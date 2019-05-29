@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {WorkOrderService } from '../../../../service/work-order.service';
+import { WorkOrderService } from '../../../../service/work-order.service';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-workorder-supervisor-filtering-by-status',
   templateUrl: './workorder-supervisor-filtering-by-status.page.html',
@@ -16,22 +16,19 @@ export class WorkorderSupervisorFilteringByStatusPage implements OnInit {
   viewworkorder;
   temp_status;
   WorkorderStatus;
-  
+
 
   constructor(public workOrderService: WorkOrderService,
-    private router: Router,private location: Location,
+    private router: Router, private location: Location,
     public loadCtrl: LoadingController) { }
 
-  selectedEmployees()
-  {
+  selectedEmployees() {
     this.router.navigateByUrl('supervisor-menu/workorder-supervisor-filtering-by-employee');
   }
-  selectedFacility()
-  {
+  selectedFacility() {
     this.router.navigateByUrl('supervisor-menu/workorder-supervisor-filtering-by-facility');
   }
-  selectedStatus()
-  {
+  selectedStatus() {
     this.router.navigateByUrl('supervisor-menu/workorder-supervisor-filtering-by-status');
   }
 
@@ -73,38 +70,44 @@ export class WorkorderSupervisorFilteringByStatusPage implements OnInit {
 
   async presentLoadingWithOptions() {
     const loading = await this.loadCtrl.create({
-     // spinner: 'hide',
-    //  duration: 5000,
+      // spinner: 'hide',
+      //  duration: 5000,
       message: 'Please wait...',
-      translucent: true, 
+      translucent: true,
       cssClass: 'custom-class custom-loading'
     });
-     await loading.present();
-     this.today_DT = this.convert_DT(new Date());
-    this.workOrderService.statusByWorkorderDate(this.today_DT,this.toServeremployeekey,this.OrganizationID).subscribe((data: any[]) => {
-      this.workorderStatusList = data;
-     
-      loading.dismiss();
-     });
-      
-     
-  }
-
-  getAllWorkStatus()
-  {
-
-    
-  
-  }
-  getWorkorderBYStatusKey(w_statusKey)
-  {
-
+    await loading.present();
     this.today_DT = this.convert_DT(new Date());
-    this.workOrderService.workorderFilterByStatusEmpView(w_statusKey,this.today_DT,this.toServeremployeekey,this.OrganizationID).subscribe((data: any[]) => {
+    this.workOrderService.statusByWorkorderDate(this.today_DT, this.toServeremployeekey, this.OrganizationID).subscribe((data: any[]) => {
+      this.workorderStatusList = data;
+
+      loading.dismiss();
+    });
+
+
+  }
+
+  getAllWorkStatus() {
+
+
+
+  }
+  async getWorkorderBYStatusKey(w_statusKey) {
+    const loading = await this.loadCtrl.create({
+      //spinner: 'hide',
+      //  duration: 5000,
+      message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    await loading.present();
+    this.today_DT = this.convert_DT(new Date());
+    this.workOrderService.workorderFilterByStatusEmpView(w_statusKey, this.today_DT, this.toServeremployeekey, this.OrganizationID).subscribe((data: any[]) => {
       this.viewworkorder = data;
       //debugger;
-      this.temp_status=data[0].WorkorderStatus;
-     });
+      this.temp_status = data[0].WorkorderStatus;
+      loading.dismiss();
+    });
 
   }
 
@@ -117,17 +120,17 @@ export class WorkorderSupervisorFilteringByStatusPage implements OnInit {
     var profile = JSON.parse(this.url_base64_decode(encodedProfile));
 
 
-   
 
-    this.toServeremployeekey=profile.employeekey;
+
+    this.toServeremployeekey = profile.employeekey;
     this.OrganizationID = profile.OrganizationID;
 
     this.getAllWorkStatus();
     this.presentLoadingWithOptions();
   }
   GoBack() {// go back option
-   // this.router.navigateByUrl('workorder_Supervisor_View');
-   this.location.back();
+    // this.router.navigateByUrl('workorder_Supervisor_View');
+    this.location.back();
   }
 
 }

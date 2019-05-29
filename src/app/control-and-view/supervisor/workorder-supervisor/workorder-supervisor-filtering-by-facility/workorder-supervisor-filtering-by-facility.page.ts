@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {WorkOrderService } from '../../../../service/work-order.service';
+import { WorkOrderService } from '../../../../service/work-order.service';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-workorder-supervisor-filtering-by-facility',
   templateUrl: './workorder-supervisor-filtering-by-facility.page.html',
@@ -27,18 +27,15 @@ export class WorkorderSupervisorFilteringByFacilityPage implements OnInit {
     private router: Router,
     private location: Location,
     public loadCtrl: LoadingController) { }
-    selectedEmployees()
-    {
-      this.router.navigateByUrl('supervisor-menu/workorder-supervisor-filtering-by-employee');
-    }
-    selectedFacility()
-    {
-      this.router.navigateByUrl('supervisor-menu/workorder-supervisor-filtering-by-facility');
-    }
-    selectedStatus()
-    {
-      this.router.navigateByUrl('supervisor-menu/workorder-supervisor-filtering-by-status');
-    }
+  selectedEmployees() {
+    this.router.navigateByUrl('supervisor-menu/workorder-supervisor-filtering-by-employee');
+  }
+  selectedFacility() {
+    this.router.navigateByUrl('supervisor-menu/workorder-supervisor-filtering-by-facility');
+  }
+  selectedStatus() {
+    this.router.navigateByUrl('supervisor-menu/workorder-supervisor-filtering-by-status');
+  }
   url_base64_decode(str) {// decoding function for token
     var output = str.replace('-', '+').replace('_', '/');
     switch (output.length % 4) {
@@ -79,60 +76,64 @@ export class WorkorderSupervisorFilteringByFacilityPage implements OnInit {
   async presentLoadingWithOptions() {
     const loading = await this.loadCtrl.create({
       //spinner: 'hide',
-    //  duration: 5000,
+      //  duration: 5000,
       message: 'Please wait...',
-      translucent: true, 
+      translucent: true,
       cssClass: 'custom-class custom-loading'
     });
-     await loading.present();
-     this.workOrderService.getBuilding(this.toServeremployeekey,this.OrganizationID).subscribe((data: any[]) => {
+    await loading.present();
+    this.workOrderService.getBuilding(this.toServeremployeekey, this.OrganizationID).subscribe((data: any[]) => {
       this.facilityList = data;
       loading.dismiss();
-     });
-      
-     
+    });
+
+
   }
 
-  getAllFacility()
-  {
-  
-   
-  }
-  getFloorByFacilityKey(facilitykey)
-  {
-  ;
+  getAllFacility() {
 
-    this.workOrderService.floorByFacility(facilitykey,this.OrganizationID).subscribe((data: any[]) => {
+
+  }
+  getFloorByFacilityKey(facilitykey) {
+
+
+    this.workOrderService.floorByFacility(facilitykey, this.OrganizationID).subscribe((data: any[]) => {
       this.zoneByFacilityKeyList = data;
-     });
+    });
   }
 
-  toggleGroup(facilitykey)
-  {
+  toggleGroup(facilitykey) {
 
   }
 
-  getZoneByFacilityFloorKey(facilitykey,floorkey,group)
-  {
-    this.temp_floorkey=floorkey;
-    this.workOrderService.zoneByFacility_Floor(facilitykey,floorkey,this.OrganizationID).subscribe((data: any[]) => {
+  getZoneByFacilityFloorKey(facilitykey, floorkey, group) {
+    this.temp_floorkey = floorkey;
+    this.workOrderService.zoneByFacility_Floor(facilitykey, floorkey, this.OrganizationID).subscribe((data: any[]) => {
       this.floorListByZoneFacility = data;
-     });
+    });
     //  this.FacilityKey="";
     //  this.FloorKey="";
     //  this.ZoneKey="";
   }
 
-  getAllWorkorderByFacilityFloorZone(facilitykey,zonekey,floorkey)
-  {
+  async getAllWorkorderByFacilityFloorZone(facilitykey, zonekey, floorkey) {
+    const loading = await this.loadCtrl.create({
+      //spinner: 'hide',
+      //  duration: 5000,
+      message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    await loading.present();
     this.today_DT = this.convert_DT(new Date());
-    this.workOrderService.viewworkorderFilterByFacility(facilitykey,zonekey,floorkey,this.today_DT,this.toServeremployeekey,this.OrganizationID).subscribe((data: any[]) => {
+    this.workOrderService.viewworkorderFilterByFacility(facilitykey, zonekey, floorkey, this.today_DT, this.toServeremployeekey, this.OrganizationID).subscribe((data: any[]) => {
       this.viewworkorder = data;
-     });
+      loading.dismiss();
+    });
     //  this.FacilityKey="";
     //  this.FloorKey="";
     //   this.ZoneKey="";
-     // this.getAllWorkorderByFacilityFloorZone(facilitykey,zonekey,floorkey);
+    // this.getAllWorkorderByFacilityFloorZone(facilitykey,zonekey,floorkey);
 
   }
   ngOnInit() {
@@ -142,14 +143,14 @@ export class WorkorderSupervisorFilteringByFacilityPage implements OnInit {
     var profile = JSON.parse(this.url_base64_decode(encodedProfile));
 
 
-   
 
-    this.toServeremployeekey=profile.employeekey;
+
+    this.toServeremployeekey = profile.employeekey;
     this.OrganizationID = profile.OrganizationID;
     this.getAllFacility();
     this.presentLoadingWithOptions();
 
-   
+
   }
   GoBack() {// go back option
     //this.router.navigateByUrl('workorder_Supervisor_View');]

@@ -47,8 +47,8 @@
         </ion-item>
 
         <ion-item>
-            <ion-label>Auditor*</ion-label>
-            <ion-select interface="popover" [(ngModel)]="SupervisorKey" placeholder="--Select--">
+            <ion-label>Auditor* </ion-label>
+            <ion-select interface="popover" [(ngModel)]="SupervisorKey">
                 <ion-select-option value="">Select</ion-select-option>
                 <ion-select-option *ngFor="let a of auditor" [value]="a.SupervisorKey">
                     {{a.SupervisorText}}
@@ -131,7 +131,7 @@
 
     </ion-grid>
     <div align='center' padding style="margin-bottom: 10px">
-        <ion-button color="success" (click)="createInspectionorder()" >Submit
+        <ion-button color="success" (click)="createInspectionorder()">Submit
         </ion-button>
 
     </div>

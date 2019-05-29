@@ -20,7 +20,7 @@ export class EmployeeMenuPage implements OnInit {
     },
    
     {
-      title: 'WorkOrder View',//first
+      title: 'WorkOrder',//first
       url: '/employee-menu/workorder-view',
       icon: "logo-buffer"
     },

@@ -147,7 +147,7 @@
         </ion-label>
 
         <ion-label text-center *ngIf="items.IsPhotoRequired == 1 &&items.WorkorderStatus != 'Delayed'">
-          <ion-button color=" button-brown-{{items.WorkorderStatus === 'Scheduled'}} 
+          <ion-button color=" button-red-{{items.WorkorderStatus === 'Scheduled'}} 
                             button-yellow-{{items.WorkorderStatus === 'InProgress'}}
                             button-green-{{items.WorkorderStatus === 'Completed'}}"
             class="button-text-workorder button button-energized" size="default" expand="block"
@@ -158,7 +158,7 @@
         </ion-label>
 
         <ion-label text-center *ngIf="items.IsBarcodeRequired == 1 &&items.WorkorderStatus != 'Delayed'">
-          <ion-button color=" button-brown-{{items.WorkorderStatus === 'Scheduled'}} 
+          <ion-button color=" button-red-{{items.WorkorderStatus === 'Scheduled'}} 
                             button-yellow-{{items.WorkorderStatus === 'InProgress'}}
                             button-green-{{items.WorkorderStatus === 'Completed'}}"
             class="button-text-workorder button button-energized" size="default" expand="block"
@@ -169,7 +169,7 @@
         </ion-label>
 
         <ion-label text-center *ngIf="items.IsBarcodeRequired==0 && items.IsPhotoRequired==0 && items.IsSnapshot==0">
-          <ion-button color=" button-brown-{{items.WorkorderStatus ==='Scheduled'}}
+          <ion-button color=" button-red-{{items.WorkorderStatus ==='Scheduled'}}
                             button-yellow-{{items.WorkorderStatus === 'InProgress'}}
                             button-green-{{items.WorkorderStatus === 'Completed'}}"
             class="button-text-workorder button button-energized" size="default" expand="block"
@@ -180,7 +180,7 @@
         </ion-label>
 
         <ion-label text-center *ngIf="items.IsSnapshot == 1 &&items.WorkorderStatus != 'Delayed'">
-          <ion-button color=" button-brown-{{items.WorkorderStatus === 'Scheduled'}} 
+          <ion-button color=" button-red-{{items.WorkorderStatus === 'Scheduled'}} 
                             button-yellow-{{items.WorkorderStatus === 'InProgress'}}
                             button-green-{{items.WorkorderStatus === 'Completed'}}"
             class="button-text-workorder button button-energized" size="default" expand="block"

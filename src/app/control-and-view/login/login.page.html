@@ -15,11 +15,17 @@
           </ion-item>
           <ion-item>
             <ion-label>Password</ion-label>
-            <ion-input [(ngModel)]='Password' type="password" value=""></ion-input>
+            <ion-input #input [(ngModel)]='Password' type="password" value=""></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>Tenant ID</ion-label>
             <ion-input [(ngModel)]='TenantID' type="text" value=""></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-checkbox class="marginTop" id="checkbox" style="border-style: none;" [(ngModel)]="passwordCheckbox"
+              (click)="showPassword(input)"></ion-checkbox> &nbsp;
+            <ion-label for="checkbox" *ngIf="!passwordCheckbox">Show Password</ion-label>
+            <ion-label for="checkbox" *ngIf="passwordCheckbox">Hide Password</ion-label>
           </ion-item>
         </div>
 

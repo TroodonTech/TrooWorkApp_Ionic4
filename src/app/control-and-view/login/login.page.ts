@@ -289,4 +289,7 @@ export class LoginPage implements OnInit {
         localStorage.removeItem('firstLoad');
     }
   }
+  showPassword(input: any): any {
+    input.type = input.type === 'password' ? 'text' : 'password';
+  }
 }

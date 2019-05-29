@@ -22,13 +22,13 @@
 <ion-content padding style="background-color: #EBFAFF ;">
   <ion-segment [(ngModel)]="filtering" style="background-color: #FFF !important;">
     <ion-segment-button value="employee" style="background-color: #FFF !important;" (ionSelect)="selectedEmployees()">
-      <ion-label>EMPLOYEE</ion-label>
+      <ion-label style="color: black">EMPLOYEE</ion-label>
     </ion-segment-button>
     <ion-segment-button value="facility" (ionSelect)="selectedFacility()">
-      <ion-label>FACILITY</ion-label>
+      <ion-label style="color: black">FACILITY</ion-label>
     </ion-segment-button>
     <ion-segment-button value="status" style="background-color: #FFF !important;" (ionSelect)="selectedStatus()">
-      <ion-label>STATUS</ion-label>
+      <ion-label style="color: black">STATUS</ion-label>
     </ion-segment-button>
   </ion-segment>
 
@@ -49,18 +49,19 @@
     {{item.WorkorderStatus}} ({{item.totalItems}}) 
     
 </ion-card> -->
-<ion-grid text-center>
-  <ion-label  text-center *ngFor="let item of workorderStatusList">
+  <ion-grid text-center>
+    <ion-label text-center *ngFor="let item of workorderStatusList">
 
-    <button  type="button" style="margin-top: 1%" color="#FFF" class="statusFilter-{{item.WorkorderStatus===temp_status}} " align='center'
-      (click)="getWorkorderBYStatusKey(item.WorkorderStatusKey)" padding>
-      {{item.WorkorderStatus}} ({{item.totalItems}})
-  
-    </button>
-  </ion-label>
-</ion-grid>
+      <button type="button" style="margin-top: 1%" color="#FFF"
+        class="statusFilter-{{item.WorkorderStatus===temp_status}} " align='center'
+        (click)="getWorkorderBYStatusKey(item.WorkorderStatusKey)" padding>
+        {{item.WorkorderStatus}} ({{item.totalItems}})
 
-    <!-- /****************************************************************/
+      </button>
+    </ion-label>
+  </ion-grid>
+
+  <!-- /****************************************************************/
                <ion-button class="button-brown-{{item.WorkorderStatus===temp_status}} "align='center' (click)="getWorkorderBYStatusKey(item.WorkorderStatusKey)" padding>
 
                   {{item.WorkorderStatus===temp_status}}

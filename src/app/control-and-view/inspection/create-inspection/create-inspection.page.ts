@@ -656,7 +656,7 @@ var roomlist = [];
   this.inspectionServiceService
   .createInspectionOrder(this.InspectionOrder).then((data) =>
    {
-
+    this.presentAlert();
     this.newInspectKey=data[0].InspectionOrderKey;
 
     if(this.newInspectKey){
@@ -670,6 +670,7 @@ var roomlist = [];
           {
             // this.router.navigate(['/viewDetails', this.inspectKey]);
             this.location.back();
+            this.presentAlert();
             // Menu/(menucontent:WorkOrderDashBoard)
             // this.router.navigate(['/ManagerDashBoard', { outlets: { menucontent: ['InspectionDashboard' ]}}]);
           }
